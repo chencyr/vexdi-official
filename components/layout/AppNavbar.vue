@@ -23,7 +23,7 @@ const navItems = [
     <div
       class="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/70 bg-white/80 px-5 py-3 shadow-[var(--shell-shadow)] backdrop-blur"
     >
-      <a href="#hero" class="flex items-center gap-3" aria-label="回到首頁">
+      <a href="#hero" class="flex min-w-0 items-center gap-3 overflow-hidden" aria-label="回到首頁">
         <BrandLogo />
       </a>
 

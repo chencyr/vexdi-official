@@ -3,64 +3,92 @@ const instanceId = useId()
 
 const titleId = `brand-logo-title-${instanceId}`
 const gradientId = `brand-logo-gradient-${instanceId}`
+const darkGradientId = `brand-logo-dark-gradient-${instanceId}`
 </script>
 
 <template>
   <svg
     role="img"
     :aria-labelledby="titleId"
-    viewBox="0 0 240 64"
+    data-logo-option="4"
+    viewBox="0 0 260 72"
+    class="h-12 w-[174px] sm:w-[190px]"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <title :id="titleId">Creative Tech Studio</title>
     <defs>
-      <linearGradient :id="gradientId" x1="12" y1="8" x2="228" y2="56" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#16b8c4" />
-        <stop offset="0.56" stop-color="#29d5df" />
-        <stop offset="1" stop-color="#ff8a6d" />
+      <linearGradient :id="gradientId" x1="5" y1="10" x2="80" y2="58" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#20bfc8" />
+        <stop offset="0.52" stop-color="#0f8d9c" />
+        <stop offset="1" stop-color="#086d81" />
+      </linearGradient>
+      <linearGradient :id="darkGradientId" x1="104" y1="18" x2="248" y2="54" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#15294f" />
+        <stop offset="1" stop-color="#061d3a" />
       </linearGradient>
     </defs>
-    <g>
-      <rect x="4" y="4" width="56" height="56" rx="18" :fill="`url(#${gradientId})`" />
+
+    <g aria-hidden="true">
       <path
-        d="M18 19.5L30.5 14.5L43 19.5V29.5C43 36.9 37.95 43.45 30.5 46.5C23.05 43.45 18 36.9 18 29.5V19.5Z"
+        d="M7.5 57.5L32.1 13.5C33.3 11.4 36.4 11.6 37.3 13.8L55.6 57.5H43.6L34.5 34.7L22.1 57.5H7.5Z"
+        :fill="`url(#${gradientId})`"
+      />
+      <path
+        d="M42.4 12.2H53.8C65.1 12.2 73.4 21.1 73.4 34.7C73.4 48.8 65.1 57.5 53.8 57.5H42.4V46.6H53.1C58.7 46.6 62.3 42.1 62.3 34.8C62.3 27.7 58.7 23.1 53.1 23.1H42.4V12.2Z"
+        :fill="`url(#${gradientId})`"
+      />
+      <path
+        d="M38.4 47.2L45.2 57.5H29.7L38.4 47.2Z"
         fill="#ffffff"
         fill-opacity="0.92"
       />
       <path
-        d="M22.5 24.2L30.5 20.5L38.5 24.2V29.4C38.5 34.7 35.1 39.35 30.5 41.45C25.9 39.35 22.5 34.7 22.5 29.4V24.2Z"
-        fill="#16b8c4"
+        d="M57.6 18.8C61.1 21.6 63.2 27.2 63.2 34.7C63.2 42.2 61.1 47.9 57.6 50.6"
+        stroke="#ffffff"
+        stroke-width="4.8"
+        stroke-linecap="round"
+        opacity="0.9"
       />
-      <circle cx="30.5" cy="30" r="4.5" fill="#ff8a6d" />
-      <path
-        d="M74 18H84.2L93.5 42.1H86.9L85.1 37H73.1L71.3 42.1H64.8L74 18ZM83.4 32.6L79.1 20.8H78.9L74.7 32.6H83.4Z"
-        fill="#062c36"
-      />
-      <path
-        d="M97 18H102.9V42.1H97V18Z"
-        fill="#062c36"
-      />
-      <path
-        d="M110.2 18H121.7C128.9 18 133.8 22.9 133.8 30.1C133.8 37.4 128.9 42.1 121.7 42.1H110.2V18ZM121.2 37.1C125.2 37.1 127.7 34.5 127.7 30.1C127.7 25.8 125.2 23 121.2 23H116.2V37.1H121.2Z"
-        fill="#062c36"
-      />
-      <path
-        d="M143 18H162.1V23H148.9V27.9H160.2V32.8H148.9V37.1H162.5V42.1H143V18Z"
-        fill="#062c36"
-      />
-      <path
-        d="M176.9 23H169.8V18H190.9V23H183.8V42.1H176.9V23Z"
-        fill="#062c36"
-      />
-      <path
-        d="M199.2 18H205.1V42.1H199.2V18Z"
-        fill="#062c36"
-      />
-      <path
-        d="M214.5 18H220.4L230 33.8V18H235.8V42.1H229.9L220.3 26.3V42.1H214.5V18Z"
-        fill="#062c36"
-      />
+      <circle cx="61.6" cy="43.5" r="4.2" fill="#ff6f45" />
+
+      <text
+        x="92"
+        y="40"
+        :fill="`url(#${darkGradientId})`"
+        class="hidden sm:block"
+        font-family="'Noto Sans TC', 'Segoe UI', sans-serif"
+        font-size="24"
+        font-weight="800"
+        letter-spacing="4"
+      >
+        創意
+      </text>
+      <text
+        x="157"
+        y="40"
+        fill="#ff6f45"
+        class="hidden sm:block"
+        font-family="'Noto Sans TC', 'Segoe UI', sans-serif"
+        font-size="20"
+        font-weight="700"
+      >
+        ×
+      </text>
+      <text
+        x="184"
+        y="40"
+        :fill="`url(#${darkGradientId})`"
+        class="hidden sm:block"
+        font-family="'Noto Sans TC', 'Segoe UI', sans-serif"
+        font-size="24"
+        font-weight="800"
+        letter-spacing="4"
+      >
+        技術
+      </text>
+      <path class="hidden sm:block" d="M140 52H168" stroke="#0f8d9c" stroke-width="2.4" stroke-linecap="round" />
+      <circle class="hidden sm:block" cx="174" cy="52" r="2.2" fill="#0f8d9c" />
     </g>
   </svg>
 </template>

@@ -13,6 +13,7 @@ describe('BrandLogo', () => {
 
     expect(svg.attributes('role')).toBe('img')
     expect(svg.attributes('aria-labelledby')).toBe(title.attributes('id'))
+    expect(svg.attributes('data-logo-option')).toBe('4')
     expect(title.text()).toBe('Creative Tech Studio')
   })
 
