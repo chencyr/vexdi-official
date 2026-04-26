@@ -24,8 +24,11 @@ describe('HeroCarousel', () => {
     expect(wrapper.find('[data-hero-preview="previous"]').classes()).toContain('xl:w-[10.5rem]')
     expect(heroSlides.map((slide) => slide.displayLabel)).toEqual(['遊戲設計', '網頁設計', 'APP設計'])
     expect(heroSlides.map((slide) => slide.primaryCta.label)).toEqual(['淺談遊戲企劃', '規劃網站設計', '提案APP設計'])
+    expect(heroSlides[0].stats[0].value).toBe('遊戲企劃')
     expect(wrapper.text()).toContain('遊戲設計')
     expect(wrapper.find('[data-primary-hero-cta]').classes()).toContain('whitespace-nowrap')
+    expect(wrapper.findAll('[data-hero-cta-icon]')).toHaveLength(2)
+    expect(wrapper.text()).not.toContain('->')
     expect(heroSlides.every((slide) => slide.stats.every((stat) => stat.icon))).toBe(true)
     expect(wrapper.findAll('[data-hero-stat-icon]')).toHaveLength(3)
     for (const slide of heroSlides) {

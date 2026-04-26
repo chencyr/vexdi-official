@@ -24,7 +24,7 @@ export const heroSlides: HeroSlide[] = [
       href: '#portfolio',
     },
     stats: [
-      { value: '2 週內', label: '提案雛形', icon: '/images/icons/game-timeline.svg' },
+      { value: '遊戲企劃', label: '提案雛形', icon: '/images/icons/game-timeline.svg' },
       { value: '角色視覺', label: '記憶點設計', icon: '/images/icons/game-character.svg' },
       { value: '互動 UI', label: '流程示意', icon: '/images/icons/game-ui.svg' },
     ],

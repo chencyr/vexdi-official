@@ -96,13 +96,21 @@ const values = [
                     rel="noreferrer"
                     class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl bg-brand-coral px-6 py-4 text-lg font-black text-white shadow-[0_18px_42px_rgba(255,111,69,0.28)]"
                   >
-                    {{ currentSlide.primaryCta.label }} <span aria-hidden="true">-&gt;</span>
+                    {{ currentSlide.primaryCta.label }}
+                    <svg data-hero-cta-icon class="h-5 w-5" aria-hidden="true" viewBox="0 0 32 32" fill="none">
+                      <path d="M7 16h16" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                      <path d="M17 9l7 7-7 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
                   </a>
                   <a
                     href="#portfolio"
                     class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl border border-brand-ink/30 bg-white/90 px-6 py-4 text-lg font-bold text-brand-ink"
                   >
-                    {{ currentSlide.secondaryCta.label }} <span aria-hidden="true">-&gt;</span>
+                    {{ currentSlide.secondaryCta.label }}
+                    <svg data-hero-cta-icon class="h-5 w-5" aria-hidden="true" viewBox="0 0 32 32" fill="none">
+                      <path d="M7 16h16" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                      <path d="M17 9l7 7-7 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
                   </a>
                 </div>
                 <ul class="mt-10 grid grid-cols-3 gap-6">
