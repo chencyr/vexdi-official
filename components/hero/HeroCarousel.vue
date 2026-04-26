@@ -54,7 +54,7 @@ const values = [
           >
           <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.08),rgba(255,255,255,0.38))]" />
           <p class="absolute left-6 top-14 rounded-full bg-brand-teal px-4 py-2 text-sm font-black uppercase text-white shadow-lg">
-            {{ previousSlide.key }}
+            {{ previousSlide.displayLabel }}
           </p>
         </aside>
 
@@ -77,7 +77,7 @@ const values = [
               <span class="text-slate-300"> / 03</span>
             </p>
             <p class="mt-7 inline-flex w-fit rounded-xl bg-brand-teal px-5 py-3 text-lg font-black uppercase text-white shadow-lg">
-              {{ currentSlide.key }}
+              {{ currentSlide.displayLabel }}
             </p>
             <h1 class="mt-7 text-6xl font-black leading-[1.08] text-brand-ink">
               {{ currentSlide.title }}
@@ -87,16 +87,17 @@ const values = [
             </p>
             <div class="mt-8 flex gap-5">
               <a
+                data-primary-hero-cta
                 :href="lineLink"
                 target="_blank"
                 rel="noreferrer"
-                class="inline-flex items-center gap-4 rounded-2xl bg-brand-coral px-8 py-4 text-lg font-black text-white shadow-[0_18px_42px_rgba(255,111,69,0.28)]"
+                class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl bg-brand-coral px-6 py-4 text-lg font-black text-white shadow-[0_18px_42px_rgba(255,111,69,0.28)]"
               >
                 {{ currentSlide.primaryCta.label }} <span aria-hidden="true">-&gt;</span>
               </a>
               <a
                 href="#portfolio"
-                class="inline-flex items-center gap-4 rounded-2xl border border-brand-ink/30 bg-white/90 px-8 py-4 text-lg font-bold text-brand-ink"
+                class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl border border-brand-ink/30 bg-white/90 px-6 py-4 text-lg font-bold text-brand-ink"
               >
                 {{ currentSlide.secondaryCta.label }} <span aria-hidden="true">-&gt;</span>
               </a>
@@ -123,7 +124,7 @@ const values = [
           >
           <div class="absolute inset-0 bg-[linear-gradient(270deg,rgba(255,255,255,0.08),rgba(255,255,255,0.42))]" />
           <p class="absolute right-6 top-14 rounded-full bg-brand-teal px-4 py-2 text-sm font-black uppercase text-white shadow-lg">
-            {{ nextSlide.key }}
+            {{ nextSlide.displayLabel }}
           </p>
         </aside>
       </div>

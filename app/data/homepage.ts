@@ -9,13 +9,14 @@ import type {
 export const heroSlides: HeroSlide[] = [
   {
     key: 'game',
+    displayLabel: '遊戲設計',
     image: '/images/carousel/game-hero.png',
     eyebrow: 'Game Design x Playful Visuals',
     title: '把遊戲提案做成一眼想玩的視覺入口',
     description:
       '從角色情緒、互動節奏到介面層級，將遊戲概念整理成適合展示、提案與募資溝通的首頁體驗。',
     primaryCta: {
-      label: '用 LINE 討論遊戲提案',
+      label: '淺談遊戲企劃',
       href: '#contact',
     },
     secondaryCta: {
@@ -30,13 +31,14 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     key: 'website',
+    displayLabel: '網頁設計',
     image: '/images/carousel/website-hero.png',
     eyebrow: 'Brand Story x Web Experience',
     title: '讓品牌網站不只好看，也能把價值說清楚',
     description:
       '用敘事架構、版面節奏與明確 CTA，把作品集、品牌故事與服務內容整理成容易理解的網站。',
     primaryCta: {
-      label: '用 LINE 討論網站',
+      label: '規劃網站設計',
       href: '#contact',
     },
     secondaryCta: {
@@ -51,13 +53,14 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     key: 'app',
+    displayLabel: 'APP設計',
     image: '/images/carousel/app-hero.png',
     eyebrow: 'Product Flow x Dashboard UI',
     title: '把 App 想法收斂成可展示的產品流程',
     description:
       '從 MVP 範圍、核心任務到 dashboard 視覺，協助你把抽象需求變成能與團隊討論的介面原型。',
     primaryCta: {
-      label: '用 LINE 討論 App',
+      label: '提案APP設計',
       href: '#contact',
     },
     secondaryCta: {

@@ -2,6 +2,7 @@ export type SlideKey = 'game' | 'website' | 'app'
 
 export interface HeroSlide {
   key: SlideKey
+  displayLabel: string
   image: string
   eyebrow: string
   title: string

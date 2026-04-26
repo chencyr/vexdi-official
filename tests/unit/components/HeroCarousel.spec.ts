@@ -20,6 +20,10 @@ describe('HeroCarousel', () => {
     expect(wrapper.find('[data-hero-preview="next"]').exists()).toBe(true)
     expect(wrapper.find('[data-hero-banner-stage]').classes()).toContain('xl:max-w-[70rem]')
     expect(wrapper.find('[data-hero-preview="previous"]').classes()).toContain('xl:w-[10.5rem]')
+    expect(heroSlides.map((slide) => slide.displayLabel)).toEqual(['遊戲設計', '網頁設計', 'APP設計'])
+    expect(heroSlides.map((slide) => slide.primaryCta.label)).toEqual(['淺談遊戲企劃', '規劃網站設計', '提案APP設計'])
+    expect(wrapper.text()).toContain('遊戲設計')
+    expect(wrapper.find('[data-primary-hero-cta]').classes()).toContain('whitespace-nowrap')
     for (const slide of heroSlides) {
       expect(wrapper.find(`img[src="${slide.image}"]`).exists()).toBe(true)
     }
