@@ -24,9 +24,9 @@ export const heroSlides: HeroSlide[] = [
       href: '#portfolio',
     },
     stats: [
-      { value: '2 週內', label: '提案雛形' },
-      { value: '角色視覺', label: '記憶點設計' },
-      { value: '互動 UI', label: '流程示意' },
+      { value: '2 週內', label: '提案雛形', icon: '/images/icons/game-timeline.svg' },
+      { value: '角色視覺', label: '記憶點設計', icon: '/images/icons/game-character.svg' },
+      { value: '互動 UI', label: '流程示意', icon: '/images/icons/game-ui.svg' },
     ],
   },
   {
@@ -46,9 +46,9 @@ export const heroSlides: HeroSlide[] = [
       href: '#portfolio',
     },
     stats: [
-      { value: 'RWD', label: '跨裝置體驗' },
-      { value: 'SEO 基礎', label: '搜尋可讀性' },
-      { value: 'CTA 路徑', label: '轉換設計' },
+      { value: 'RWD', label: '跨裝置體驗', icon: '/images/icons/web-rwd.svg' },
+      { value: 'SEO 基礎', label: '搜尋可讀性', icon: '/images/icons/web-seo.svg' },
+      { value: 'CTA 路徑', label: '轉換設計', icon: '/images/icons/web-cta.svg' },
     ],
   },
   {
@@ -68,9 +68,9 @@ export const heroSlides: HeroSlide[] = [
       href: '#portfolio',
     },
     stats: [
-      { value: 'MVP 範圍', label: '需求收斂' },
-      { value: 'Dashboard', label: '資訊架構' },
-      { value: 'Prototype', label: '互動示意' },
+      { value: 'MVP 範圍', label: '需求收斂', icon: '/images/icons/app-flow.svg' },
+      { value: 'Dashboard', label: '資訊架構', icon: '/images/icons/app-dashboard.svg' },
+      { value: 'Prototype', label: '互動示意', icon: '/images/icons/app-prototype.svg' },
     ],
   },
 ]

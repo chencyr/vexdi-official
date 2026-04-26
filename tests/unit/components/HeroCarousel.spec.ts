@@ -13,7 +13,7 @@ describe('HeroCarousel', () => {
   it('renders the desktop carousel stage and value strip', async () => {
     const wrapper = await mountSuspended(HeroCarousel)
 
-    expect(wrapper.text()).toContain('01 / 03')
+    expect(wrapper.text()).not.toContain('01 / 03')
     expect(wrapper.find('[data-hero-banner-stage]').exists()).toBe(true)
     expect(wrapper.find('[data-hero-banner-artwork]').exists()).toBe(true)
     expect(wrapper.find('[data-hero-preview="previous"]').exists()).toBe(true)
@@ -24,6 +24,8 @@ describe('HeroCarousel', () => {
     expect(heroSlides.map((slide) => slide.primaryCta.label)).toEqual(['淺談遊戲企劃', '規劃網站設計', '提案APP設計'])
     expect(wrapper.text()).toContain('遊戲設計')
     expect(wrapper.find('[data-primary-hero-cta]').classes()).toContain('whitespace-nowrap')
+    expect(heroSlides.every((slide) => slide.stats.every((stat) => stat.icon))).toBe(true)
+    expect(wrapper.findAll('[data-hero-stat-icon]')).toHaveLength(3)
     for (const slide of heroSlides) {
       expect(wrapper.find(`img[src="${slide.image}"]`).exists()).toBe(true)
     }

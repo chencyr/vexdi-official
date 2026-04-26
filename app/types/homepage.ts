@@ -16,6 +16,7 @@ export interface HeroSlide {
     href: string
   }
   stats: Array<{
+    icon: string
     label: string
     value: string
   }>
