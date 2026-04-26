@@ -26,7 +26,7 @@ const values = [
       <button
         type="button"
         aria-label="Previous slide"
-        class="absolute left-[8.5rem] top-[23rem] z-30 grid h-16 w-16 place-items-center rounded-full bg-white text-3xl font-black text-brand-ink shadow-xl xl:left-[10.5rem]"
+        class="absolute left-[7.25rem] top-[22rem] z-30 grid h-16 w-16 place-items-center rounded-full bg-white text-3xl font-black text-brand-ink shadow-xl xl:left-[7.5rem]"
         @click="heroStore.previousSlide()"
       >
         &lt;
@@ -35,7 +35,7 @@ const values = [
         type="button"
         data-next-slide
         aria-label="Next slide"
-        class="absolute right-[8.5rem] top-[23rem] z-30 grid h-16 w-16 place-items-center rounded-full bg-white text-3xl font-black text-brand-ink shadow-xl xl:right-[10.5rem]"
+        class="absolute right-[7.25rem] top-[22rem] z-30 grid h-16 w-16 place-items-center rounded-full bg-white text-3xl font-black text-brand-ink shadow-xl xl:right-[7.5rem]"
         @click="heroStore.nextSlide()"
       >
         &gt;
@@ -44,7 +44,7 @@ const values = [
       <div class="relative min-h-[39rem]">
         <aside
           data-hero-preview="previous"
-          class="absolute left-0 top-3 h-[36rem] w-[11rem] overflow-hidden rounded-r-[1.6rem] bg-white shadow-[0_22px_62px_rgba(21,54,88,0.16)] xl:w-[14rem]"
+          class="absolute left-0 top-3 h-[36rem] w-[10.5rem] overflow-hidden rounded-r-[1.6rem] bg-white shadow-[0_22px_62px_rgba(21,54,88,0.16)] xl:w-[10.5rem]"
         >
           <img
             :src="previousSlide.image"
@@ -60,18 +60,18 @@ const values = [
 
         <div
           data-hero-banner-stage
-          class="relative mx-auto min-h-[36rem] max-w-[72rem] overflow-hidden rounded-[1.7rem] border border-white/80 bg-white shadow-[0_30px_90px_rgba(32,73,110,0.15)] xl:max-w-[84rem]"
+          class="relative mx-auto min-h-[36rem] max-w-[70rem] overflow-hidden rounded-[1.7rem] border border-white/80 bg-white shadow-[0_30px_90px_rgba(32,73,110,0.15)] xl:max-w-[70rem]"
         >
           <img
             data-hero-banner-artwork
             :src="currentSlide.image"
             :alt="`${currentSlide.key} carousel artwork`"
-            class="absolute inset-y-0 right-0 h-full w-[68%] object-cover object-center"
+            class="absolute inset-y-0 right-0 h-full w-[66%] object-cover object-center"
             fetchpriority="high"
           >
-          <div class="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_0%,#ffffff_35%,rgba(255,255,255,0.9)_47%,rgba(255,255,255,0.1)_74%,rgba(255,255,255,0)_100%)]" />
+          <div class="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_0%,#ffffff_34%,rgba(255,255,255,0.88)_45%,rgba(255,255,255,0.08)_70%,rgba(255,255,255,0)_100%)]" />
 
-          <div class="relative z-10 flex min-h-[36rem] max-w-[34rem] flex-col justify-center px-10 py-12 xl:px-12">
+          <div class="relative z-10 flex min-h-[36rem] max-w-[31rem] flex-col justify-center px-10 py-12">
             <p class="text-lg font-black text-brand-ink">
               <span class="text-3xl">0{{ heroStore.activeIndex + 1 }}</span>
               <span class="text-slate-300"> / 03</span>
@@ -79,7 +79,7 @@ const values = [
             <p class="mt-7 inline-flex w-fit rounded-xl bg-brand-teal px-5 py-3 text-lg font-black uppercase text-white shadow-lg">
               {{ currentSlide.key }}
             </p>
-            <h1 class="mt-7 text-6xl font-black leading-[1.08] text-brand-ink xl:text-7xl">
+            <h1 class="mt-7 text-6xl font-black leading-[1.08] text-brand-ink">
               {{ currentSlide.title }}
             </h1>
             <p class="mt-6 max-w-lg text-lg leading-9 text-slate-600">
@@ -113,7 +113,7 @@ const values = [
 
         <aside
           data-hero-preview="next"
-          class="absolute right-0 top-3 h-[36rem] w-[11rem] overflow-hidden rounded-l-[1.6rem] bg-white shadow-[0_22px_62px_rgba(21,54,88,0.16)] xl:w-[14rem]"
+          class="absolute right-0 top-3 h-[36rem] w-[10.5rem] overflow-hidden rounded-l-[1.6rem] bg-white shadow-[0_22px_62px_rgba(21,54,88,0.16)] xl:w-[10.5rem]"
         >
           <img
             :src="nextSlide.image"

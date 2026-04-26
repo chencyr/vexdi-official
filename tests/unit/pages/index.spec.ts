@@ -11,4 +11,11 @@ describe('pages/index', () => {
     expect(wrapper.text()).toContain('精選作品')
     expect(wrapper.text()).toContain('預約諮詢')
   })
+
+  it('uses the wide desktop shell needed by the reference hero', async () => {
+    const wrapper = await mountSuspended(IndexPage)
+
+    expect(wrapper.find('[data-homepage-shell]').exists()).toBe(true)
+    expect(wrapper.find('[data-homepage-shell]').classes()).toContain('lg:max-w-[96rem]')
+  })
 })

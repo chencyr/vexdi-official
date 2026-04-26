@@ -17,9 +17,10 @@ const navItems = [
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 px-4 py-4 lg:px-0">
+  <header class="sticky top-0 z-40 px-4 py-4 lg:px-0 lg:py-0">
     <div
-      class="mx-auto flex max-w-[92rem] items-center justify-between rounded-[2rem] border border-white/70 bg-white/90 px-5 py-3 shadow-[0_18px_60px_rgba(20,55,90,0.08)] backdrop-blur-xl lg:rounded-none lg:border-x-0 lg:px-16"
+      data-desktop-nav-bar
+      class="mx-auto flex max-w-[92rem] items-center justify-between rounded-[2rem] border border-white/70 bg-white/90 px-5 py-3 shadow-[0_18px_60px_rgba(20,55,90,0.08)] backdrop-blur-xl lg:h-[4.625rem] lg:max-w-full lg:rounded-none lg:border-x-0 lg:px-16 lg:py-0 lg:shadow-none"
     >
       <a href="#hero" class="flex min-w-0 items-center gap-3 overflow-hidden" aria-label="回到首頁">
         <BrandLogo />

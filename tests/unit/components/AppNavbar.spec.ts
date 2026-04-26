@@ -15,5 +15,7 @@ describe('AppNavbar', () => {
     expect(wrapper.text()).toContain('Portfolio')
     expect(wrapper.text()).toContain('預約諮詢')
     expect(wrapper.text()).toContain('開啟選單')
+    expect(wrapper.find('[data-desktop-nav-bar]').exists()).toBe(true)
+    expect(wrapper.find('[data-desktop-nav-bar]').classes()).toContain('lg:h-[4.625rem]')
   })
 })

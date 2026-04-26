@@ -25,7 +25,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="mx-auto flex w-full max-w-[96rem] flex-col gap-7 px-4 pb-16 lg:px-0">
+  <main data-homepage-shell class="mx-auto flex w-full max-w-full flex-col gap-7 px-4 pb-16 lg:max-w-[96rem] lg:px-0">
     <AppNavbar />
     <HeroCarousel />
     <MobileHeroIntro />

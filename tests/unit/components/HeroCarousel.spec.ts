@@ -18,6 +18,8 @@ describe('HeroCarousel', () => {
     expect(wrapper.find('[data-hero-banner-artwork]').exists()).toBe(true)
     expect(wrapper.find('[data-hero-preview="previous"]').exists()).toBe(true)
     expect(wrapper.find('[data-hero-preview="next"]').exists()).toBe(true)
+    expect(wrapper.find('[data-hero-banner-stage]').classes()).toContain('xl:max-w-[70rem]')
+    expect(wrapper.find('[data-hero-preview="previous"]').classes()).toContain('xl:w-[10.5rem]')
     for (const slide of heroSlides) {
       expect(wrapper.find(`img[src="${slide.image}"]`).exists()).toBe(true)
     }
