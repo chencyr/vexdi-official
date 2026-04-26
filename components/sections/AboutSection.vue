@@ -6,33 +6,33 @@
     <div>
       <p class="text-sm font-semibold uppercase tracking-[0.22em] text-brand-teal">About</p>
       <h2 class="mt-4 text-4xl font-black leading-tight text-brand-ink">
-        創意與技術一起思考，讓網站、遊戲與 App 有一致的品牌感
+        用創意與技術，把網站、遊戲與 App 想法變成可被記住的體驗
       </h2>
       <p class="mt-5 max-w-2xl text-base leading-8 text-slate-600">
-        我用同一套敘事與版面邏輯，把視覺吸引力、商務說服力與可開發性整理進首頁，
-        讓不同類型的案件都能維持清楚、可信、好延伸的品牌語氣。
+        Creative Tech Studio 專注在把抽象概念整理成清楚的品牌敘事、視覺系統與互動流程。
+        不論是接案首頁、遊戲提案或 App 原型，核心都是讓人快速理解你在做什麼、為什麼值得合作。
       </p>
     </div>
 
     <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
       <article class="rounded-[28px] bg-slate-50 p-5">
-        <h3 class="font-bold text-brand-ink">跨領域整合</h3>
+        <h3 class="font-bold text-brand-ink">先整理，再設計</h3>
         <p class="mt-2 text-sm leading-7 text-slate-600">
-          用同一個品牌語言處理網站、遊戲頁與 App 展示。
+          從目標、受眾與素材開始，把零散想法變成能被團隊理解的頁面架構。
         </p>
       </article>
 
       <article class="rounded-[28px] bg-slate-50 p-5">
-        <h3 class="font-bold text-brand-ink">設計可落地</h3>
+        <h3 class="font-bold text-brand-ink">視覺服務動線</h3>
         <p class="mt-2 text-sm leading-7 text-slate-600">
-          在提案美感之外，保留開發與交付節奏的可行性。
+          讓主視覺、內容節奏與 CTA 彼此配合，而不是只停留在漂亮畫面。
         </p>
       </article>
 
       <article class="rounded-[28px] bg-slate-50 p-5">
-        <h3 class="font-bold text-brand-ink">敘事更清楚</h3>
+        <h3 class="font-bold text-brand-ink">保留後續彈性</h3>
         <p class="mt-2 text-sm leading-7 text-slate-600">
-          讓客戶一眼理解你做什麼、適合誰、該怎麼合作。
+          先做可上線、可驗證的 v1，再依作品、數據與詢問內容逐步調整。
         </p>
       </article>
     </div>

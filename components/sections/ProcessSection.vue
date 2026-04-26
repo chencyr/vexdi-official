@@ -6,7 +6,9 @@ import { processSteps } from '../../app/data/homepage'
   <section id="process" class="space-y-6">
     <div>
       <p class="text-sm font-semibold uppercase tracking-[0.22em] text-brand-teal">Process</p>
-      <h2 class="mt-3 text-4xl font-black text-brand-ink">合作節奏清楚，詢問起來更安心</h2>
+      <h2 class="mt-3 text-4xl font-black text-brand-ink">
+        從想法到上線，流程保持清楚可追蹤
+      </h2>
     </div>
 
     <div class="grid gap-4 lg:grid-cols-4">

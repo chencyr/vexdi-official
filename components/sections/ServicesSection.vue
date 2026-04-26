@@ -7,10 +7,10 @@ import { services } from '../../app/data/homepage'
     <div class="flex items-end justify-between gap-6">
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.22em] text-brand-teal">Services</p>
-        <h2 class="mt-3 text-4xl font-black text-brand-ink">??????????????</h2>
+        <h2 class="mt-3 text-4xl font-black text-brand-ink">三種服務，對齊同一個品牌故事</h2>
       </div>
       <a href="#contact" class="hidden text-sm font-semibold text-brand-teal lg:inline-flex">
-        ????
+        開始討論
       </a>
     </div>
 

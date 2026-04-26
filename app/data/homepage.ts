@@ -9,12 +9,12 @@ import type {
 export const heroSlides: HeroSlide[] = [
   {
     key: 'game',
-    eyebrow: '遊戲體驗設計',
-    title: '把世界觀做成玩家願意停留的互動舞台',
+    eyebrow: 'Game Design x Playful Visuals',
+    title: '把遊戲提案做成一眼想玩的視覺入口',
     description:
-      '從核心玩法、介面節奏到上線優化，我們協助團隊把遊戲概念轉成可測試、可迭代、可發布的產品。',
+      '從角色情緒、互動節奏到介面層級，將遊戲概念整理成適合展示、提案與募資溝通的首頁體驗。',
     primaryCta: {
-      label: '預約遊戲諮詢',
+      label: '用 LINE 討論遊戲提案',
       href: '#contact',
     },
     secondaryCta: {
@@ -22,49 +22,49 @@ export const heroSlides: HeroSlide[] = [
       href: '#portfolio',
     },
     stats: [
-      { value: '原型 2 週', label: '快速驗證' },
-      { value: '跨平台', label: '裝置適配' },
-      { value: '持續優化', label: '營運支援' },
+      { value: '2 週內', label: '提案雛形' },
+      { value: '角色視覺', label: '記憶點設計' },
+      { value: '互動 UI', label: '流程示意' },
     ],
   },
   {
     key: 'website',
-    eyebrow: '品牌網站建置',
-    title: '用清楚的內容架構，讓網站成為最好的業務夥伴',
+    eyebrow: 'Brand Story x Web Experience',
+    title: '讓品牌網站不只好看，也能把價值說清楚',
     description:
-      '我們設計兼顧美感與轉換的網站，讓品牌故事、服務亮點與聯絡流程都能在第一時間被看見。',
+      '用敘事架構、版面節奏與明確 CTA，把作品集、品牌故事與服務內容整理成容易理解的網站。',
     primaryCta: {
-      label: '開始網站專案',
+      label: '用 LINE 討論網站',
       href: '#contact',
     },
     secondaryCta: {
-      label: '瀏覽網站作品',
+      label: '查看網站案例',
       href: '#portfolio',
     },
     stats: [
-      { value: '內容策略', label: '先想清楚再上線' },
-      { value: 'RWD', label: '全螢幕體驗' },
-      { value: 'SEO 基礎', label: '搜尋可見度' },
+      { value: 'RWD', label: '跨裝置體驗' },
+      { value: 'SEO 基礎', label: '搜尋可讀性' },
+      { value: 'CTA 路徑', label: '轉換設計' },
     ],
   },
   {
     key: 'app',
-    eyebrow: '應用程式開發',
-    title: '把複雜流程整理成流暢、可靠、好維護的 App',
+    eyebrow: 'Product Flow x Dashboard UI',
+    title: '把 App 想法收斂成可展示的產品流程',
     description:
-      '無論是內部工具、會員服務或新創 MVP，我們都能用模組化方式把需求拆解成可持續演進的產品。',
+      '從 MVP 範圍、核心任務到 dashboard 視覺，協助你把抽象需求變成能與團隊討論的介面原型。',
     primaryCta: {
-      label: '討論 App 需求',
+      label: '用 LINE 討論 App',
       href: '#contact',
     },
     secondaryCta: {
-      label: '看 App 範例',
+      label: '查看 App 案例',
       href: '#portfolio',
     },
     stats: [
-      { value: 'MVP 規劃', label: '先上線再放大' },
-      { value: '流程簡化', label: '降低學習成本' },
-      { value: '版本管理', label: '長期維護' },
+      { value: 'MVP 範圍', label: '需求收斂' },
+      { value: 'Dashboard', label: '資訊架構' },
+      { value: 'Prototype', label: '互動示意' },
     ],
   },
 ]
@@ -72,41 +72,41 @@ export const heroSlides: HeroSlide[] = [
 export const services: ServiceItem[] = [
   {
     key: 'website',
-    title: '網站設計與前端開發',
-    description: '打造具備品牌辨識度與轉換效率的響應式網站。',
+    title: '品牌與作品集網站',
+    description: '整理定位、內容層級與視覺語氣，打造能讓訪客快速理解價值的 one-page 或形象網站。',
   },
   {
     key: 'game',
-    title: '遊戲原型與互動設計',
-    description: '將遊戲概念拆成能快速驗證的介面與流程。',
+    title: '遊戲提案視覺設計',
+    description: '把世界觀、角色亮點與核心玩法轉成提案頁面、展示視覺與互動 UI 示意。',
   },
   {
     key: 'app',
-    title: 'App 產品與系統整合',
-    description: '協助團隊建立可持續擴充的行動產品與服務流程。',
+    title: 'App UI/UX 與產品原型',
+    description: '協助釐清使用情境、資訊架構與關鍵流程，產出可溝通、可迭代的介面方向。',
   },
 ]
 
 export const processSteps: ProcessStep[] = [
   {
     number: '01',
-    title: '需求諮詢',
-    description: '先釐清目標、使用者與限制條件，避免做出偏題的產品。',
+    title: '需求釐清',
+    description: '先整理目標、受眾、內容素材與預算範圍，確認首頁需要完成的核心任務。',
   },
   {
     number: '02',
-    title: '提案與排程',
-    description: '整理範圍、時程與優先順序，讓每一步都有清楚的交付節點。',
+    title: '敘事與線框',
+    description: '建立頁面節奏、CTA 路徑與區塊順序，讓視覺設計前就先有清楚架構。',
   },
   {
     number: '03',
-    title: '設計與製作',
-    description: '進入視覺、前端與功能開發，並以可驗證的方式持續推進。',
+    title: '視覺與互動',
+    description: '依照品牌個性製作主視覺、卡片、動線與互動狀態，讓頁面有記憶點。',
   },
   {
     number: '04',
-    title: '交付與優化',
-    description: '完成上線、追蹤回饋，並依真實使用情境持續調整。',
+    title: '上線與調整',
+    description: '完成響應式檢查、基礎 SEO 與轉換入口設定，再依回饋微調內容。',
   },
 ]
 
@@ -114,43 +114,46 @@ export const portfolioItems: PortfolioItem[] = [
   {
     slug: 'sky-arcadia',
     category: 'game',
-    title: 'Sky Arcadia',
-    summary: '一款以探索與收集為主軸的試玩版，重點放在節奏與場景氛圍。',
-    highlights: ['關卡節奏優化', '介面引導設計', '試玩版驗證'],
-    ctaLabel: '查看專案細節',
+    title: 'Sky Arcadia 遊戲提案頁',
+    summary:
+      '以空島冒險為主題的遊戲展示頁，將角色、玩法循環與 UI 情境整理成可快速理解的提案故事。',
+    highlights: ['角色與世界觀視覺化', 'HUD 與任務流程示意', 'LINE 諮詢 CTA 串接'],
+    ctaLabel: '討論遊戲提案',
   },
   {
     slug: 'atelier-brand',
     category: 'website',
-    title: 'Atelier Brand',
-    summary: '以品牌故事和預約轉換為核心的形象網站，兼顧質感與閱讀效率。',
-    highlights: ['品牌敘事架構', '服務頁優化', '手機優先設計'],
-    ctaLabel: '查看專案細節',
+    title: 'Atelier 品牌形象網站',
+    summary:
+      '為創作工作室設計的 one-page 網站，用作品敘事、服務卡片與清楚流程降低初次詢問門檻。',
+    highlights: ['品牌語氣與色彩系統', '作品集 modal 展示', '行動版服務分流'],
+    ctaLabel: '討論品牌網站',
   },
   {
     slug: 'pulse-track',
     category: 'app',
-    title: 'Pulse Track',
-    summary: '面向團隊協作的內部 App，協助追蹤任務、狀態與回報流程。',
-    highlights: ['任務視覺化', '跨部門流程', '資料同步'],
-    ctaLabel: '查看專案細節',
+    title: 'PulseTrack App 原型',
+    summary:
+      '面向個人效率追蹤的 App 概念，把儀表板、任務流程與資料狀態整理成可展示的產品介面。',
+    highlights: ['MVP 功能範圍收斂', 'Dashboard 資訊架構', '互動原型視覺方向'],
+    ctaLabel: '討論 App 原型',
   },
 ]
 
 export const testimonials: TestimonialItem[] = [
   {
-    name: '林子晴',
-    role: '品牌總監',
-    quote: '團隊把我們的想法整理得很有條理，網站上線後的諮詢量明顯提升。',
+    name: '林小姐',
+    role: '品牌主理人',
+    quote: '原本只有零散想法，合作後很快就整理出網站敘事和視覺方向，提案也變得更有說服力。',
   },
   {
-    name: '陳冠廷',
-    role: '產品經理',
-    quote: '需求很多但節奏一直很清楚，最後交付的 App 也比我們原本預期更好維護。',
+    name: '陳先生',
+    role: '遊戲企劃',
+    quote: '最有幫助的是把玩法亮點轉成畫面語言，讓團隊在討論時更快對齊。',
   },
   {
-    name: '黃雨柔',
-    role: '獨立遊戲製作人',
-    quote: '原型驗證的速度很快，讓我們很早就能看見哪些玩法值得繼續投資。',
+    name: '王小姐',
+    role: '產品負責人',
+    quote: 'App 流程被拆得很清楚，dashboard 的資訊層級也讓工程和設計都比較好接手。',
   },
 ]

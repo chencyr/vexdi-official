@@ -9,8 +9,8 @@ describe('landing sections', () => {
     const about = await mountSuspended(AboutSection)
     const process = await mountSuspended(ProcessSection)
 
-    expect(about.text()).toContain('創意與技術一起思考')
-    expect(process.text()).toContain('需求諮詢')
+    expect(about.text()).toContain('用創意與技術')
+    expect(process.text()).toContain('需求釐清')
     expect(process.findAll('[data-step]').length).toBe(4)
   })
 })
