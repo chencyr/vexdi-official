@@ -12,11 +12,25 @@ const currentSlide = computed(() => heroSlides[heroStore.activeIndex])
 const previousSlide = computed(() => heroSlides[(heroStore.activeIndex + heroSlides.length - 1) % heroSlides.length])
 const nextSlide = computed(() => heroSlides[(heroStore.activeIndex + 1) % heroSlides.length])
 
-const values = [
-  { title: '專業溝通流程', body: '需求釐清更精準' },
-  { title: '彈性協作模式', body: '配合度高更安心' },
-  { title: '高品質交付', body: '細節把關不馬虎' },
-  { title: '長期合作夥伴', body: '一起成長與優化' },
+const serviceCards = [
+  {
+    title: '形象網站',
+    body: '品牌官網與 RWD 響應式網站',
+    icon: '/images/icons/service-website.svg',
+    accent: 'text-brand-teal',
+  },
+  {
+    title: '遊戲開發',
+    body: '遊戲原型、互動系統與視覺提案',
+    icon: '/images/icons/service-game.svg',
+    accent: 'text-[#5f56d9]',
+  },
+  {
+    title: 'APP 設計',
+    body: '產品流程、介面設計與原型驗證',
+    icon: '/images/icons/service-app.svg',
+    accent: 'text-brand-coral',
+  },
 ]
 </script>
 
@@ -167,28 +181,32 @@ const values = [
         <span class="text-sm font-semibold text-slate-500">0{{ heroStore.activeIndex + 1 }} — 03</span>
       </div>
 
-      <div class="mx-auto mt-12 grid max-w-[84rem] grid-cols-[1.1fr_0.9fr] gap-8 px-8">
-        <section>
-          <h2 class="text-2xl font-black text-brand-ink">我能為你帶來的價值</h2>
-          <div class="mt-8 grid grid-cols-4 gap-6">
-            <article v-for="value in values" :key="value.title" class="flex items-center gap-4">
-              <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-brand-teal text-brand-teal">+</span>
-              <div>
-                <h3 class="font-bold text-brand-ink">{{ value.title }}</h3>
-                <p class="mt-1 text-sm text-slate-500">{{ value.body }}</p>
-              </div>
-            </article>
-          </div>
-        </section>
-        <article class="flex items-center gap-6 rounded-[1.6rem] bg-white/85 p-6 shadow-xl">
-          <div class="grid h-24 w-24 place-items-center rounded-full bg-[linear-gradient(135deg,#d8fbff,#ffcfb5)] text-3xl">AD</div>
-          <div>
-            <p class="font-black text-brand-ink">陳先生 <span class="text-sm font-medium text-slate-500">/ 遊戲工作室負責人</span></p>
-            <p class="mt-2 text-brand-coral">★★★★★</p>
-            <p class="mt-2 leading-7 text-slate-600">合作過程非常順利，對於美術風格呈現與系統設計都超出預期，完成度很高！</p>
-          </div>
-        </article>
-      </div>
+      <section data-hero-service-strip class="mx-auto mt-12 max-w-[84rem] px-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-black text-brand-ink">我能提供的服務</h2>
+          <a href="#portfolio" class="text-sm font-bold text-brand-teal">查看全部 →</a>
+        </div>
+        <div class="mt-8 grid grid-cols-3 gap-8">
+          <article
+            v-for="service in serviceCards"
+            :key="service.title"
+            class="rounded-[1.35rem] bg-white p-6 text-center shadow-[0_18px_46px_rgba(34,83,111,0.12)]"
+          >
+            <div class="mx-auto grid h-20 w-20 place-items-center rounded-2xl border border-slate-100 bg-white shadow-[0_16px_36px_rgba(34,83,111,0.1)]">
+              <img
+                data-hero-service-icon
+                :src="service.icon"
+                :alt="service.title"
+                class="h-10 w-10"
+                loading="lazy"
+              >
+            </div>
+            <h3 class="mt-5 text-xl font-black" :class="service.accent">{{ service.title }}</h3>
+            <p class="mx-auto mt-2 max-w-[13rem] text-sm font-medium leading-6 text-slate-500">{{ service.body }}</p>
+            <p class="mt-4 text-xl" :class="service.accent">→</p>
+          </article>
+        </div>
+      </section>
     </div>
   </section>
 </template>
