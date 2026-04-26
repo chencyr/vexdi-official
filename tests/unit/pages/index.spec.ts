@@ -4,11 +4,11 @@ import { describe, expect, it } from 'vitest'
 import IndexPage from '../../../app/pages/index.vue'
 
 describe('pages/index', () => {
-  it('renders the homepage sections and line conversion points', async () => {
+  it('renders the design-matched homepage sections and conversion points', async () => {
     const wrapper = await mountSuspended(IndexPage)
 
-    expect(wrapper.text()).toContain('用創意與技術')
-    expect(wrapper.text()).toContain('精選示意專案')
-    expect(wrapper.text()).toContain('加 LINE 諮詢')
+    expect(wrapper.text()).toContain('創意 × 技術')
+    expect(wrapper.text()).toContain('精選作品')
+    expect(wrapper.text()).toContain('預約諮詢')
   })
 })

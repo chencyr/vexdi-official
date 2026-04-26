@@ -10,11 +10,12 @@ describe('HeroCarousel', () => {
     setActivePinia(createPinia())
   })
 
-  it('renders the hero trust ribbon and service pills', async () => {
+  it('renders the desktop carousel stage and value strip', async () => {
     const wrapper = await mountSuspended(HeroCarousel)
 
-    expect(wrapper.get('[data-hero-ribbon]').text()).toContain('LINE Official Account')
-    expect(wrapper.findAll('[data-hero-pill]')).toHaveLength(3)
+    expect(wrapper.text()).toContain('01 / 03')
+    expect(wrapper.text()).toContain('我能為你帶來的價值')
+    expect(wrapper.text()).toContain('聊聊你的遊戲企劃')
   })
 
   it('updates the active slide copy after moving forward', async () => {
@@ -22,6 +23,6 @@ describe('HeroCarousel', () => {
 
     await wrapper.get('[data-next-slide]').trigger('click')
 
-    expect(wrapper.text()).toContain(heroSlides[1].primaryCta.label)
+    expect(wrapper.text()).toContain(heroSlides[1].title)
   })
 })

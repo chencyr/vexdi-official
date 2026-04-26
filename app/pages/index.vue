@@ -16,23 +16,23 @@ import TestimonialsSection from '../../components/sections/TestimonialsSection.v
 useSeoMeta({
   title: 'Creative Tech Studio | 形象網站、遊戲提案與 App 設計',
   description:
-    '用品牌敘事把形象網站、遊戲提案與 App 介面整合成同一套首頁體驗，所有主 CTA 統一導向 LINE 官方帳號。',
+    '以創意與技術打造有記憶點的數位體驗，整合形象網站、遊戲提案、App UI/UX 與 LINE-first 轉換路徑。',
   ogTitle: 'Creative Tech Studio',
   ogDescription:
-    '品牌敘事型 one-page 官網，整合網站、遊戲與 App 接案能力，並以 LINE 作為主要轉換入口。',
+    '一頁式接案官網，整合網站、遊戲與 App 設計能力，並以 LINE 作為主要轉換入口。',
   ogImage: '/og-homepage.svg',
 })
 </script>
 
 <template>
-  <main class="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 pb-16 pt-3 lg:px-8">
+  <main class="mx-auto flex w-full max-w-[96rem] flex-col gap-7 px-4 pb-16 lg:px-0">
     <AppNavbar />
     <HeroCarousel />
     <MobileHeroIntro />
     <MobileServiceBranches />
-    <AboutSection />
-    <ServicesSection />
-    <ProcessSection />
+    <AboutSection class="hidden lg:grid" />
+    <ServicesSection class="hidden lg:block" />
+    <ProcessSection class="hidden lg:block" />
     <PortfolioSection />
     <TestimonialsSection />
     <FooterCtaSection />
