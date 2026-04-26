@@ -4,9 +4,6 @@ import { computed } from 'vue'
 import { heroSlides } from '../../app/data/homepage'
 import { useLineLink } from '../../composables/useLineLink'
 import { useHeroStore } from '../../stores/hero'
-import HeroVisualApp from './HeroVisualApp.vue'
-import HeroVisualGame from './HeroVisualGame.vue'
-import HeroVisualWebsite from './HeroVisualWebsite.vue'
 
 const heroStore = useHeroStore()
 const lineLink = useLineLink()
@@ -14,11 +11,6 @@ const lineLink = useLineLink()
 const currentSlide = computed(() => heroSlides[heroStore.activeIndex])
 const previousSlide = computed(() => heroSlides[(heroStore.activeIndex + heroSlides.length - 1) % heroSlides.length])
 const nextSlide = computed(() => heroSlides[(heroStore.activeIndex + 1) % heroSlides.length])
-const visuals = {
-  game: HeroVisualGame,
-  website: HeroVisualWebsite,
-  app: HeroVisualApp,
-}
 
 const values = [
   { title: '專業溝通流程', body: '需求釐清更精準' },
@@ -53,7 +45,12 @@ const values = [
             {{ previousSlide.key }}
           </p>
           <h3 class="mt-16 text-3xl font-black leading-tight text-brand-ink">{{ previousSlide.title }}</h3>
-          <div class="mt-10 h-80 rounded-[2rem] bg-[linear-gradient(180deg,#ffffff,#bdeef7)] shadow-xl" />
+          <img
+            :src="previousSlide.image"
+            :alt="`${previousSlide.key} carousel preview`"
+            class="mt-10 h-80 w-full rounded-[2rem] object-cover object-center shadow-xl"
+            loading="lazy"
+          >
         </aside>
 
         <div class="rounded-[1.8rem] border border-white/80 bg-white/88 p-10 shadow-[0_30px_90px_rgba(32,73,110,0.12)] backdrop-blur-xl">
@@ -97,7 +94,15 @@ const values = [
               </ul>
             </div>
 
-            <component :is="visuals[currentSlide.key]" />
+            <div class="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_70px_rgba(22,66,92,0.16)]">
+              <img
+                :src="currentSlide.image"
+                :alt="`${currentSlide.key} carousel artwork`"
+                class="h-full min-h-[36rem] w-full object-cover object-center"
+                fetchpriority="high"
+              >
+              <div class="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/70" />
+            </div>
           </div>
         </div>
 
@@ -108,7 +113,12 @@ const values = [
           </p>
           <h3 class="mt-16 text-4xl font-black leading-tight text-brand-ink">{{ nextSlide.title }}</h3>
           <p class="mt-5 text-slate-600">{{ nextSlide.description }}</p>
-          <div class="mt-10 h-72 rounded-[2rem] bg-[linear-gradient(180deg,#111b3a,#a5b4fc)] shadow-xl" />
+          <img
+            :src="nextSlide.image"
+            :alt="`${nextSlide.key} carousel preview`"
+            class="mt-10 h-72 w-full rounded-[2rem] object-cover object-center shadow-xl"
+            loading="lazy"
+          >
         </aside>
       </div>
 

@@ -18,27 +18,14 @@ const lineLink = useLineLink()
         </p>
       </div>
 
-      <div class="relative mt-2 min-h-[27rem]">
-        <div class="absolute left-1/2 top-0 h-[27rem] w-[14rem] -translate-x-1/2 rounded-[7rem_7rem_4rem_4rem] bg-[linear-gradient(180deg,#122843_0%,#23bcc7_43%,#f7fbff_44%,#182b4d_100%)] shadow-2xl">
-          <div class="absolute left-1/2 top-7 h-24 w-24 -translate-x-1/2 rounded-full bg-[#f6d5c9] shadow-[0_0_0_18px_rgba(12,31,58,0.92)]" />
-          <div class="absolute -left-9 top-24 h-44 w-20 rotate-12 rounded-full bg-[#102744]" />
-          <div class="absolute -right-9 top-24 h-44 w-20 -rotate-12 rounded-full bg-[#102744]" />
-          <div class="absolute left-1/2 top-36 h-28 w-28 -translate-x-1/2 rounded-[2rem] border-4 border-white/80 bg-white/70" />
-        </div>
-        <div class="absolute left-0 top-20 w-36 rotate-[-8deg] rounded-2xl bg-slate-900 p-2 text-white shadow-xl">
-          <p class="mb-2 w-fit rounded-full bg-brand-teal px-2 py-1 text-[10px] font-black">GAME UI</p>
-          <div class="grid grid-cols-5 gap-1">
-            <span v-for="item in 10" :key="item" class="aspect-square rounded bg-white/15" />
-          </div>
-        </div>
-        <div class="absolute right-0 top-8 w-36 rotate-6 rounded-2xl bg-white p-2 shadow-xl">
-          <p class="mb-2 w-fit rounded-full bg-brand-teal px-2 py-1 text-[10px] font-black text-white">WEBSITE</p>
-          <div class="h-20 rounded-xl bg-[linear-gradient(135deg,#d9f9ff,#b7c3ff)]" />
-        </div>
-        <div class="absolute bottom-0 right-2 w-28 rounded-[1.6rem] bg-slate-950 p-2 shadow-xl">
-          <p class="mb-2 w-fit rounded-full bg-brand-teal px-2 py-1 text-[10px] font-black text-white">APP</p>
-          <div class="h-40 rounded-[1.2rem] bg-[linear-gradient(180deg,#d8fbff,#245a74)]" />
-        </div>
+      <div class="relative mt-4 overflow-hidden rounded-[1.6rem] bg-white shadow-2xl">
+        <img
+          src="/images/carousel/game-hero.png"
+          alt="game carousel artwork"
+          class="h-[27rem] w-full object-cover object-[58%_center]"
+          fetchpriority="high"
+        >
+        <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/80" />
       </div>
 
       <div class="relative z-10 -mt-5 flex flex-col gap-3">

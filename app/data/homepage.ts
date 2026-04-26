@@ -9,6 +9,7 @@ import type {
 export const heroSlides: HeroSlide[] = [
   {
     key: 'game',
+    image: '/images/carousel/game-hero.png',
     eyebrow: 'Game Design x Playful Visuals',
     title: '把遊戲提案做成一眼想玩的視覺入口',
     description:
@@ -29,6 +30,7 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     key: 'website',
+    image: '/images/carousel/website-hero.png',
     eyebrow: 'Brand Story x Web Experience',
     title: '讓品牌網站不只好看，也能把價值說清楚',
     description:
@@ -49,6 +51,7 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     key: 'app',
+    image: '/images/carousel/app-hero.png',
     eyebrow: 'Product Flow x Dashboard UI',
     title: '把 App 想法收斂成可展示的產品流程',
     description:

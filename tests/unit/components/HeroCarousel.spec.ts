@@ -14,6 +14,9 @@ describe('HeroCarousel', () => {
     const wrapper = await mountSuspended(HeroCarousel)
 
     expect(wrapper.text()).toContain('01 / 03')
+    for (const slide of heroSlides) {
+      expect(wrapper.find(`img[src="${slide.image}"]`).exists()).toBe(true)
+    }
     expect(wrapper.text()).toContain('我能為你帶來的價值')
     expect(wrapper.text()).toContain('聊聊你的遊戲企劃')
   })
