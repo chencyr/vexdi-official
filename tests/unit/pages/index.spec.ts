@@ -1,7 +1,7 @@
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { describe, expect, it } from 'vitest'
 
-import IndexPage from '../../../pages/index.vue'
+import IndexPage from '../../../app/pages/index.vue'
 
 describe('pages/index', () => {
   it('renders the homepage sections and line conversion points', async () => {

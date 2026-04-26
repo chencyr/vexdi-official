@@ -1,17 +1,17 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { useSeoMeta } from '#imports'
 
-import LineFab from '../components/floating/LineFab.vue'
-import HeroCarousel from '../components/hero/HeroCarousel.vue'
-import MobileHeroIntro from '../components/hero/MobileHeroIntro.vue'
-import MobileServiceBranches from '../components/hero/MobileServiceBranches.vue'
-import AppNavbar from '../components/layout/AppNavbar.vue'
-import AboutSection from '../components/sections/AboutSection.vue'
-import FooterCtaSection from '../components/sections/FooterCtaSection.vue'
-import PortfolioSection from '../components/sections/PortfolioSection.vue'
-import ProcessSection from '../components/sections/ProcessSection.vue'
-import ServicesSection from '../components/sections/ServicesSection.vue'
-import TestimonialsSection from '../components/sections/TestimonialsSection.vue'
+import LineFab from '../../components/floating/LineFab.vue'
+import HeroCarousel from '../../components/hero/HeroCarousel.vue'
+import MobileHeroIntro from '../../components/hero/MobileHeroIntro.vue'
+import MobileServiceBranches from '../../components/hero/MobileServiceBranches.vue'
+import AppNavbar from '../../components/layout/AppNavbar.vue'
+import AboutSection from '../../components/sections/AboutSection.vue'
+import FooterCtaSection from '../../components/sections/FooterCtaSection.vue'
+import PortfolioSection from '../../components/sections/PortfolioSection.vue'
+import ProcessSection from '../../components/sections/ProcessSection.vue'
+import ServicesSection from '../../components/sections/ServicesSection.vue'
+import TestimonialsSection from '../../components/sections/TestimonialsSection.vue'
 
 useSeoMeta({
   title: 'Creative Tech Studio | 形象網站、遊戲提案與 App 設計',
