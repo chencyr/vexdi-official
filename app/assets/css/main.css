@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --site-bg:
+      radial-gradient(circle at 12% 10%, rgba(34, 211, 238, 0.22), transparent 28%),
+      radial-gradient(circle at 88% 18%, rgba(255, 138, 109, 0.18), transparent 24%),
+      radial-gradient(circle at 50% 100%, rgba(22, 184, 196, 0.12), transparent 30%),
+      linear-gradient(180deg, #fcfeff 0%, #f4fbff 52%, #eef8fb 100%);
+    --shell-border: rgba(15, 23, 42, 0.08);
+    --shell-shadow: 0 28px 80px rgba(2, 36, 53, 0.08);
+    --orb-teal: rgba(34, 211, 238, 0.26);
+    --orb-coral: rgba(255, 138, 109, 0.2);
+    --skip-link-bg: #062c36;
+    --skip-link-text: #f8fdff;
+    --font-body: 'Noto Sans TC', 'Segoe UI', sans-serif;
+    --font-display: 'Space Grotesk', 'Noto Sans TC', 'Segoe UI', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 bg-white text-slate-900;
+    font-family: var(--font-body);
+    background: var(--site-bg);
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-glow-float {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-8px);
+    }
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .bg-site {
+    background: var(--site-bg);
+  }
+
+  .shell {
+    position: relative;
+    isolation: isolate;
+    min-height: calc(100vh - 0px);
+    overflow: clip;
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .shell-main {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    width: min(100%, 72rem);
+    min-height: calc(100vh - 2rem);
+  }
+
+  .shell-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(18px);
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .shell-orb--left {
+    top: 5rem;
+    left: -4rem;
+    width: clamp(10rem, 18vw, 16rem);
+    height: clamp(10rem, 18vw, 16rem);
+    background: radial-gradient(circle at 30% 30%, var(--orb-teal), transparent 68%);
+  }
+
+  .shell-orb--right {
+    top: 9rem;
+    right: -5rem;
+    width: clamp(11rem, 20vw, 18rem);
+    height: clamp(11rem, 20vw, 18rem);
+    background: radial-gradient(circle at 35% 35%, var(--orb-coral), transparent 70%);
+  }
+
+  .skip-link {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 50;
+    transform: translateY(-180%);
+    border: 1px solid rgba(148, 163, 184, 0.32);
+    border-radius: 9999px;
+    background: var(--skip-link-bg);
+    color: var(--skip-link-text);
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    box-shadow: 0 16px 30px rgba(2, 36, 53, 0.18);
+    transition: transform 160ms ease, opacity 160ms ease;
+  }
+
+  .skip-link:focus,
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    outline: none;
+  }
+
+  .hero-surface {
+    animation: hero-rise 360ms ease both;
+  }
+
+  .hero-ribbon {
+    color: #0f5561;
+    border: 1px solid rgba(22, 184, 196, 0.25);
+    background: linear-gradient(
+      90deg,
+      rgba(22, 184, 196, 0.18) 0%,
+      rgba(95, 120, 255, 0.08) 100%
+    );
+  }
+
+  .hero-visual-frame {
+    isolation: isolate;
+  }
+
+  .hero-glow {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(24px);
+    pointer-events: none;
+    z-index: -1;
+    animation: hero-glow-float 2.8s ease-in-out infinite alternate;
+  }
+
+  .hero-glow-left {
+    top: 8%;
+    left: 4%;
+    width: 160px;
+    height: 160px;
+    background: rgba(22, 184, 196, 0.26);
+  }
+
+  .hero-glow-right {
+    right: -4%;
+    bottom: -8%;
+    width: 200px;
+    height: 200px;
+    background: rgba(95, 120, 255, 0.2);
+    animation-delay: 0.25s;
+  }
+}

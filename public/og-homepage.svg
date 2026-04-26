@@ -1,0 +1,25 @@
+﻿<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="40" fill="#F7FCFF" />
+  <circle cx="148" cy="102" r="184" fill="#16B8C4" fill-opacity="0.15" />
+  <circle cx="1042" cy="556" r="238" fill="#5F78FF" fill-opacity="0.12" />
+  <circle cx="1024" cy="98" r="120" fill="#FF8B4D" fill-opacity="0.10" />
+  <path d="M144 386L244 154L344 386H144Z" fill="#16B8C4" />
+  <path d="M286 386L390 242L486 386H286Z" fill="#5F78FF" />
+  <circle cx="180" cy="198" r="30" fill="#FF8B4D" />
+  <rect x="560" y="154" width="438" height="258" rx="34" fill="white" fill-opacity="0.86" />
+  <rect x="598" y="206" width="172" height="16" rx="8" fill="#16B8C4" fill-opacity="0.18" />
+  <rect x="598" y="244" width="316" height="76" rx="18" fill="#EEF8FF" />
+  <rect x="598" y="338" width="120" height="18" rx="9" fill="#FF8B4D" fill-opacity="0.16" />
+  <text x="560" y="112" fill="#15294F" font-size="34" font-family="'Noto Sans TC', sans-serif" font-weight="700">
+    Creative Tech Studio
+  </text>
+  <text x="598" y="212" fill="#4A5A78" font-size="18" font-family="'Noto Sans TC', sans-serif" font-weight="600">
+    創意 x 技術
+  </text>
+  <text x="598" y="284" fill="#15294F" font-size="48" font-family="'Noto Sans TC', sans-serif" font-weight="800">
+    形象網站 / 遊戲 / App
+  </text>
+  <text x="598" y="394" fill="#4A5A78" font-size="24" font-family="'Noto Sans TC', sans-serif">
+    LINE-first one-page portfolio homepage
+  </text>
+</svg>
