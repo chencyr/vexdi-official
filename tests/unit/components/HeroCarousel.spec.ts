@@ -15,6 +15,8 @@ describe('HeroCarousel', () => {
 
     expect(wrapper.text()).not.toContain('01 / 03')
     expect(wrapper.find('[data-hero-banner-stage]').exists()).toBe(true)
+    expect(wrapper.find('[data-hero-fade-frame]').exists()).toBe(true)
+    expect(wrapper.find('[data-hero-fade-frame]').attributes('data-slide-key')).toBe('game')
     expect(wrapper.find('[data-hero-banner-artwork]').exists()).toBe(true)
     expect(wrapper.find('[data-hero-preview="previous"]').exists()).toBe(true)
     expect(wrapper.find('[data-hero-preview="next"]').exists()).toBe(true)
@@ -39,5 +41,6 @@ describe('HeroCarousel', () => {
     await wrapper.get('[data-next-slide]').trigger('click')
 
     expect(wrapper.text()).toContain(heroSlides[1].title)
+    expect(wrapper.findAll('[data-hero-fade-frame]').some((frame) => frame.attributes('data-slide-key') === 'website')).toBe(true)
   })
 })

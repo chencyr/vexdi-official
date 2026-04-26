@@ -62,58 +62,67 @@ const values = [
           data-hero-banner-stage
           class="relative mx-auto min-h-[36rem] max-w-[70rem] overflow-hidden rounded-[1.7rem] border border-white/80 bg-white shadow-[0_30px_90px_rgba(32,73,110,0.15)] xl:max-w-[70rem]"
         >
-          <img
-            data-hero-banner-artwork
-            :src="currentSlide.image"
-            :alt="`${currentSlide.key} carousel artwork`"
-            class="absolute inset-y-0 right-0 h-full w-[66%] object-cover object-center"
-            fetchpriority="high"
-          >
-          <div class="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_0%,#ffffff_34%,rgba(255,255,255,0.88)_45%,rgba(255,255,255,0.08)_70%,rgba(255,255,255,0)_100%)]" />
+          <Transition name="hero-fade">
+            <div
+              :key="currentSlide.key"
+              data-hero-fade-frame
+              :data-slide-key="currentSlide.key"
+              class="absolute inset-0"
+            >
+              <img
+                data-hero-banner-artwork
+                :src="currentSlide.image"
+                :alt="`${currentSlide.key} carousel artwork`"
+                class="absolute inset-y-0 right-0 h-full w-[66%] object-cover object-center"
+                fetchpriority="high"
+              >
+              <div class="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_0%,#ffffff_34%,rgba(255,255,255,0.88)_45%,rgba(255,255,255,0.08)_70%,rgba(255,255,255,0)_100%)]" />
 
-          <div class="relative z-10 flex min-h-[36rem] max-w-[31rem] flex-col justify-center px-10 py-12">
-            <p class="inline-flex w-fit rounded-xl bg-brand-teal px-5 py-3 text-lg font-black uppercase text-white shadow-lg">
-              {{ currentSlide.displayLabel }}
-            </p>
-            <h1 class="mt-7 text-6xl font-black leading-[1.08] text-brand-ink">
-              {{ currentSlide.title }}
-            </h1>
-            <p class="mt-6 max-w-lg text-lg leading-9 text-slate-600">
-              {{ currentSlide.description }}
-            </p>
-            <div class="mt-8 flex gap-5">
-              <a
-                data-primary-hero-cta
-                :href="lineLink"
-                target="_blank"
-                rel="noreferrer"
-                class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl bg-brand-coral px-6 py-4 text-lg font-black text-white shadow-[0_18px_42px_rgba(255,111,69,0.28)]"
-              >
-                {{ currentSlide.primaryCta.label }} <span aria-hidden="true">-&gt;</span>
-              </a>
-              <a
-                href="#portfolio"
-                class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl border border-brand-ink/30 bg-white/90 px-6 py-4 text-lg font-bold text-brand-ink"
-              >
-                {{ currentSlide.secondaryCta.label }} <span aria-hidden="true">-&gt;</span>
-              </a>
-            </div>
-            <ul class="mt-10 grid grid-cols-3 gap-6">
-              <li v-for="stat in currentSlide.stats" :key="stat.label" class="text-center">
-                <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-white shadow-lg">
-                  <img
-                    data-hero-stat-icon
-                    :src="stat.icon"
-                    :alt="stat.value"
-                    class="h-8 w-8"
-                    loading="lazy"
+              <div class="relative z-10 flex min-h-[36rem] max-w-[31rem] flex-col justify-center px-10 py-12">
+                <p class="inline-flex w-fit rounded-xl bg-brand-teal px-5 py-3 text-lg font-black uppercase text-white shadow-lg">
+                  {{ currentSlide.displayLabel }}
+                </p>
+                <h1 class="mt-7 text-6xl font-black leading-[1.08] text-brand-ink">
+                  {{ currentSlide.title }}
+                </h1>
+                <p class="mt-6 max-w-lg text-lg leading-9 text-slate-600">
+                  {{ currentSlide.description }}
+                </p>
+                <div class="mt-8 flex gap-5">
+                  <a
+                    data-primary-hero-cta
+                    :href="lineLink"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl bg-brand-coral px-6 py-4 text-lg font-black text-white shadow-[0_18px_42px_rgba(255,111,69,0.28)]"
                   >
+                    {{ currentSlide.primaryCta.label }} <span aria-hidden="true">-&gt;</span>
+                  </a>
+                  <a
+                    href="#portfolio"
+                    class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl border border-brand-ink/30 bg-white/90 px-6 py-4 text-lg font-bold text-brand-ink"
+                  >
+                    {{ currentSlide.secondaryCta.label }} <span aria-hidden="true">-&gt;</span>
+                  </a>
                 </div>
-                <p class="mt-4 font-bold text-brand-ink">{{ stat.value }}</p>
-                <p class="mt-1 text-sm text-slate-500">{{ stat.label }}</p>
-              </li>
-            </ul>
-          </div>
+                <ul class="mt-10 grid grid-cols-3 gap-6">
+                  <li v-for="stat in currentSlide.stats" :key="stat.label" class="text-center">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-white shadow-lg">
+                      <img
+                        data-hero-stat-icon
+                        :src="stat.icon"
+                        :alt="stat.value"
+                        class="h-8 w-8"
+                        loading="lazy"
+                      >
+                    </div>
+                    <p class="mt-4 font-bold text-brand-ink">{{ stat.value }}</p>
+                    <p class="mt-1 text-sm text-slate-500">{{ stat.label }}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Transition>
         </div>
 
         <aside
@@ -175,3 +184,22 @@ const values = [
     </div>
   </section>
 </template>
+
+<style scoped>
+.hero-fade-enter-active,
+.hero-fade-leave-active {
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.hero-fade-enter-from,
+.hero-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.hero-fade-enter-to,
+.hero-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
