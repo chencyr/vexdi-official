@@ -22,107 +22,113 @@ const values = [
 
 <template>
   <section id="hero" class="hidden lg:block">
-    <div class="relative overflow-hidden px-0 pb-10 pt-4">
+    <div class="relative overflow-hidden px-0 pb-10 pt-8">
       <button
         type="button"
-        class="absolute left-5 top-[24rem] z-20 grid h-16 w-16 place-items-center rounded-full bg-white text-4xl text-brand-ink shadow-xl"
+        aria-label="Previous slide"
+        class="absolute left-[8.5rem] top-[23rem] z-30 grid h-16 w-16 place-items-center rounded-full bg-white text-3xl font-black text-brand-ink shadow-xl xl:left-[10.5rem]"
         @click="heroStore.previousSlide()"
       >
-        ‹
+        &lt;
       </button>
       <button
         type="button"
         data-next-slide
-        class="absolute right-5 top-[24rem] z-20 grid h-16 w-16 place-items-center rounded-full bg-white text-4xl text-brand-ink shadow-xl"
+        aria-label="Next slide"
+        class="absolute right-[8.5rem] top-[23rem] z-30 grid h-16 w-16 place-items-center rounded-full bg-white text-3xl font-black text-brand-ink shadow-xl xl:right-[10.5rem]"
         @click="heroStore.nextSlide()"
       >
-        ›
+        &gt;
       </button>
 
-      <div class="grid grid-cols-[10rem_1fr_10rem] gap-7 xl:grid-cols-[14rem_1fr_14rem]">
-        <aside class="mt-12 min-h-[38rem] overflow-hidden rounded-r-[1.6rem] bg-[linear-gradient(160deg,#dbeafe,#ffffff)] p-6 shadow-lg opacity-90">
-          <p class="rounded-full bg-brand-teal px-4 py-2 text-sm font-black uppercase text-white">
-            {{ previousSlide.key }}
-          </p>
-          <h3 class="mt-16 text-3xl font-black leading-tight text-brand-ink">{{ previousSlide.title }}</h3>
+      <div class="relative min-h-[39rem]">
+        <aside
+          data-hero-preview="previous"
+          class="absolute left-0 top-3 h-[36rem] w-[11rem] overflow-hidden rounded-r-[1.6rem] bg-white shadow-[0_22px_62px_rgba(21,54,88,0.16)] xl:w-[14rem]"
+        >
           <img
             :src="previousSlide.image"
             :alt="`${previousSlide.key} carousel preview`"
-            class="mt-10 h-80 w-full rounded-[2rem] object-cover object-center shadow-xl"
+            class="h-full w-full object-cover object-center"
             loading="lazy"
           >
+          <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.08),rgba(255,255,255,0.38))]" />
+          <p class="absolute left-6 top-14 rounded-full bg-brand-teal px-4 py-2 text-sm font-black uppercase text-white shadow-lg">
+            {{ previousSlide.key }}
+          </p>
         </aside>
 
-        <div class="rounded-[1.8rem] border border-white/80 bg-white/88 p-10 shadow-[0_30px_90px_rgba(32,73,110,0.12)] backdrop-blur-xl">
-          <div class="grid min-h-[36rem] grid-cols-[0.82fr_1.18fr] gap-8">
-            <div class="flex flex-col justify-center">
-              <p class="text-lg font-black text-brand-ink">
-                <span class="text-3xl">0{{ heroStore.activeIndex + 1 }}</span>
-                <span class="text-slate-300"> / 03</span>
-              </p>
-              <p class="mt-7 inline-flex w-fit rounded-xl bg-brand-teal px-5 py-3 text-lg font-black uppercase text-white shadow-lg">
-                {{ currentSlide.key }}
-              </p>
-              <h1 class="mt-8 text-6xl font-black leading-[1.08] tracking-[-0.01em] text-brand-ink">
-                {{ currentSlide.title }}
-              </h1>
-              <p class="mt-6 max-w-lg text-lg leading-9 text-slate-600">
-                {{ currentSlide.description }}
-              </p>
-              <div class="mt-8 flex gap-5">
-                <a
-                  :href="lineLink"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="inline-flex items-center gap-4 rounded-2xl bg-brand-coral px-8 py-4 text-lg font-black text-white shadow-[0_18px_42px_rgba(255,111,69,0.28)]"
-                >
-                  ▣ 聊聊你的遊戲企劃 <span aria-hidden="true">→</span>
-                </a>
-                <a
-                  href="#portfolio"
-                  class="inline-flex items-center gap-4 rounded-2xl border border-brand-ink/30 bg-white px-8 py-4 text-lg font-bold text-brand-ink"
-                >
-                  查看遊戲作品 <span aria-hidden="true">→</span>
-                </a>
-              </div>
-              <ul class="mt-10 grid grid-cols-3 gap-6">
-                <li v-for="stat in currentSlide.stats" :key="stat.label" class="text-center">
-                  <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-white text-2xl text-brand-teal shadow-lg">◇</div>
-                  <p class="mt-4 font-bold text-brand-ink">{{ stat.value }}</p>
-                  <p class="mt-1 text-sm text-slate-500">{{ stat.label }}</p>
-                </li>
-              </ul>
-            </div>
+        <div
+          data-hero-banner-stage
+          class="relative mx-auto min-h-[36rem] max-w-[72rem] overflow-hidden rounded-[1.7rem] border border-white/80 bg-white shadow-[0_30px_90px_rgba(32,73,110,0.15)] xl:max-w-[84rem]"
+        >
+          <img
+            data-hero-banner-artwork
+            :src="currentSlide.image"
+            :alt="`${currentSlide.key} carousel artwork`"
+            class="absolute inset-y-0 right-0 h-full w-[68%] object-cover object-center"
+            fetchpriority="high"
+          >
+          <div class="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_0%,#ffffff_35%,rgba(255,255,255,0.9)_47%,rgba(255,255,255,0.1)_74%,rgba(255,255,255,0)_100%)]" />
 
-            <div class="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_70px_rgba(22,66,92,0.16)]">
-              <img
-                :src="currentSlide.image"
-                :alt="`${currentSlide.key} carousel artwork`"
-                class="h-full min-h-[36rem] w-full object-cover object-center"
-                fetchpriority="high"
+          <div class="relative z-10 flex min-h-[36rem] max-w-[34rem] flex-col justify-center px-10 py-12 xl:px-12">
+            <p class="text-lg font-black text-brand-ink">
+              <span class="text-3xl">0{{ heroStore.activeIndex + 1 }}</span>
+              <span class="text-slate-300"> / 03</span>
+            </p>
+            <p class="mt-7 inline-flex w-fit rounded-xl bg-brand-teal px-5 py-3 text-lg font-black uppercase text-white shadow-lg">
+              {{ currentSlide.key }}
+            </p>
+            <h1 class="mt-7 text-6xl font-black leading-[1.08] text-brand-ink xl:text-7xl">
+              {{ currentSlide.title }}
+            </h1>
+            <p class="mt-6 max-w-lg text-lg leading-9 text-slate-600">
+              {{ currentSlide.description }}
+            </p>
+            <div class="mt-8 flex gap-5">
+              <a
+                :href="lineLink"
+                target="_blank"
+                rel="noreferrer"
+                class="inline-flex items-center gap-4 rounded-2xl bg-brand-coral px-8 py-4 text-lg font-black text-white shadow-[0_18px_42px_rgba(255,111,69,0.28)]"
               >
-              <div class="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/70" />
+                {{ currentSlide.primaryCta.label }} <span aria-hidden="true">-&gt;</span>
+              </a>
+              <a
+                href="#portfolio"
+                class="inline-flex items-center gap-4 rounded-2xl border border-brand-ink/30 bg-white/90 px-8 py-4 text-lg font-bold text-brand-ink"
+              >
+                {{ currentSlide.secondaryCta.label }} <span aria-hidden="true">-&gt;</span>
+              </a>
             </div>
+            <ul class="mt-10 grid grid-cols-3 gap-6">
+              <li v-for="stat in currentSlide.stats" :key="stat.label" class="text-center">
+                <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-white text-2xl text-brand-teal shadow-lg">+</div>
+                <p class="mt-4 font-bold text-brand-ink">{{ stat.value }}</p>
+                <p class="mt-1 text-sm text-slate-500">{{ stat.label }}</p>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <aside class="mt-12 min-h-[38rem] overflow-hidden rounded-l-[1.6rem] bg-[linear-gradient(160deg,#ddd6fe,#ffffff)] p-8 shadow-lg opacity-90">
-          <p class="text-right text-2xl font-black text-white">03 / 03</p>
-          <p class="ml-auto mt-8 w-fit rounded-full bg-brand-teal px-5 py-3 text-lg font-black uppercase text-white">
-            {{ nextSlide.key }}
-          </p>
-          <h3 class="mt-16 text-4xl font-black leading-tight text-brand-ink">{{ nextSlide.title }}</h3>
-          <p class="mt-5 text-slate-600">{{ nextSlide.description }}</p>
+        <aside
+          data-hero-preview="next"
+          class="absolute right-0 top-3 h-[36rem] w-[11rem] overflow-hidden rounded-l-[1.6rem] bg-white shadow-[0_22px_62px_rgba(21,54,88,0.16)] xl:w-[14rem]"
+        >
           <img
             :src="nextSlide.image"
             :alt="`${nextSlide.key} carousel preview`"
-            class="mt-10 h-72 w-full rounded-[2rem] object-cover object-center shadow-xl"
+            class="h-full w-full object-cover object-center"
             loading="lazy"
           >
+          <div class="absolute inset-0 bg-[linear-gradient(270deg,rgba(255,255,255,0.08),rgba(255,255,255,0.42))]" />
+          <p class="absolute right-6 top-14 rounded-full bg-brand-teal px-4 py-2 text-sm font-black uppercase text-white shadow-lg">
+            {{ nextSlide.key }}
+          </p>
         </aside>
       </div>
 
-      <div class="mx-auto mt-6 flex max-w-xl items-center justify-center gap-5">
+      <div class="mx-auto mt-2 flex max-w-xl items-center justify-center gap-5">
         <button
           v-for="(slide, index) in heroSlides"
           :key="slide.key"
@@ -131,7 +137,7 @@ const values = [
           :class="index === heroStore.activeIndex ? 'w-12 bg-brand-teal' : 'w-3 bg-slate-300'"
           @click="heroStore.setSlide(index)"
         >
-          <span class="sr-only">切換到{{ slide.key }}</span>
+          <span class="sr-only">切換到 {{ slide.key }}</span>
         </button>
         <div class="ml-4 h-1 w-64 overflow-hidden rounded-full bg-slate-300">
           <div class="h-full rounded-full bg-brand-teal" :style="{ width: `${((heroStore.activeIndex + 1) / heroSlides.length) * 100}%` }" />
@@ -139,12 +145,12 @@ const values = [
         <span class="text-sm font-semibold text-slate-500">0{{ heroStore.activeIndex + 1 }} — 03</span>
       </div>
 
-      <div class="mx-auto mt-12 grid max-w-[78rem] grid-cols-[1.1fr_0.9fr] gap-8">
+      <div class="mx-auto mt-12 grid max-w-[84rem] grid-cols-[1.1fr_0.9fr] gap-8 px-8">
         <section>
           <h2 class="text-2xl font-black text-brand-ink">我能為你帶來的價值</h2>
           <div class="mt-8 grid grid-cols-4 gap-6">
             <article v-for="value in values" :key="value.title" class="flex items-center gap-4">
-              <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-brand-teal text-brand-teal">◇</span>
+              <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-brand-teal text-brand-teal">+</span>
               <div>
                 <h3 class="font-bold text-brand-ink">{{ value.title }}</h3>
                 <p class="mt-1 text-sm text-slate-500">{{ value.body }}</p>
@@ -153,11 +159,11 @@ const values = [
           </div>
         </section>
         <article class="flex items-center gap-6 rounded-[1.6rem] bg-white/85 p-6 shadow-xl">
-          <div class="grid h-24 w-24 place-items-center rounded-full bg-[linear-gradient(135deg,#d8fbff,#ffcfb5)] text-3xl">陳</div>
+          <div class="grid h-24 w-24 place-items-center rounded-full bg-[linear-gradient(135deg,#d8fbff,#ffcfb5)] text-3xl">AD</div>
           <div>
             <p class="font-black text-brand-ink">陳先生 <span class="text-sm font-medium text-slate-500">/ 遊戲工作室負責人</span></p>
             <p class="mt-2 text-brand-coral">★★★★★</p>
-            <p class="mt-2 leading-7 text-slate-600">合作過程非常順利，對於美術風格呈現與系統設計都超出預期。</p>
+            <p class="mt-2 leading-7 text-slate-600">合作過程非常順利，對於美術風格呈現與系統設計都超出預期，完成度很高！</p>
           </div>
         </article>
       </div>

@@ -14,11 +14,15 @@ describe('HeroCarousel', () => {
     const wrapper = await mountSuspended(HeroCarousel)
 
     expect(wrapper.text()).toContain('01 / 03')
+    expect(wrapper.find('[data-hero-banner-stage]').exists()).toBe(true)
+    expect(wrapper.find('[data-hero-banner-artwork]').exists()).toBe(true)
+    expect(wrapper.find('[data-hero-preview="previous"]').exists()).toBe(true)
+    expect(wrapper.find('[data-hero-preview="next"]').exists()).toBe(true)
     for (const slide of heroSlides) {
       expect(wrapper.find(`img[src="${slide.image}"]`).exists()).toBe(true)
     }
     expect(wrapper.text()).toContain('我能為你帶來的價值')
-    expect(wrapper.text()).toContain('聊聊你的遊戲企劃')
+    expect(wrapper.text()).toContain(heroSlides[0].primaryCta.label)
   })
 
   it('updates the active slide copy after moving forward', async () => {
