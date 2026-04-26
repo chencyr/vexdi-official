@@ -12,26 +12,6 @@ const currentSlide = computed(() => heroSlides[heroStore.activeIndex])
 const previousSlide = computed(() => heroSlides[(heroStore.activeIndex + heroSlides.length - 1) % heroSlides.length])
 const nextSlide = computed(() => heroSlides[(heroStore.activeIndex + 1) % heroSlides.length])
 
-const serviceCards = [
-  {
-    title: '形象網站',
-    body: '品牌官網與 RWD 響應式網站',
-    icon: '/images/icons/service-website.svg',
-    accent: 'text-brand-teal',
-  },
-  {
-    title: '遊戲開發',
-    body: '遊戲原型、互動系統與視覺提案',
-    icon: '/images/icons/service-game.svg',
-    accent: 'text-[#5f56d9]',
-  },
-  {
-    title: 'APP 設計',
-    body: '產品流程、介面設計與原型驗證',
-    icon: '/images/icons/service-app.svg',
-    accent: 'text-brand-coral',
-  },
-]
 </script>
 
 <template>
@@ -181,32 +161,6 @@ const serviceCards = [
         <span class="text-sm font-semibold text-slate-500">0{{ heroStore.activeIndex + 1 }} — 03</span>
       </div>
 
-      <section data-hero-service-strip class="mx-auto mt-12 max-w-[84rem] px-8">
-        <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-black text-brand-ink">我能提供的服務</h2>
-          <a href="#portfolio" class="text-sm font-bold text-brand-teal">查看全部 →</a>
-        </div>
-        <div class="mt-8 grid grid-cols-3 gap-8">
-          <article
-            v-for="service in serviceCards"
-            :key="service.title"
-            class="rounded-[1.35rem] bg-white p-6 text-center shadow-[0_18px_46px_rgba(34,83,111,0.12)]"
-          >
-            <div class="mx-auto grid h-20 w-20 place-items-center rounded-2xl border border-slate-100 bg-white shadow-[0_16px_36px_rgba(34,83,111,0.1)]">
-              <img
-                data-hero-service-icon
-                :src="service.icon"
-                :alt="service.title"
-                class="h-10 w-10"
-                loading="lazy"
-              >
-            </div>
-            <h3 class="mt-5 text-xl font-black" :class="service.accent">{{ service.title }}</h3>
-            <p class="mx-auto mt-2 max-w-[13rem] text-sm font-medium leading-6 text-slate-500">{{ service.body }}</p>
-            <p class="mt-4 text-xl" :class="service.accent">→</p>
-          </article>
-        </div>
-      </section>
     </div>
   </section>
 </template>

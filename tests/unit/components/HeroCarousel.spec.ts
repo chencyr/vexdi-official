@@ -36,12 +36,8 @@ describe('HeroCarousel', () => {
     }
     expect(wrapper.text()).not.toContain('我能為你帶來的價值')
     expect(wrapper.text()).not.toContain('陳先生')
-    expect(wrapper.find('[data-hero-service-strip]').exists()).toBe(true)
-    expect(wrapper.findAll('[data-hero-service-icon]')).toHaveLength(3)
-    expect(wrapper.text()).toContain('我能提供的服務')
-    expect(wrapper.text()).toContain('形象網站')
-    expect(wrapper.text()).toContain('遊戲開發')
-    expect(wrapper.text()).toContain('APP 設計')
+    expect(wrapper.find('[data-hero-service-strip]').exists()).toBe(false)
+    expect(wrapper.findAll('[data-hero-service-icon]')).toHaveLength(0)
     expect(wrapper.text()).toContain(heroSlides[0].primaryCta.label)
   })
 

@@ -10,6 +10,9 @@ describe('pages/index', () => {
     expect(wrapper.text()).toContain('創意 × 技術')
     expect(wrapper.text()).toContain('精選作品')
     expect(wrapper.text()).toContain('預約諮詢')
+    expect(wrapper.text()).not.toContain('用創意與技術')
+    expect(wrapper.text()).not.toContain('品牌與作品集網站')
+    expect(wrapper.text()).not.toContain('我能提供的服務')
   })
 
   it('uses the wide desktop shell needed by the reference hero', async () => {

@@ -30,18 +30,12 @@ const categoryLabels = {
         class="overflow-hidden rounded-[1.35rem] bg-white text-left shadow-[0_18px_46px_rgba(34,83,111,0.14)] transition hover:-translate-y-1"
         @click="portfolioStore.open(item.slug)"
       >
-        <div
-          class="h-36 lg:h-44"
-          :class="[
-            item.category === 'game' ? 'bg-[linear-gradient(135deg,#171a36,#ffb15e)]' : '',
-            item.category === 'website' ? 'bg-[linear-gradient(135deg,#d8fbff,#7ea7ff)]' : '',
-            item.category === 'app' ? 'bg-[linear-gradient(135deg,#d8fbff,#ffffff,#ffb58d)]' : '',
-          ]"
+        <img
+          :src="item.image"
+          :alt="item.title"
+          class="h-36 w-full object-cover lg:h-44"
+          loading="lazy"
         >
-          <div class="grid h-full place-items-center text-5xl text-white/90">
-            {{ item.category === 'game' ? '⚔' : item.category === 'website' ? '▤' : '◉' }}
-          </div>
-        </div>
         <div class="p-4">
           <h3 class="text-base font-black text-brand-ink">{{ item.title }}</h3>
           <span class="mt-3 inline-flex rounded-lg bg-brand-teal/12 px-3 py-1 text-xs font-black text-brand-teal">

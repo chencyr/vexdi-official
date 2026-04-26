@@ -37,6 +37,7 @@ export interface ProcessStep {
 export interface PortfolioItem {
   slug: string
   category: SlideKey
+  image: string
   title: string
   summary: string
   highlights: string[]

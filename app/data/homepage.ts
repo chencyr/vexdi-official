@@ -120,6 +120,7 @@ export const portfolioItems: PortfolioItem[] = [
   {
     slug: 'sky-arcadia',
     category: 'game',
+    image: '/images/portfolio/sky-arcadia.png',
     title: 'Sky Arcadia 遊戲提案頁',
     summary:
       '以空島冒險為主題的遊戲展示頁，將角色、玩法循環與 UI 情境整理成可快速理解的提案故事。',
@@ -129,6 +130,7 @@ export const portfolioItems: PortfolioItem[] = [
   {
     slug: 'atelier-brand',
     category: 'website',
+    image: '/images/portfolio/atelier-brand.png',
     title: 'Atelier 品牌形象網站',
     summary:
       '為創作工作室設計的 one-page 網站，用作品敘事、服務卡片與清楚流程降低初次詢問門檻。',
@@ -138,6 +140,7 @@ export const portfolioItems: PortfolioItem[] = [
   {
     slug: 'pulse-track',
     category: 'app',
+    image: '/images/portfolio/pulse-track.png',
     title: 'PulseTrack App 原型',
     summary:
       '面向個人效率追蹤的 App 概念，把儀表板、任務流程與資料狀態整理成可展示的產品介面。',
