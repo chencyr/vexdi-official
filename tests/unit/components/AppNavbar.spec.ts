@@ -9,13 +9,14 @@ describe('AppNavbar', () => {
     setActivePinia(createPinia())
   })
 
-  it('renders the design nav, consultation CTA, and mobile menu trigger', async () => {
+  it('renders the desktop nav and direct mobile nav without a menu trigger', async () => {
     const wrapper = await mountSuspended(AppNavbar)
 
     expect(wrapper.text()).toContain('Portfolio')
-    expect(wrapper.text()).toContain('預約諮詢')
-    expect(wrapper.text()).toContain('開啟選單')
     expect(wrapper.find('[data-desktop-nav-bar]').exists()).toBe(true)
     expect(wrapper.find('[data-desktop-nav-bar]').classes()).toContain('lg:h-[4.625rem]')
+    expect(wrapper.find('[data-mobile-direct-nav]').exists()).toBe(true)
+    expect(wrapper.find('[data-mobile-direct-nav]').text()).toContain('Portfolio')
+    expect(wrapper.find('[data-mobile-menu-trigger]').exists()).toBe(false)
   })
 })

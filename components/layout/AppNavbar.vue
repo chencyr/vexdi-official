@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import BrandLogo from '../icons/BrandLogo.vue'
-import MobileNavPanel from './MobileNavPanel.vue'
 import { useLineLink } from '../../composables/useLineLink'
-import { useUiStore } from '../../stores/ui'
 
-const uiStore = useUiStore()
 const lineLink = useLineLink()
 
 const navItems = [
@@ -20,11 +17,22 @@ const navItems = [
   <header class="sticky top-0 z-40 px-4 py-4 lg:px-0 lg:py-0">
     <div
       data-desktop-nav-bar
-      class="mx-auto flex max-w-[92rem] items-center justify-between rounded-[2rem] border border-white/70 bg-white/90 px-5 py-3 shadow-[0_18px_60px_rgba(20,55,90,0.08)] backdrop-blur-xl lg:h-[4.625rem] lg:max-w-full lg:rounded-none lg:border-x-0 lg:px-16 lg:py-0 lg:shadow-none"
+      class="mx-auto flex max-w-[92rem] flex-col gap-3 rounded-[2rem] border border-white/70 bg-white/90 px-5 py-3 shadow-[0_18px_60px_rgba(20,55,90,0.08)] backdrop-blur-xl lg:h-[4.625rem] lg:max-w-full lg:flex-row lg:items-center lg:justify-between lg:gap-0 lg:rounded-none lg:border-x-0 lg:px-16 lg:py-0 lg:shadow-none"
     >
-      <a href="#hero" class="flex min-w-0 items-center gap-3 overflow-hidden" aria-label="回到首頁">
-        <BrandLogo />
-      </a>
+      <div class="flex w-full items-center justify-between gap-4 lg:w-auto">
+        <a href="#hero" class="flex min-w-0 items-center gap-3 overflow-hidden" aria-label="回到首頁">
+          <BrandLogo />
+        </a>
+
+        <a
+          :href="lineLink"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex shrink-0 items-center rounded-2xl bg-brand-coral px-4 py-2.5 text-sm font-bold text-white shadow-[0_18px_36px_rgba(255,111,69,0.22)] lg:hidden"
+        >
+          預約諮詢
+        </a>
+      </div>
 
       <nav class="hidden items-center gap-12 lg:flex">
         <a
@@ -41,10 +49,25 @@ const navItems = [
         </a>
       </nav>
 
-      <div class="flex items-center gap-4">
+      <nav
+        data-mobile-direct-nav
+        class="flex w-full gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden"
+        aria-label="手機版主選單"
+      >
+        <a
+          v-for="item in navItems"
+          :key="item.href"
+          :href="item.href"
+          class="shrink-0 rounded-full border border-slate-200 bg-white/85 px-4 py-2 text-sm font-bold text-brand-ink transition hover:border-brand-teal hover:text-brand-teal"
+        >
+          {{ item.label }}
+        </a>
+      </nav>
+
+      <div class="hidden items-center gap-4 lg:flex">
         <button
           type="button"
-          class="hidden h-11 w-11 items-center justify-center rounded-full text-2xl text-brand-ink lg:inline-flex"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full text-2xl text-brand-ink"
           aria-label="切換主題"
         >
           ☼
@@ -53,27 +76,12 @@ const navItems = [
           :href="lineLink"
           target="_blank"
           rel="noreferrer"
-          class="hidden items-center gap-2 rounded-2xl bg-brand-coral px-6 py-3 text-sm font-bold text-white shadow-[0_18px_36px_rgba(255,111,69,0.28)] lg:inline-flex"
+          class="inline-flex items-center gap-2 rounded-2xl bg-brand-coral px-6 py-3 text-sm font-bold text-white shadow-[0_18px_36px_rgba(255,111,69,0.28)]"
         >
           <span aria-hidden="true">▣</span>
           預約諮詢
         </a>
-
-        <button
-          type="button"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-xl text-brand-ink lg:hidden"
-          @click="uiStore.toggleMobileMenu()"
-        >
-          <span class="sr-only">開啟選單</span>
-          ☰
-        </button>
       </div>
     </div>
-
-    <MobileNavPanel
-      :open="uiStore.mobileMenuOpen"
-      :items="navItems"
-      @close="uiStore.closeMobileMenu()"
-    />
   </header>
 </template>
