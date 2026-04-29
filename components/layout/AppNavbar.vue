@@ -5,22 +5,22 @@ import { useLineLink } from '../../composables/useLineLink'
 const lineLink = useLineLink()
 
 const navItems = [
-  { label: 'Game', href: '#game' },
-  { label: 'Website', href: '#website' },
-  { label: 'App', href: '#app' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Contact', href: '#contact' },
+  { label: '首頁', href: '#hero' },
+  { label: '服務項目', href: '#process' },
+  { label: '案例作品', href: '#portfolio' },
+  { label: '關於我們', href: '#testimonials' },
+  { label: '聯絡我們', href: '#contact' },
 ]
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 px-4 py-4 lg:px-0 lg:py-0">
+  <header class="sticky top-0 z-40 bg-white/95 px-4 py-3 shadow-[0_1px_0_rgba(166,180,200,0.28)] backdrop-blur-xl lg:px-0 lg:py-0">
     <div
       data-desktop-nav-bar
-      class="mx-auto flex max-w-[92rem] flex-col gap-3 rounded-[2rem] border border-white/70 bg-white/90 px-5 py-3 shadow-[0_18px_60px_rgba(20,55,90,0.08)] backdrop-blur-xl lg:h-[4.625rem] lg:max-w-full lg:flex-row lg:items-center lg:justify-between lg:gap-0 lg:rounded-none lg:border-x-0 lg:px-16 lg:py-0 lg:shadow-none"
+      class="mx-auto flex max-w-[92rem] flex-col gap-3 bg-white/95 lg:h-[4.5rem] lg:max-w-full lg:flex-row lg:items-center lg:justify-between lg:gap-0 lg:px-16"
     >
       <div class="flex w-full items-center justify-between gap-4 lg:w-auto">
-        <a href="#hero" class="flex min-w-0 items-center gap-3 overflow-hidden" aria-label="回到首頁">
+        <a href="#hero" class="flex min-w-0 items-center overflow-hidden" aria-label="回到首頁">
           <BrandLogo />
         </a>
 
@@ -28,23 +28,24 @@ const navItems = [
           :href="lineLink"
           target="_blank"
           rel="noreferrer"
-          class="inline-flex shrink-0 items-center rounded-2xl bg-brand-coral px-4 py-2.5 text-sm font-bold text-white shadow-[0_18px_36px_rgba(255,111,69,0.22)] lg:hidden"
+          class="inline-flex shrink-0 items-center rounded-2xl bg-gradient-to-r from-[#00E5FF] to-[#7B61FF] px-4 py-2.5 text-sm font-bold text-white shadow-[0_18px_36px_rgba(0,229,255,0.2)] lg:hidden"
         >
-          預約諮詢
+          聯絡諮詢
         </a>
       </div>
 
-      <nav class="hidden items-center gap-12 lg:flex">
+      <nav class="hidden items-center gap-12 lg:flex" aria-label="主選單">
         <a
           v-for="item in navItems"
           :key="item.href"
           :href="item.href"
-          class="relative text-base font-medium text-brand-ink transition hover:text-brand-teal"
+          class="relative text-base font-semibold text-[#0D1117] transition hover:text-[#7B61FF]"
         >
           {{ item.label }}
           <span
-            v-if="item.label === 'Game'"
-            class="absolute -bottom-4 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-brand-teal"
+            v-if="item.label === '首頁'"
+            data-active-nav-indicator
+            class="absolute -bottom-4 left-1/2 h-1 w-7 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#7B61FF]"
           />
         </a>
       </nav>
@@ -58,28 +59,29 @@ const navItems = [
           v-for="item in navItems"
           :key="item.href"
           :href="item.href"
-          class="shrink-0 rounded-full border border-slate-200 bg-white/85 px-4 py-2 text-sm font-bold text-brand-ink transition hover:border-brand-teal hover:text-brand-teal"
+          class="shrink-0 rounded-full border border-[#A6B4C8]/40 bg-white px-4 py-2 text-sm font-bold text-[#0D1117] transition hover:border-[#7B61FF] hover:text-[#7B61FF]"
         >
           {{ item.label }}
         </a>
       </nav>
 
-      <div class="hidden items-center gap-4 lg:flex">
+      <div class="hidden items-center gap-6 lg:flex">
         <button
           type="button"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-full text-2xl text-brand-ink"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full text-2xl text-[#212B3D]"
           aria-label="切換主題"
         >
           ☼
         </button>
         <a
+          data-navbar-cta
           :href="lineLink"
           target="_blank"
           rel="noreferrer"
-          class="inline-flex items-center gap-2 rounded-2xl bg-brand-coral px-6 py-3 text-sm font-bold text-white shadow-[0_18px_36px_rgba(255,111,69,0.28)]"
+          class="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#00E5FF] to-[#7B61FF] px-6 py-3 text-sm font-bold text-white shadow-[0_18px_36px_rgba(0,229,255,0.2)]"
         >
-          <span aria-hidden="true">▣</span>
-          預約諮詢
+          聯絡諮詢
+          <span aria-hidden="true">→</span>
         </a>
       </div>
     </div>
