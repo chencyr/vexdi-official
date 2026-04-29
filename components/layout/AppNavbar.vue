@@ -6,21 +6,25 @@ import { useLineLink } from '../../composables/useLineLink'
 
 const lineLink = useLineLink()
 
-const navItems = [
+const sectionNavItems = [
   { label: '首頁', href: '#hero', sectionId: 'hero' },
   { label: '服務項目', href: '#process', sectionId: 'process' },
   { label: '案例作品', href: '#portfolio', sectionId: 'portfolio' },
-  { label: '聯絡我們', href: '#contact', sectionId: 'contact' },
 ]
 
-const activeSection = ref(navItems[0].sectionId)
+const contactNavItem = {
+  label: '聯絡我們',
+  href: lineLink,
+}
+
+const activeSection = ref(sectionNavItems[0].sectionId)
 
 let observer: IntersectionObserver | undefined
 let removeScrollFallback: (() => void) | undefined
 
 const updateActiveFromScroll = () => {
   const viewportFocusLine = window.innerHeight * 0.42
-  const closest = navItems
+  const closest = sectionNavItems
     .map((item) => {
       const element = document.getElementById(item.sectionId)
       const rect = element?.getBoundingClientRect()
@@ -29,7 +33,7 @@ const updateActiveFromScroll = () => {
         ? { item, distance: Math.abs(rect.top - viewportFocusLine) }
         : undefined
     })
-    .filter((entry): entry is { item: typeof navItems[number], distance: number } => Boolean(entry))
+    .filter((entry): entry is { item: typeof sectionNavItems[number], distance: number } => Boolean(entry))
     .sort((a, b) => a.distance - b.distance)[0]
 
   if (closest) {
@@ -38,7 +42,7 @@ const updateActiveFromScroll = () => {
 }
 
 onMounted(() => {
-  const sections = navItems
+  const sections = sectionNavItems
     .map((item) => document.getElementById(item.sectionId))
     .filter((element): element is HTMLElement => Boolean(element))
 
@@ -103,7 +107,7 @@ onBeforeUnmount(() => {
 
       <nav class="hidden items-center gap-12 lg:flex" aria-label="主選單">
         <a
-          v-for="item in navItems"
+          v-for="item in sectionNavItems"
           :key="item.href"
           :href="item.href"
           :data-nav-item="item.sectionId"
@@ -120,6 +124,15 @@ onBeforeUnmount(() => {
             />
           </Transition>
         </a>
+        <a
+          data-nav-item="line-contact"
+          :href="contactNavItem.href"
+          target="_blank"
+          rel="noreferrer"
+          class="relative text-base font-semibold text-[#0D1117] transition hover:text-[#7B61FF]"
+        >
+          {{ contactNavItem.label }}
+        </a>
       </nav>
 
       <nav
@@ -128,13 +141,22 @@ onBeforeUnmount(() => {
         aria-label="手機版主選單"
       >
         <a
-          v-for="item in navItems"
+          v-for="item in sectionNavItems"
           :key="item.href"
           :href="item.href"
           :data-mobile-nav-item="item.sectionId"
           class="shrink-0 rounded-full border border-[#A6B4C8]/40 bg-white px-4 py-2 text-sm font-bold text-[#0D1117] transition hover:border-[#7B61FF] hover:text-[#7B61FF]"
         >
           {{ item.label }}
+        </a>
+        <a
+          data-mobile-nav-item="line-contact"
+          :href="contactNavItem.href"
+          target="_blank"
+          rel="noreferrer"
+          class="shrink-0 rounded-full border border-[#A6B4C8]/40 bg-white px-4 py-2 text-sm font-bold text-[#0D1117] transition hover:border-[#7B61FF] hover:text-[#7B61FF]"
+        >
+          {{ contactNavItem.label }}
         </a>
       </nav>
 
