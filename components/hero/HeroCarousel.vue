@@ -54,7 +54,7 @@ const nextSlide = computed(() => heroSlides[(heroStore.activeIndex + 1) % heroSl
 
         <div
           data-hero-banner-stage
-          class="relative mx-auto min-h-[36rem] max-w-[70rem] overflow-hidden rounded-[1.7rem] border border-white/80 bg-white shadow-[0_30px_90px_rgba(32,73,110,0.15)] xl:max-w-[70rem]"
+          class="relative mx-[11.5rem] min-h-[36rem] max-w-none overflow-hidden rounded-[1.7rem] border border-white/80 bg-white shadow-[0_30px_90px_rgba(32,73,110,0.15)]"
         >
           <Transition name="hero-fade">
             <div
