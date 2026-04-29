@@ -5,15 +5,6 @@ import { nextTick } from 'vue'
 
 import AppNavbar from '../../../components/layout/AppNavbar.vue'
 
-vi.mock('nuxt/app', async (importOriginal) => ({
-  ...await importOriginal<typeof import('nuxt/app')>(),
-  useRuntimeConfig: () => ({
-    public: {
-      lineOfficialAccountUrl: 'https://line.me/R/ti/p/@creative-tech-studio',
-    },
-  }),
-}))
-
 const sectionIds = ['hero', 'process', 'portfolio']
 
 describe('AppNavbar', () => {
