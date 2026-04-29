@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useSeoMeta } from '#imports'
 
-import LineFab from '../../components/floating/LineFab.vue'
 import HeroCarousel from '../../components/hero/HeroCarousel.vue'
 import MobileHeroIntro from '../../components/hero/MobileHeroIntro.vue'
 import AppNavbar from '../../components/layout/AppNavbar.vue'
@@ -22,7 +21,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main data-homepage-shell class="mx-auto flex w-full max-w-full flex-col gap-7 px-4 pb-16 lg:max-w-[96rem] lg:px-0">
+  <main data-homepage-shell class="flex min-h-screen w-full max-w-full flex-col gap-7 overflow-x-hidden bg-white pb-16">
     <AppNavbar />
     <HeroCarousel />
     <MobileHeroIntro />
@@ -30,6 +29,5 @@ useSeoMeta({
     <PortfolioSection />
     <TestimonialsSection />
     <FooterCtaSection />
-    <LineFab />
   </main>
 </template>
