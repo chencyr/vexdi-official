@@ -44,7 +44,7 @@
 **Files:**
 - Modify: `tests/unit/pages/index.spec.ts`
 
-- [ ] **Step 1: Write the failing homepage tests**
+- [x] **Step 1: Write the failing homepage tests**
 
 Replace the wide-shell test and add the no-chat assertion so the test file contains these expectations:
 
@@ -69,7 +69,7 @@ it('does not render the floating chat dialog or launcher', async () => {
 })
 ```
 
-- [ ] **Step 2: Run the page tests to verify they fail**
+- [x] **Step 2: Run the page tests to verify they fail**
 
 Run:
 
@@ -86,7 +86,7 @@ Expected classes not to contain "lg:max-w-[96rem]"
 Expected LineFab not to exist
 ```
 
-- [ ] **Step 3: Commit the failing tests**
+- [x] **Step 3: Commit the failing tests**
 
 ```bash
 git add tests/unit/pages/index.spec.ts
@@ -100,7 +100,7 @@ git commit -m "test: cover full-width homepage without chat fab"
 **Files:**
 - Modify: `app/pages/index.vue`
 
-- [ ] **Step 1: Remove the `LineFab` import**
+- [x] **Step 1: Remove the `LineFab` import**
 
 Change the imports at the top of `app/pages/index.vue` from:
 
@@ -115,7 +115,7 @@ to:
 import HeroCarousel from '../../components/hero/HeroCarousel.vue'
 ```
 
-- [ ] **Step 2: Replace the homepage shell classes and remove `<LineFab />`**
+- [x] **Step 2: Replace the homepage shell classes and remove `<LineFab />`**
 
 Change the template shell from:
 
@@ -146,7 +146,7 @@ to:
 </main>
 ```
 
-- [ ] **Step 3: Run the page tests to verify they pass**
+- [x] **Step 3: Run the page tests to verify they pass**
 
 Run:
 
@@ -161,7 +161,7 @@ Test Files  1 passed
 Tests       3 passed
 ```
 
-- [ ] **Step 4: Commit the homepage implementation**
+- [x] **Step 4: Commit the homepage implementation**
 
 ```bash
 git add app/pages/index.vue tests/unit/pages/index.spec.ts
@@ -175,21 +175,13 @@ git commit -m "fix: make homepage full width and remove chat fab"
 **Files:**
 - Modify: `tests/unit/components/AppNavbar.spec.ts`
 
-- [ ] **Step 1: Add a runtime config mock for the LINE official URL**
+- [x] **Step 1: Use the configured LINE official URL**
 
-At the top of `tests/unit/components/AppNavbar.spec.ts`, after imports, add:
+Do not mock `nuxt/app` in this test file. `nuxt.config.ts` already defines the runtime config URL, and a partial `nuxt/app` mock can break Nuxt's generated imports when the navbar spec runs together with page specs.
 
-```ts
-vi.mock('nuxt/app', () => ({
-  useRuntimeConfig: () => ({
-    public: {
-      lineOfficialAccountUrl: 'https://line.me/R/ti/p/@creative-tech-studio',
-    },
-  }),
-}))
-```
+Expected configured URL: `https://line.me/R/ti/p/@creative-tech-studio`.
 
-- [ ] **Step 2: Add assertions for external `聯絡我們` behavior**
+- [x] **Step 2: Add assertions for external `聯絡我們` behavior**
 
 Inside `renders the VEXDi desktop navbar from the approved spec`, after the `cta` lookup, add:
 
@@ -203,7 +195,7 @@ expect(contactNav.attributes('rel')).toBe('noreferrer')
 expect(contactNav.attributes('data-active')).toBeUndefined()
 ```
 
-- [ ] **Step 3: Add assertions that active tracking remains internal-only**
+- [x] **Step 3: Add assertions that active tracking remains internal-only**
 
 In the active-section test, after mounting `AppNavbar`, add:
 
@@ -216,7 +208,7 @@ expect(wrapper.get('[data-nav-item="portfolio"]').attributes('data-active')).toB
 
 Remove any assertion that expects a contact section to be observed or active-tracked.
 
-- [ ] **Step 4: Run the navbar tests to verify they fail**
+- [x] **Step 4: Run the navbar tests to verify they fail**
 
 Run:
 
@@ -231,7 +223,7 @@ FAIL tests/unit/components/AppNavbar.spec.ts
 Unable to find [data-nav-item="line-contact"]
 ```
 
-- [ ] **Step 5: Commit the failing navbar tests**
+- [x] **Step 5: Commit the failing navbar tests**
 
 ```bash
 git add tests/unit/components/AppNavbar.spec.ts
@@ -245,7 +237,7 @@ git commit -m "test: require navbar contact to open line externally"
 **Files:**
 - Modify: `components/layout/AppNavbar.vue`
 
-- [ ] **Step 1: Replace `navItems` with internal and external nav item groups**
+- [x] **Step 1: Replace `navItems` with internal and external nav item groups**
 
 Replace the current `navItems` array with:
 
@@ -270,7 +262,7 @@ const activeSection = ref(sectionNavItems[0].sectionId)
 
 And update all active tracking code to use `sectionNavItems` instead of `navItems`.
 
-- [ ] **Step 2: Render internal section nav items with active tracking**
+- [x] **Step 2: Render internal section nav items with active tracking**
 
 Change the desktop nav loop to:
 
@@ -295,7 +287,7 @@ Change the desktop nav loop to:
 </a>
 ```
 
-- [ ] **Step 3: Render `聯絡我們` as the external LINE nav item**
+- [x] **Step 3: Render `聯絡我們` as the external LINE nav item**
 
 Immediately after the internal desktop loop, add:
 
@@ -311,7 +303,7 @@ Immediately after the internal desktop loop, add:
 </a>
 ```
 
-- [ ] **Step 4: Update mobile direct nav behavior**
+- [x] **Step 4: Update mobile direct nav behavior**
 
 Change the mobile loop to render internal items first:
 
@@ -341,7 +333,7 @@ Then add the external LINE mobile item:
 </a>
 ```
 
-- [ ] **Step 5: Run navbar tests to verify they pass**
+- [x] **Step 5: Run navbar tests to verify they pass**
 
 Run:
 
@@ -356,7 +348,7 @@ Test Files  1 passed
 Tests       3 passed
 ```
 
-- [ ] **Step 6: Commit the navbar implementation**
+- [x] **Step 6: Commit the navbar implementation**
 
 ```bash
 git add components/layout/AppNavbar.vue tests/unit/components/AppNavbar.spec.ts
@@ -370,7 +362,7 @@ git commit -m "fix: link navbar contact to line externally"
 **Files:**
 - No source files expected after this task unless verification finds a bug.
 
-- [ ] **Step 1: Run focused tests**
+- [x] **Step 1: Run focused tests**
 
 Run:
 
@@ -385,7 +377,7 @@ Test Files  2 passed
 Tests       all passed
 ```
 
-- [ ] **Step 2: Run the full test suite**
+- [x] **Step 2: Run the full test suite**
 
 Run:
 
@@ -400,7 +392,7 @@ Test Files  14 passed
 Tests       all passed
 ```
 
-- [ ] **Step 3: Run production build**
+- [x] **Step 3: Run production build**
 
 Run:
 
@@ -416,7 +408,7 @@ Build complete
 
 Existing Nuxt sourcemap and Vue DEP0155 warnings may appear. They are acceptable only if the command exits with code `0`.
 
-- [ ] **Step 4: Run in-app browser E2E check**
+- [x] **Step 4: Run in-app browser E2E check**
 
 Use the Browser plugin against `http://127.0.0.1:3000/` and verify:
 
@@ -450,7 +442,7 @@ Expected JSON:
 
 Also confirm `shellClass` contains `w-full` and does not contain `mx-auto` or `lg:max-w-[96rem]`.
 
-- [ ] **Step 5: Final commit if verification required fixes**
+- [x] **Step 5: Final commit if verification required fixes**
 
 If Step 4 required any fixes:
 
