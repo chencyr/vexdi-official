@@ -18,11 +18,12 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'zh-Hant',
       },
-      title: '創意 x 技術 | 接案形象官網',
+      title: 'Creative Tech Studio | 形象網站、遊戲提案與 App 設計',
       meta: [
         {
           name: 'description',
-          content: '承接形象網站、遊戲頁與 App 設計的 one-page 接案形象官網。',
+          content:
+            '品牌敘事型 one-page 官網，整合形象網站、遊戲提案與 App UI/UX 設計，並以 LINE 作為主要轉換入口。',
         },
       ],
     },

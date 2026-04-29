@@ -1,141 +1,185 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { computed } from 'vue'
 
 import { heroSlides } from '../../app/data/homepage'
 import { useLineLink } from '../../composables/useLineLink'
 import { useHeroStore } from '../../stores/hero'
-import HeroVisualApp from './HeroVisualApp.vue'
-import HeroVisualGame from './HeroVisualGame.vue'
-import HeroVisualWebsite from './HeroVisualWebsite.vue'
 
 const heroStore = useHeroStore()
 const lineLink = useLineLink()
 
 const currentSlide = computed(() => heroSlides[heroStore.activeIndex])
-const visuals = {
-  game: HeroVisualGame,
-  website: HeroVisualWebsite,
-  app: HeroVisualApp,
-}
-const servicePills = [
-  { key: 'game', label: 'Game' },
-  { key: 'website', label: 'Website' },
-  { key: 'app', label: 'App' },
-]
+const previousSlide = computed(() => heroSlides[(heroStore.activeIndex + heroSlides.length - 1) % heroSlides.length])
+const nextSlide = computed(() => heroSlides[(heroStore.activeIndex + 1) % heroSlides.length])
+
 </script>
 
 <template>
   <section id="hero" class="hidden lg:block">
-    <div
-      class="hero-surface grid gap-10 rounded-[42px] border border-white/70 bg-white/85 p-8 shadow-[var(--shell-shadow)] backdrop-blur xl:grid-cols-[1.05fr_1.2fr]"
-    >
-      <div class="flex flex-col justify-between gap-8">
-        <div class="space-y-6">
-          <p
-            data-hero-ribbon
-            class="hero-ribbon inline-flex items-center rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]"
-          >
-            LINE Official Account · Fast Reply
-          </p>
+    <div class="relative overflow-hidden px-0 pb-10 pt-8">
+      <button
+        type="button"
+        aria-label="Previous slide"
+        class="absolute left-[7.25rem] top-[22rem] z-30 grid h-16 w-16 place-items-center rounded-full bg-white text-3xl font-black text-brand-ink shadow-xl xl:left-[7.5rem]"
+        @click="heroStore.previousSlide()"
+      >
+        &lt;
+      </button>
+      <button
+        type="button"
+        data-next-slide
+        aria-label="Next slide"
+        class="absolute right-[7.25rem] top-[22rem] z-30 grid h-16 w-16 place-items-center rounded-full bg-white text-3xl font-black text-brand-ink shadow-xl xl:right-[7.5rem]"
+        @click="heroStore.nextSlide()"
+      >
+        &gt;
+      </button>
 
-          <div class="flex flex-wrap gap-2">
-            <span
-              v-for="pill in servicePills"
-              :key="pill.key"
-              data-hero-pill
-              class="rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] transition"
-              :class="
-                currentSlide.key === pill.key
-                  ? 'border-brand-teal bg-brand-teal/10 text-brand-ink'
-                  : 'border-slate-200 bg-white text-slate-500'
-              "
-            >
-              {{ pill.label }}
-            </span>
-          </div>
-
-          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-brand-teal">
-            {{ currentSlide.eyebrow }}
-          </p>
-          <h1 class="font-display text-[3.35rem] font-black leading-[1.02] text-brand-ink">
-            {{ currentSlide.title }}
-          </h1>
-          <p class="max-w-xl text-lg leading-8 text-slate-600">
-            {{ currentSlide.description }}
-          </p>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-3">
-          <a
-            :href="lineLink"
-            target="_blank"
-            rel="noreferrer"
-            class="rounded-full bg-brand-coral px-7 py-4 font-semibold text-white shadow-[0_20px_42px_rgba(255,139,77,0.35)] transition hover:-translate-y-0.5"
-          >
-            {{ currentSlide.primaryCta.label }}
-          </a>
-          <a
-            :href="currentSlide.secondaryCta.href"
-            class="rounded-full border border-slate-200 bg-white px-7 py-4 font-semibold text-slate-700 transition hover:-translate-y-0.5"
-          >
-            {{ currentSlide.secondaryCta.label }}
-          </a>
-          <p class="text-sm font-medium text-slate-500">Response time: within 24h</p>
-        </div>
-
-        <ul class="grid gap-3 sm:grid-cols-3">
-          <li
-            v-for="stat in currentSlide.stats"
-            :key="`${stat.label}-${stat.value}`"
-            class="rounded-3xl border border-white/70 bg-slate-50/85 px-4 py-4"
-          >
-            <p class="text-xs uppercase tracking-[0.18em] text-slate-400">{{ stat.label }}</p>
-            <p class="mt-2 font-display text-base font-bold text-slate-700">{{ stat.value }}</p>
-          </li>
-        </ul>
-      </div>
-
-      <div class="space-y-5">
-        <div
-          class="hero-visual-frame relative overflow-hidden rounded-[38px] bg-[linear-gradient(135deg,rgba(22,184,196,0.18),rgba(95,120,255,0.12))] p-6"
+      <div class="relative min-h-[39rem]">
+        <aside
+          data-hero-preview="previous"
+          class="absolute left-0 top-3 h-[36rem] w-[10.5rem] overflow-hidden rounded-r-[1.6rem] bg-white shadow-[0_22px_62px_rgba(21,54,88,0.16)] xl:w-[10.5rem]"
         >
-          <span class="hero-glow hero-glow-left" aria-hidden="true" />
-          <span class="hero-glow hero-glow-right" aria-hidden="true" />
-          <component :is="visuals[currentSlide.key]" />
+          <img
+            :src="previousSlide.image"
+            :alt="`${previousSlide.key} carousel preview`"
+            class="h-full w-full object-cover object-center"
+            loading="lazy"
+          >
+          <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.08),rgba(255,255,255,0.38))]" />
+          <p class="absolute left-6 top-14 rounded-full bg-brand-teal px-4 py-2 text-sm font-black uppercase text-white shadow-lg">
+            {{ previousSlide.displayLabel }}
+          </p>
+        </aside>
+
+        <div
+          data-hero-banner-stage
+          class="relative mx-[11.5rem] min-h-[36rem] max-w-none overflow-hidden rounded-[1.7rem] border border-white/80 bg-white shadow-[0_30px_90px_rgba(32,73,110,0.15)]"
+        >
+          <Transition name="hero-fade">
+            <div
+              :key="currentSlide.key"
+              data-hero-fade-frame
+              :data-slide-key="currentSlide.key"
+              class="absolute inset-0"
+            >
+              <img
+                data-hero-banner-artwork
+                :src="currentSlide.image"
+                :alt="`${currentSlide.key} carousel artwork`"
+                class="absolute inset-y-0 right-0 h-full w-[66%] object-cover object-center"
+                fetchpriority="high"
+              >
+              <div class="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_0%,#ffffff_34%,rgba(255,255,255,0.88)_45%,rgba(255,255,255,0.08)_70%,rgba(255,255,255,0)_100%)]" />
+
+              <div class="relative z-10 flex min-h-[36rem] max-w-[31rem] flex-col justify-center px-10 py-12">
+                <p class="inline-flex w-fit rounded-xl bg-brand-teal px-5 py-3 text-lg font-black uppercase text-white shadow-lg">
+                  {{ currentSlide.displayLabel }}
+                </p>
+                <h1 class="mt-7 text-6xl font-black leading-[1.08] text-brand-ink">
+                  {{ currentSlide.title }}
+                </h1>
+                <p class="mt-6 max-w-lg text-lg leading-9 text-slate-600">
+                  {{ currentSlide.description }}
+                </p>
+                <div class="mt-8 flex gap-5">
+                  <a
+                    data-primary-hero-cta
+                    :href="lineLink"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl bg-brand-coral px-6 py-4 text-lg font-black text-white shadow-[0_18px_42px_rgba(255,111,69,0.28)]"
+                  >
+                    {{ currentSlide.primaryCta.label }}
+                    <svg data-hero-cta-icon class="h-5 w-5" aria-hidden="true" viewBox="0 0 32 32" fill="none">
+                      <path d="M7 16h16" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                      <path d="M17 9l7 7-7 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </a>
+                  <a
+                    href="#portfolio"
+                    class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl border border-brand-ink/30 bg-white/90 px-6 py-4 text-lg font-bold text-brand-ink"
+                  >
+                    {{ currentSlide.secondaryCta.label }}
+                    <svg data-hero-cta-icon class="h-5 w-5" aria-hidden="true" viewBox="0 0 32 32" fill="none">
+                      <path d="M7 16h16" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                      <path d="M17 9l7 7-7 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </a>
+                </div>
+                <ul class="mt-10 grid grid-cols-3 gap-6">
+                  <li v-for="stat in currentSlide.stats" :key="stat.label" class="text-center">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-white shadow-lg">
+                      <img
+                        data-hero-stat-icon
+                        :src="stat.icon"
+                        :alt="stat.value"
+                        class="h-8 w-8"
+                        loading="lazy"
+                      >
+                    </div>
+                    <p class="mt-4 font-bold text-brand-ink">{{ stat.value }}</p>
+                    <p class="mt-1 text-sm text-slate-500">{{ stat.label }}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Transition>
         </div>
 
-        <div class="flex items-center justify-between">
-          <div class="flex gap-2">
-            <button
-              v-for="(slide, index) in heroSlides"
-              :key="slide.key"
-              type="button"
-              class="h-3 rounded-full transition"
-              :class="index === heroStore.activeIndex ? 'w-10 bg-brand-teal' : 'w-3 bg-slate-300'"
-              @click="heroStore.setSlide(index)"
-            >
-              <span class="sr-only">切換到{{ slide.key }}</span>
-            </button>
-          </div>
-          <div class="flex gap-2">
-            <button
-              type="button"
-              class="rounded-full border border-slate-200 bg-white px-4 py-3"
-              @click="heroStore.previousSlide()"
-            >
-              Prev
-            </button>
-            <button
-              type="button"
-              data-next-slide
-              class="rounded-full border border-slate-200 bg-white px-4 py-3"
-              @click="heroStore.nextSlide()"
-            >
-              Next
-            </button>
-          </div>
-        </div>
+        <aside
+          data-hero-preview="next"
+          class="absolute right-0 top-3 h-[36rem] w-[10.5rem] overflow-hidden rounded-l-[1.6rem] bg-white shadow-[0_22px_62px_rgba(21,54,88,0.16)] xl:w-[10.5rem]"
+        >
+          <img
+            :src="nextSlide.image"
+            :alt="`${nextSlide.key} carousel preview`"
+            class="h-full w-full object-cover object-center"
+            loading="lazy"
+          >
+          <div class="absolute inset-0 bg-[linear-gradient(270deg,rgba(255,255,255,0.08),rgba(255,255,255,0.42))]" />
+          <p class="absolute right-6 top-14 rounded-full bg-brand-teal px-4 py-2 text-sm font-black uppercase text-white shadow-lg">
+            {{ nextSlide.displayLabel }}
+          </p>
+        </aside>
       </div>
+
+      <div class="mx-auto mt-2 flex max-w-xl items-center justify-center gap-5">
+        <button
+          v-for="(slide, index) in heroSlides"
+          :key="slide.key"
+          type="button"
+          class="h-3 rounded-full transition"
+          :class="index === heroStore.activeIndex ? 'w-12 bg-brand-teal' : 'w-3 bg-slate-300'"
+          @click="heroStore.setSlide(index)"
+        >
+          <span class="sr-only">切換到 {{ slide.key }}</span>
+        </button>
+        <div class="ml-4 h-1 w-64 overflow-hidden rounded-full bg-slate-300">
+          <div class="h-full rounded-full bg-brand-teal" :style="{ width: `${((heroStore.activeIndex + 1) / heroSlides.length) * 100}%` }" />
+        </div>
+        <span class="text-sm font-semibold text-slate-500">0{{ heroStore.activeIndex + 1 }} — 03</span>
+      </div>
+
     </div>
   </section>
 </template>
+
+<style scoped>
+.hero-fade-enter-active,
+.hero-fade-leave-active {
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.hero-fade-enter-from,
+.hero-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.hero-fade-enter-to,
+.hero-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>

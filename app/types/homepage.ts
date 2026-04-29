@@ -2,6 +2,8 @@ export type SlideKey = 'game' | 'website' | 'app'
 
 export interface HeroSlide {
   key: SlideKey
+  displayLabel: string
+  image: string
   eyebrow: string
   title: string
   description: string
@@ -14,6 +16,7 @@ export interface HeroSlide {
     href: string
   }
   stats: Array<{
+    icon: string
     label: string
     value: string
   }>
@@ -34,6 +37,7 @@ export interface ProcessStep {
 export interface PortfolioItem {
   slug: string
   category: SlideKey
+  image: string
   title: string
   summary: string
   highlights: string[]

@@ -85,15 +85,14 @@
     isolation: isolate;
     min-height: calc(100vh - 0px);
     overflow: clip;
-    padding: clamp(1rem, 2vw, 1.5rem);
+    padding: 0;
   }
 
   .shell-main {
     position: relative;
     z-index: 1;
-    margin: 0 auto;
-    width: min(100%, 72rem);
-    min-height: calc(100vh - 2rem);
+    width: 100%;
+    min-height: 100vh;
   }
 
   .shell-orb {

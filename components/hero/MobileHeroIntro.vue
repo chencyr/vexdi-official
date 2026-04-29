@@ -1,62 +1,49 @@
-﻿<script setup lang="ts">
-import { heroSlides } from '../../app/data/homepage'
+<script setup lang="ts">
 import { useLineLink } from '../../composables/useLineLink'
-import HeroVisualGame from './HeroVisualGame.vue'
 
 const lineLink = useLineLink()
-const gameSlide = heroSlides[0]
-const servicePills = ['Game', 'Website', 'App']
 </script>
 
 <template>
   <section id="hero" class="lg:hidden">
-    <div class="hero-surface rounded-[32px] border border-white/70 bg-white/85 p-6 shadow-[var(--shell-shadow)] backdrop-blur">
-      <p
-        data-mobile-hero-ribbon
-        class="hero-ribbon inline-flex items-center rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]"
-      >
-        LINE Official Account · Direct Contact
-      </p>
+    <div class="relative overflow-hidden rounded-[2rem] bg-white/90 p-5 shadow-[0_24px_70px_rgba(16,63,84,0.16)]">
+      <div class="relative z-10">
+        <h1 class="pt-2 text-[2.65rem] font-black leading-[1.15] tracking-[-0.02em] text-brand-ink">
+          創意 × 技術<br>
+          打造有價值的<br>
+          <span class="text-brand-teal">數位體驗</span>
+        </h1>
+        <p class="mt-5 max-w-[18rem] text-sm font-medium leading-7 text-slate-600">
+          專注於形象網站、遊戲開發與 App 設計，協助品牌與創作者打造出色的數位作品。
+        </p>
+      </div>
 
-      <div class="mt-4 flex flex-wrap gap-2">
-        <span
-          v-for="pill in servicePills"
-          :key="pill"
-          data-mobile-hero-pill
-          class="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600"
+      <div class="relative mt-4 overflow-hidden rounded-[1.6rem] bg-white shadow-2xl">
+        <img
+          src="/images/carousel/game-hero.png"
+          alt="game carousel artwork"
+          class="h-[27rem] w-full object-cover object-[58%_center]"
+          fetchpriority="high"
         >
-          {{ pill }}
-        </span>
+        <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/80" />
       </div>
 
-      <p class="mt-4 text-sm font-semibold uppercase tracking-[0.22em] text-brand-teal">
-        {{ gameSlide.eyebrow }}
-      </p>
-      <h1 class="font-display mt-4 text-4xl font-black leading-tight text-brand-ink">
-        {{ gameSlide.title }}
-      </h1>
-      <p class="mt-4 text-base leading-7 text-slate-600">
-        {{ gameSlide.description }}
-      </p>
-
-      <div class="hero-visual-frame mt-6 rounded-[28px] bg-[linear-gradient(180deg,rgba(22,184,196,0.18),rgba(95,120,255,0.06))] p-4">
-        <HeroVisualGame />
-      </div>
-
-      <div class="mt-6 flex flex-col gap-3">
+      <div class="relative z-10 -mt-5 flex flex-col gap-3">
         <a
           :href="lineLink"
           target="_blank"
           rel="noreferrer"
-          class="rounded-full bg-brand-coral px-6 py-4 text-center font-semibold text-white"
+          class="flex items-center justify-between rounded-2xl bg-brand-coral px-7 py-4 text-xl font-black text-white shadow-[0_18px_38px_rgba(255,111,69,0.32)]"
         >
-          {{ gameSlide.primaryCta.label }}
+          <span>▣ 預約諮詢</span>
+          <span>→</span>
         </a>
         <a
-          :href="gameSlide.secondaryCta.href"
-          class="rounded-full border border-slate-200 bg-white px-6 py-4 text-center font-semibold text-slate-700"
+          href="#portfolio"
+          class="flex items-center justify-between rounded-2xl bg-white px-7 py-4 text-lg font-bold text-brand-ink shadow-lg"
         >
-          {{ gameSlide.secondaryCta.label }}
+          <span>查看作品</span>
+          <span>→</span>
         </a>
       </div>
     </div>
