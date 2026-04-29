@@ -17,10 +17,22 @@ describe('pages/index', () => {
     expect(wrapper.find('#contact').exists()).toBe(true)
   })
 
-  it('uses the wide desktop shell needed by the reference hero', async () => {
+  it('uses a true full-width homepage shell', async () => {
     const wrapper = await mountSuspended(IndexPage)
 
-    expect(wrapper.find('[data-homepage-shell]').exists()).toBe(true)
-    expect(wrapper.find('[data-homepage-shell]').classes()).toContain('lg:max-w-[96rem]')
+    const shell = wrapper.get('[data-homepage-shell]')
+
+    expect(shell.classes()).toContain('w-full')
+    expect(shell.classes()).toContain('max-w-full')
+    expect(shell.classes()).not.toContain('mx-auto')
+    expect(shell.classes()).not.toContain('lg:max-w-[96rem]')
+  })
+
+  it('does not render the floating chat dialog or launcher', async () => {
+    const wrapper = await mountSuspended(IndexPage)
+
+    expect(wrapper.findComponent({ name: 'LineFab' }).exists()).toBe(false)
+    expect(wrapper.find('[data-line-fab]').exists()).toBe(false)
+    expect(wrapper.find('[data-line-chat-dialog]').exists()).toBe(false)
   })
 })
