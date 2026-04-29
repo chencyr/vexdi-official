@@ -1,12 +1,20 @@
 import { mountSuspended } from '@nuxt/test-utils/runtime'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
+import { nextTick } from 'vue'
 
 import AppNavbar from '../../../components/layout/AppNavbar.vue'
+
+const sectionIds = ['hero', 'process', 'portfolio', 'contact']
 
 describe('AppNavbar', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
+    document.body.innerHTML = sectionIds.map((id) => `<section id="${id}"></section>`).join('')
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
   })
 
   it('renders the VEXDi desktop navbar from the approved spec', async () => {
@@ -19,17 +27,49 @@ describe('AppNavbar', () => {
     expect(logo.attributes('src')).toBe('/images/ui/vexdi-logo-lockup.png')
     expect(desktopNav.classes()).toContain('lg:h-[4.5rem]')
     expect(wrapper.find('[data-active-nav-indicator]').exists()).toBe(true)
+    expect(wrapper.find('[data-active-nav-indicator]').classes()).toContain('transition-opacity')
     expect(cta.text()).toContain('聯絡諮詢')
     expect(cta.classes().join(' ')).toContain('from-[#00E5FF]')
     expect(cta.classes().join(' ')).toContain('to-[#7B61FF]')
 
-    for (const label of ['首頁', '服務項目', '案例作品', '關於我們', '聯絡我們']) {
+    for (const label of ['首頁', '服務項目', '案例作品', '聯絡我們']) {
       expect(wrapper.text()).toContain(label)
     }
+
+    expect(wrapper.text()).not.toContain('關於我們')
 
     for (const legacyLabel of ['Game', 'Website', 'App', 'Portfolio', 'Contact']) {
       expect(wrapper.text()).not.toContain(legacyLabel)
     }
+  })
+
+  it('updates the active nav item when the focused section changes', async () => {
+    let observerCallback: IntersectionObserverCallback | undefined
+    const observe = vi.fn()
+    const disconnect = vi.fn()
+
+    vi.stubGlobal('IntersectionObserver', vi.fn(function (callback: IntersectionObserverCallback) {
+      observerCallback = callback
+
+      return { observe, disconnect }
+    }))
+
+    const wrapper = await mountSuspended(AppNavbar)
+
+    expect(wrapper.get('[data-nav-item="hero"]').attributes('data-active')).toBe('true')
+
+    observerCallback?.([
+      {
+        target: document.getElementById('portfolio') as Element,
+        isIntersecting: true,
+        intersectionRatio: 0.9,
+      } as IntersectionObserverEntry,
+    ], {} as IntersectionObserver)
+    await nextTick()
+
+    expect(wrapper.get('[data-nav-item="hero"]').attributes('data-active')).toBe('false')
+    expect(wrapper.get('[data-nav-item="portfolio"]').attributes('data-active')).toBe('true')
+    expect(disconnect).not.toHaveBeenCalled()
   })
 
   it('keeps direct mobile navigation visible without a menu trigger', async () => {
@@ -40,6 +80,7 @@ describe('AppNavbar', () => {
     expect(mobileNav.text()).toContain('首頁')
     expect(mobileNav.text()).toContain('服務項目')
     expect(mobileNav.text()).toContain('案例作品')
+    expect(mobileNav.text()).not.toContain('關於我們')
     expect(wrapper.find('[data-mobile-menu-trigger]').exists()).toBe(false)
   })
 })

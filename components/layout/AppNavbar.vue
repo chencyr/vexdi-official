@@ -1,16 +1,83 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
 import BrandLogo from '../icons/BrandLogo.vue'
 import { useLineLink } from '../../composables/useLineLink'
 
 const lineLink = useLineLink()
 
 const navItems = [
-  { label: '首頁', href: '#hero' },
-  { label: '服務項目', href: '#process' },
-  { label: '案例作品', href: '#portfolio' },
-  { label: '關於我們', href: '#testimonials' },
-  { label: '聯絡我們', href: '#contact' },
+  { label: '首頁', href: '#hero', sectionId: 'hero' },
+  { label: '服務項目', href: '#process', sectionId: 'process' },
+  { label: '案例作品', href: '#portfolio', sectionId: 'portfolio' },
+  { label: '聯絡我們', href: '#contact', sectionId: 'contact' },
 ]
+
+const activeSection = ref(navItems[0].sectionId)
+
+let observer: IntersectionObserver | undefined
+let removeScrollFallback: (() => void) | undefined
+
+const updateActiveFromScroll = () => {
+  const viewportFocusLine = window.innerHeight * 0.42
+  const closest = navItems
+    .map((item) => {
+      const element = document.getElementById(item.sectionId)
+      const rect = element?.getBoundingClientRect()
+
+      return rect
+        ? { item, distance: Math.abs(rect.top - viewportFocusLine) }
+        : undefined
+    })
+    .filter((entry): entry is { item: typeof navItems[number], distance: number } => Boolean(entry))
+    .sort((a, b) => a.distance - b.distance)[0]
+
+  if (closest) {
+    activeSection.value = closest.item.sectionId
+  }
+}
+
+onMounted(() => {
+  const sections = navItems
+    .map((item) => document.getElementById(item.sectionId))
+    .filter((element): element is HTMLElement => Boolean(element))
+
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(
+      (entries) => {
+        const focusedEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+
+        if (focusedEntry?.target.id) {
+          activeSection.value = focusedEntry.target.id
+        }
+      },
+      {
+        rootMargin: '-30% 0px -55% 0px',
+        threshold: [0.1, 0.25, 0.5, 0.75],
+      },
+    )
+
+    sections.forEach((section) => observer?.observe(section))
+    updateActiveFromScroll()
+
+    return
+  }
+
+  window.addEventListener('scroll', updateActiveFromScroll, { passive: true })
+  window.addEventListener('resize', updateActiveFromScroll)
+  updateActiveFromScroll()
+  removeScrollFallback = () => {
+    window.removeEventListener('scroll', updateActiveFromScroll)
+    window.removeEventListener('resize', updateActiveFromScroll)
+  }
+})
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  removeScrollFallback?.()
+})
 </script>
 
 <template>
@@ -39,14 +106,19 @@ const navItems = [
           v-for="item in navItems"
           :key="item.href"
           :href="item.href"
+          :data-nav-item="item.sectionId"
+          :data-active="String(activeSection === item.sectionId)"
+          :aria-current="activeSection === item.sectionId ? 'page' : undefined"
           class="relative text-base font-semibold text-[#0D1117] transition hover:text-[#7B61FF]"
         >
           {{ item.label }}
-          <span
-            v-if="item.label === '首頁'"
-            data-active-nav-indicator
-            class="absolute -bottom-4 left-1/2 h-1 w-7 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#7B61FF]"
-          />
+          <Transition name="nav-indicator-fade">
+            <span
+              v-if="activeSection === item.sectionId"
+              data-active-nav-indicator
+              class="absolute -bottom-4 left-1/2 h-1 w-7 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#7B61FF] transition-opacity duration-200"
+            />
+          </Transition>
         </a>
       </nav>
 
@@ -59,6 +131,7 @@ const navItems = [
           v-for="item in navItems"
           :key="item.href"
           :href="item.href"
+          :data-mobile-nav-item="item.sectionId"
           class="shrink-0 rounded-full border border-[#A6B4C8]/40 bg-white px-4 py-2 text-sm font-bold text-[#0D1117] transition hover:border-[#7B61FF] hover:text-[#7B61FF]"
         >
           {{ item.label }}
@@ -87,3 +160,15 @@ const navItems = [
     </div>
   </header>
 </template>
+
+<style scoped>
+.nav-indicator-fade-enter-active,
+.nav-indicator-fade-leave-active {
+  transition: opacity 180ms ease;
+}
+
+.nav-indicator-fade-enter-from,
+.nav-indicator-fade-leave-to {
+  opacity: 0;
+}
+</style>

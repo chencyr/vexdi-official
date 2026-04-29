@@ -21,8 +21,9 @@ Current code state:
 
 Target navbar spec:
 - Logo: use `public/images/ui/vexdi-logo-lockup.png`.
-- Desktop nav labels: `首頁`, `服務項目`, `案例作品`, `關於我們`, `聯絡我們`.
-- Active indicator: blue/violet underline under `首頁`.
+- Desktop nav labels: `首頁`, `服務項目`, `案例作品`, `聯絡我們`.
+- Active indicator: blue/violet underline tracks the section currently focused in the browser viewport.
+- Active indicator changes use a short fade transition.
 - CTA: cyan-to-violet gradient button with label `聯絡諮詢`.
 - Theme icon: sun-style icon remains visually present.
 - Mobile: keep direct mobile navigation visible as previously requested; do not restore hamburger-only behavior.
@@ -163,13 +164,16 @@ describe('AppNavbar', () => {
     expect(logo.attributes('src')).toBe('/images/ui/vexdi-logo-lockup.png')
     expect(desktopNav.classes()).toContain('lg:h-[4.5rem]')
     expect(wrapper.find('[data-active-nav-indicator]').exists()).toBe(true)
+    expect(wrapper.find('[data-active-nav-indicator]').classes()).toContain('transition-opacity')
     expect(cta.text()).toContain('聯絡諮詢')
     expect(cta.classes().join(' ')).toContain('from-[#00E5FF]')
     expect(cta.classes().join(' ')).toContain('to-[#7B61FF]')
 
-    for (const label of ['首頁', '服務項目', '案例作品', '關於我們', '聯絡我們']) {
+    for (const label of ['首頁', '服務項目', '案例作品', '聯絡我們']) {
       expect(wrapper.text()).toContain(label)
     }
+
+    expect(wrapper.text()).not.toContain('關於我們')
 
     for (const legacyLabel of ['Game', 'Website', 'App', 'Portfolio', 'Contact']) {
       expect(wrapper.text()).not.toContain(legacyLabel)
@@ -215,7 +219,6 @@ const navItems = [
   { label: '首頁', href: '#hero' },
   { label: '服務項目', href: '#process' },
   { label: '案例作品', href: '#portfolio' },
-  { label: '關於我們', href: '#testimonials' },
   { label: '聯絡我們', href: '#contact' },
 ]
 </script>
@@ -489,16 +492,19 @@ await agent.browser.nameSession('vexdi-navbar-e2e');
 globalThis.tab = await agent.browser.tabs.selected();
 if (!globalThis.tab) globalThis.tab = await agent.browser.tabs.new();
 await tab.goto('http://127.0.0.1:3000/');
-await tab.playwright.waitForLoadState('networkidle');
+await tab.playwright.waitForLoadState({ state: 'load', timeoutMs: 30000 });
 
+const navText = await tab.playwright.locator('[data-desktop-nav-bar]').innerText();
 const desktopResult = {
   url: await tab.url(),
   title: await tab.title(),
   logoVisible: await tab.playwright.locator('[data-brand-logo] img').isVisible(),
   logoSrc: await tab.playwright.locator('[data-brand-logo] img').getAttribute('src'),
-  navText: await tab.playwright.locator('[data-desktop-nav-bar]').innerText(),
+  navText,
   ctaText: await tab.playwright.locator('[data-navbar-cta]').innerText(),
   activeIndicatorCount: await tab.playwright.locator('[data-active-nav-indicator]').count(),
+  activeIndicatorClass: await tab.playwright.locator('[data-active-nav-indicator]').getAttribute('class'),
+  aboutNavCount: navText.includes('關於我們') ? 1 : 0,
   oldEnglishNavCount: await tab.playwright.locator('text=Game').count()
     + await tab.playwright.locator('text=Website').count()
     + await tab.playwright.locator('text=Portfolio').count(),
@@ -510,9 +516,12 @@ nodeRepl.write(JSON.stringify(desktopResult, null, 2));
 Expected JSON:
 - `logoVisible` is `true`.
 - `logoSrc` contains `/images/ui/vexdi-logo-lockup.png`.
-- `navText` contains `首頁`, `服務項目`, `案例作品`, `關於我們`, `聯絡我們`.
+- `navText` contains `首頁`, `服務項目`, `案例作品`, `聯絡我們`, and does not contain `關於我們`.
 - `ctaText` contains `聯絡諮詢`.
 - `activeIndicatorCount` is `1`.
+- `activeIndicatorClass` contains `transition-opacity`.
+- `aboutNavCount` is `0`.
+- After scrolling to `#portfolio`, the active indicator is on `案例作品`.
 - `oldEnglishNavCount` is `0`.
 
 - [ ] **Step 4: Run mobile browser DOM/style check**
