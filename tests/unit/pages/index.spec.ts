@@ -7,12 +7,14 @@ describe('pages/index', () => {
   it('renders the design-matched homepage sections and conversion points', async () => {
     const wrapper = await mountSuspended(IndexPage)
 
-    expect(wrapper.text()).toContain('創意 × 技術')
     expect(wrapper.text()).toContain('精選作品')
-    expect(wrapper.text()).toContain('預約諮詢')
-    expect(wrapper.text()).not.toContain('用創意與技術')
-    expect(wrapper.text()).not.toContain('品牌與作品集網站')
+    expect(wrapper.text()).toContain('聯絡')
     expect(wrapper.text()).not.toContain('我能提供的服務')
+    expect(wrapper.find('#hero').exists()).toBe(true)
+    expect(wrapper.find('#process').exists()).toBe(true)
+    expect(wrapper.find('#portfolio').exists()).toBe(true)
+    expect(wrapper.find('#testimonials').exists()).toBe(true)
+    expect(wrapper.find('#contact').exists()).toBe(true)
   })
 
   it('uses the wide desktop shell needed by the reference hero', async () => {
