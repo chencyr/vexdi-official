@@ -11,10 +11,6 @@ export interface HeroSlide {
     label: string
     href: string
   }
-  secondaryCta: {
-    label: string
-    href: string
-  }
   stats: Array<{
     icon: string
     label: string

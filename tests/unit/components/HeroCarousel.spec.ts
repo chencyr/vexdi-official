@@ -58,13 +58,13 @@ describe('HeroCarousel', () => {
 
     expect(wrapper.text()).toContain(heroSlides[1].title)
     expect(wrapper.findAll('[data-hero-fade-frame]').some((frame) => frame.attributes('data-slide-key') === 'website')).toBe(true)
-    expect(wrapper.get('[data-primary-hero-cta]').text()).toContain('規劃網站設計')
+    expect(wrapper.findAll('[data-primary-hero-cta]').some((cta) => cta.text().includes('規劃網站設計'))).toBe(true)
     expect(wrapper.find('a[href="#portfolio"]').exists()).toBe(false)
 
     await wrapper.get('[data-next-slide]').trigger('click')
 
     expect(wrapper.text()).toContain(heroSlides[2].title)
-    expect(wrapper.get('[data-primary-hero-cta]').text()).toContain('提案App設計')
+    expect(wrapper.findAll('[data-primary-hero-cta]').some((cta) => cta.text().includes('提案App設計'))).toBe(true)
     expect(wrapper.find('a[href="#portfolio"]').exists()).toBe(false)
   })
 })

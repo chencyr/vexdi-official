@@ -96,16 +96,6 @@ const nextSlide = computed(() => heroSlides[(heroStore.activeIndex + 1) % heroSl
                       <path d="M17 9l7 7-7 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </a>
-                  <a
-                    href="#portfolio"
-                    class="inline-flex items-center gap-3 whitespace-nowrap rounded-2xl border border-brand-ink/30 bg-white/90 px-6 py-4 text-lg font-bold text-brand-ink"
-                  >
-                    {{ currentSlide.secondaryCta.label }}
-                    <svg data-hero-cta-icon class="h-5 w-5" aria-hidden="true" viewBox="0 0 32 32" fill="none">
-                      <path d="M7 16h16" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-                      <path d="M17 9l7 7-7 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </a>
                 </div>
                 <ul class="mt-10 grid grid-cols-3 gap-6">
                   <li v-for="stat in currentSlide.stats" :key="stat.label" class="text-center">

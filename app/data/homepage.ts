@@ -17,11 +17,7 @@ export const heroSlides: HeroSlide[] = [
       '從角色情緒、互動節奏到介面層級，將遊戲概念整理成適合展示、提案與募資溝通的首頁體驗。',
     primaryCta: {
       label: '淺談遊戲企劃',
-      href: '#contact',
-    },
-    secondaryCta: {
-      label: '查看遊戲案例',
-      href: '#portfolio',
+      href: 'line',
     },
     stats: [
       { value: '遊戲企劃', label: '提案雛形', icon: '/images/icons/game-timeline.svg' },
@@ -39,11 +35,7 @@ export const heroSlides: HeroSlide[] = [
       '用敘事架構、版面節奏與明確 CTA，把作品集、品牌故事與服務內容整理成容易理解的網站。',
     primaryCta: {
       label: '規劃網站設計',
-      href: '#contact',
-    },
-    secondaryCta: {
-      label: '查看網站案例',
-      href: '#portfolio',
+      href: 'line',
     },
     stats: [
       { value: 'RWD', label: '跨裝置體驗', icon: '/images/icons/web-rwd.svg' },
@@ -60,12 +52,8 @@ export const heroSlides: HeroSlide[] = [
     description:
       '從 MVP 範圍、核心任務到 dashboard 視覺，協助你把抽象需求變成能與團隊討論的介面原型。',
     primaryCta: {
-      label: '提案APP設計',
-      href: '#contact',
-    },
-    secondaryCta: {
-      label: '查看 App 案例',
-      href: '#portfolio',
+      label: '提案App設計',
+      href: 'line',
     },
     stats: [
       { value: 'MVP 範圍', label: '需求收斂', icon: '/images/icons/app-flow.svg' },
