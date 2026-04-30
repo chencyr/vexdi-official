@@ -288,6 +288,43 @@ Behavior:
 - Portfolio modals are the main interactive detail layer in v1
 - All conversion interaction paths collapse to one target: LINE
 
+## 2026-04-30 Mobile CTA and Spacing Update
+
+### Mobile section margins
+
+- Mobile `Portfolio`, `Testimonials`, and `Footer CTA` sections must have visible left/right margin.
+- Confirmed implementation size: use `mx-4`, equal to `16px` on each side.
+- Desktop spacing behavior must remain unchanged:
+  - `Portfolio`: keep desktop `lg:px-16`
+  - `Testimonials`: keep desktop `lg:px-16`
+  - `Footer CTA`: keep desktop `lg:mx-16`
+
+### Hero CTA behavior
+
+- Fully remove `secondaryCta` from hero data, types, and rendering.
+- Do not merely hide secondary hero buttons.
+- Hero must not render any CTA pointing to `#portfolio`.
+- Hero must not render these secondary CTA labels:
+  - `查看遊戲作品`
+  - `查看網站案例`
+  - `查看 App 案例`
+  - `查看作品`
+- Desktop hero slides render exactly one CTA per slide.
+- Desktop hero CTA labels:
+  - Game: `淺談遊戲企劃`
+  - Website: `規劃網站設計`
+  - App: `提案App設計`
+- All desktop hero CTAs use `useLineLink()` and open the LINE official account as an external link.
+
+### Mobile Hero CTA
+
+- Mobile Hero renders exactly one CTA.
+- Mobile Hero CTA label: `淺談遊戲企劃`.
+- Mobile Hero CTA uses `useLineLink()` and opens the LINE official account as an external link.
+- Mobile Hero must not render `查看作品`.
+- Mobile Hero CTA and hero image must have explicit vertical spacing.
+- Confirmed implementation spacing: use `mt-5`, equal to `20px`, between hero image and CTA container.
+
 ## V1 Scope
 
 Included in v1:
