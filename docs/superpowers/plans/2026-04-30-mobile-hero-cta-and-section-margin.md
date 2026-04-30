@@ -65,7 +65,7 @@
 **Files:**
 - Modify: `tests/unit/components/MobileHeroIntro.spec.ts`
 
-- [ ] **Step 1: Write failing tests for single LINE CTA and spacing**
+- [x] **Step 1: Write failing tests for single LINE CTA and spacing**
 
 Replace the current test body with:
 
@@ -89,7 +89,7 @@ it('renders one mobile hero LINE CTA with spacing below the image', async () => 
 })
 ```
 
-- [ ] **Step 2: Run the mobile hero test and verify it fails**
+- [x] **Step 2: Run the mobile hero test and verify it fails**
 
 Run:
 
@@ -103,7 +103,7 @@ Expected failure:
 Unable to get [data-mobile-hero-image]
 ```
 
-- [ ] **Step 3: Commit the failing test**
+- [x] **Step 3: Commit the failing test**
 
 ```bash
 git add tests/unit/components/MobileHeroIntro.spec.ts
@@ -117,7 +117,7 @@ git commit -m "test: require single mobile hero line cta"
 **Files:**
 - Modify: `components/hero/MobileHeroIntro.vue`
 
-- [ ] **Step 1: Add stable hooks and keep the hero image unchanged**
+- [x] **Step 1: Add stable hooks and keep the hero image unchanged**
 
 Change the image element to:
 
@@ -131,7 +131,7 @@ Change the image element to:
 >
 ```
 
-- [ ] **Step 2: Replace the CTA block with a single LINE CTA**
+- [x] **Step 2: Replace the CTA block with a single LINE CTA**
 
 Replace the current CTA container:
 
@@ -157,7 +157,7 @@ with:
 </div>
 ```
 
-- [ ] **Step 3: Run the mobile hero test and verify it passes**
+- [x] **Step 3: Run the mobile hero test and verify it passes**
 
 Run:
 
@@ -172,7 +172,7 @@ Test Files  1 passed
 Tests       1 passed
 ```
 
-- [ ] **Step 4: Commit mobile hero implementation**
+- [x] **Step 4: Commit mobile hero implementation**
 
 ```bash
 git add components/hero/MobileHeroIntro.vue tests/unit/components/MobileHeroIntro.spec.ts
@@ -186,7 +186,7 @@ git commit -m "fix: simplify mobile hero line cta"
 **Files:**
 - Modify: `tests/unit/components/HeroCarousel.spec.ts`
 
-- [ ] **Step 1: Update expected CTA labels and single-button behavior**
+- [x] **Step 1: Update expected CTA labels and single-button behavior**
 
 In the desktop carousel test, replace the existing primary CTA label expectation with:
 
@@ -221,7 +221,7 @@ to:
 expect(wrapper.findAll('[data-hero-cta-icon]')).toHaveLength(1)
 ```
 
-- [ ] **Step 2: Add slide switch assertions for all primary CTA labels**
+- [x] **Step 2: Add slide switch assertions for all primary CTA labels**
 
 In the forward-slide test, after moving to website, add:
 
@@ -240,7 +240,7 @@ expect(wrapper.get('[data-primary-hero-cta]').text()).toContain('提案App設計
 expect(wrapper.find('a[href="#portfolio"]').exists()).toBe(false)
 ```
 
-- [ ] **Step 3: Run hero carousel tests and verify they fail**
+- [x] **Step 3: Run hero carousel tests and verify they fail**
 
 Run:
 
@@ -254,7 +254,7 @@ Expected failure:
 expected primary CTA labels to equal 淺談遊戲企劃 / 規劃網站設計 / 提案App設計
 ```
 
-- [ ] **Step 4: Commit failing desktop hero tests**
+- [x] **Step 4: Commit failing desktop hero tests**
 
 ```bash
 git add tests/unit/components/HeroCarousel.spec.ts
@@ -270,7 +270,7 @@ git commit -m "test: require single line cta in desktop hero"
 - Modify: `app/types/homepage.ts`
 - Modify: `components/hero/HeroCarousel.vue`
 
-- [ ] **Step 1: Remove `secondaryCta` from the hero slide type**
+- [x] **Step 1: Remove `secondaryCta` from the hero slide type**
 
 In `app/types/homepage.ts`, remove:
 
@@ -281,7 +281,7 @@ secondaryCta: {
 }
 ```
 
-- [ ] **Step 2: Update hero slide data**
+- [x] **Step 2: Update hero slide data**
 
 In `app/data/homepage.ts`, update `primaryCta.label` values:
 
@@ -308,7 +308,7 @@ primaryCta: {
 
 Remove each slide's `secondaryCta` object entirely.
 
-- [ ] **Step 3: Remove secondary CTA rendering**
+- [x] **Step 3: Remove secondary CTA rendering**
 
 In `components/hero/HeroCarousel.vue`, delete the secondary anchor:
 
@@ -340,7 +340,7 @@ Keep the primary CTA as:
 </a>
 ```
 
-- [ ] **Step 4: Run hero carousel tests and verify they pass**
+- [x] **Step 4: Run hero carousel tests and verify they pass**
 
 Run:
 
@@ -355,7 +355,7 @@ Test Files  1 passed
 Tests       2 passed
 ```
 
-- [ ] **Step 5: Commit desktop hero implementation**
+- [x] **Step 5: Commit desktop hero implementation**
 
 ```bash
 git add app/data/homepage.ts app/types/homepage.ts components/hero/HeroCarousel.vue tests/unit/components/HeroCarousel.spec.ts
@@ -369,7 +369,7 @@ git commit -m "fix: simplify desktop hero line ctas"
 **Files:**
 - Create: `tests/unit/components/MobileSectionSpacing.spec.ts`
 
-- [ ] **Step 1: Add section spacing tests**
+- [x] **Step 1: Add section spacing tests**
 
 Create `tests/unit/components/MobileSectionSpacing.spec.ts`:
 
@@ -397,7 +397,7 @@ describe('mobile section spacing', () => {
 })
 ```
 
-- [ ] **Step 2: Run spacing tests and verify they fail**
+- [x] **Step 2: Run spacing tests and verify they fail**
 
 Run:
 
@@ -411,7 +411,7 @@ Expected failure:
 expected classes to include mx-4
 ```
 
-- [ ] **Step 3: Commit failing spacing tests**
+- [x] **Step 3: Commit failing spacing tests**
 
 ```bash
 git add tests/unit/components/MobileSectionSpacing.spec.ts
@@ -427,7 +427,7 @@ git commit -m "test: require mobile section side margins"
 - Modify: `components/sections/TestimonialsSection.vue`
 - Modify: `components/sections/FooterCtaSection.vue`
 
-- [ ] **Step 1: Update Portfolio section classes**
+- [x] **Step 1: Update Portfolio section classes**
 
 Change:
 
@@ -441,7 +441,7 @@ to:
 <section id="portfolio" class="mx-4 space-y-5 lg:mx-0 lg:px-16">
 ```
 
-- [ ] **Step 2: Update Testimonials section classes**
+- [x] **Step 2: Update Testimonials section classes**
 
 Change:
 
@@ -455,7 +455,7 @@ to:
 <section id="testimonials" class="mx-4 space-y-5 lg:mx-0 lg:px-16">
 ```
 
-- [ ] **Step 3: Update Footer CTA section classes**
+- [x] **Step 3: Update Footer CTA section classes**
 
 Change:
 
@@ -469,7 +469,7 @@ to:
 class="mx-4 rounded-[1.6rem] bg-[linear-gradient(135deg,#13b7c1_0%,#006d82_100%)] p-6 text-white shadow-[0_24px_70px_rgba(0,109,130,0.24)] lg:mx-16 lg:p-10"
 ```
 
-- [ ] **Step 4: Run spacing tests and verify they pass**
+- [x] **Step 4: Run spacing tests and verify they pass**
 
 Run:
 
@@ -484,7 +484,7 @@ Test Files  1 passed
 Tests       1 passed
 ```
 
-- [ ] **Step 5: Commit section margin implementation**
+- [x] **Step 5: Commit section margin implementation**
 
 ```bash
 git add components/sections/PortfolioSection.vue components/sections/TestimonialsSection.vue components/sections/FooterCtaSection.vue tests/unit/components/MobileSectionSpacing.spec.ts
@@ -498,7 +498,7 @@ git commit -m "fix: add mobile section side margins"
 **Files:**
 - No source file changes expected unless verification finds a bug.
 
-- [ ] **Step 1: Run focused tests**
+- [x] **Step 1: Run focused tests**
 
 Run:
 
@@ -513,7 +513,7 @@ Test Files  3 passed
 Tests       all passed
 ```
 
-- [ ] **Step 2: Run full test suite**
+- [x] **Step 2: Run full test suite**
 
 Run:
 
@@ -528,7 +528,7 @@ Test Files  all passed
 Tests       all passed
 ```
 
-- [ ] **Step 3: Run production build**
+- [x] **Step 3: Run production build**
 
 Run:
 
@@ -544,7 +544,7 @@ Build complete
 
 Existing Nuxt sourcemap and Vue DEP0155 warnings may appear. They are acceptable only if the command exits with code `0`.
 
-- [ ] **Step 4: Run in-app browser E2E check**
+- [x] **Step 4: Run in-app browser E2E check**
 
 Use Browser plugin at `http://127.0.0.1:3000/` and verify:
 
@@ -576,7 +576,7 @@ Also confirm:
 - `portfolioLinkCount` is `0` for hero CTAs after scoping browser checks to hero containers. If global page still has non-hero portfolio anchors, scope this check to `#hero`.
 - `portfolioClass`, `testimonialsClass`, and `contactClass` contain `mx-4`.
 
-- [ ] **Step 5: Commit verification fixes if needed**
+- [x] **Step 5: Commit verification fixes if needed**
 
 If E2E reveals a bug, fix it and commit:
 
