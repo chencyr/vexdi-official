@@ -4,6 +4,9 @@ import { mountSuspended } from '@nuxt/test-utils/runtime'
 
 import MobileHeroIntro from '../../../components/hero/MobileHeroIntro.vue'
 import { heroSlides } from '../../../app/data/homepage'
+import { useHeroStore } from '../../../stores/hero'
+
+let pinia: ReturnType<typeof createPinia>
 
 function slideByKey(key: 'game' | 'website' | 'app') {
   const slide = heroSlides.find((item) => item.key === key)
@@ -36,13 +39,22 @@ function touchAt(clientX: number, clientY = 0) {
   return { changedTouches: [{ clientX, clientY }] }
 }
 
+function mountMobileHeroIntro() {
+  return mountSuspended(MobileHeroIntro, {
+    global: {
+      plugins: [pinia],
+    },
+  })
+}
+
 describe('MobileHeroIntro', () => {
   beforeEach(() => {
-    setActivePinia(createPinia())
+    pinia = createPinia()
+    setActivePinia(pinia)
   })
 
   it('renders a simplified mobile carousel starting on the game slide', async () => {
-    const wrapper = await mountSuspended(MobileHeroIntro)
+    const wrapper = await mountMobileHeroIntro()
     const gameSlide = slideByKey('game')
 
     expect(wrapper.find('[data-mobile-hero]').exists()).toBe(true)
@@ -61,7 +73,7 @@ describe('MobileHeroIntro', () => {
   })
 
   it('switches to website and app slides with clickable dots', async () => {
-    const wrapper = await mountSuspended(MobileHeroIntro)
+    const wrapper = await mountMobileHeroIntro()
     const websiteSlide = slideByKey('website')
     const appSlide = slideByKey('app')
 
@@ -82,8 +94,20 @@ describe('MobileHeroIntro', () => {
     expectSingleLineCta(wrapper)
   })
 
+  it('does not reset the shared hero store when mounted', async () => {
+    const store = useHeroStore()
+    const websiteSlide = slideByKey('website')
+
+    store.setSlide(1)
+    const wrapper = await mountMobileHeroIntro()
+
+    expect(wrapper.find('[data-mobile-hero-slide]').attributes('data-slide-key')).toBe('website')
+    expect(wrapper.find('[data-mobile-hero-image]').attributes('src')).toBe(websiteSlide.image)
+    expectActiveSlideContent(wrapper, 'website')
+  })
+
   it('switches slides with horizontal swipe gestures', async () => {
-    const wrapper = await mountSuspended(MobileHeroIntro)
+    const wrapper = await mountMobileHeroIntro()
     const swipeZone = wrapper.get('[data-mobile-hero-swipe-zone]')
     const gameSlide = slideByKey('game')
     const websiteSlide = slideByKey('website')
@@ -102,7 +126,7 @@ describe('MobileHeroIntro', () => {
   })
 
   it('ignores short horizontal touch movement so accidental taps do not change slides', async () => {
-    const wrapper = await mountSuspended(MobileHeroIntro)
+    const wrapper = await mountMobileHeroIntro()
     const swipeZone = wrapper.get('[data-mobile-hero-swipe-zone]')
     const gameSlide = slideByKey('game')
 
@@ -114,7 +138,7 @@ describe('MobileHeroIntro', () => {
   })
 
   it('ignores primarily vertical touch movement so scrolling does not change slides', async () => {
-    const wrapper = await mountSuspended(MobileHeroIntro)
+    const wrapper = await mountMobileHeroIntro()
     const swipeZone = wrapper.get('[data-mobile-hero-swipe-zone]')
     const gameSlide = slideByKey('game')
 
