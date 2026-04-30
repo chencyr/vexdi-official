@@ -43,9 +43,12 @@ This direction uses the homepage as a guided story:
 
 ### Mobile behavior
 
-- Mobile does **not** use the desktop carousel pattern
-- Mobile opens with one strongest hero visual
-- Below the opening hero, content branches into `Game / Website / App` sections
+- Mobile Hero uses a simplified swipe carousel derived from the desktop hero content
+- Mobile Hero includes `Game / Website / App` slides
+- Mobile users can swipe horizontally between slides
+- Mobile Hero shows dots below the active slide; dots are clickable and reflect the active slide
+- Mobile does **not** show desktop side-preview cards or arrow controls
+- Below the mobile Hero, content can still continue into `Game / Website / App` service context, but it must not be the only place where Website and App are introduced
 - Mobile navbar uses a `hamburger menu`
 
 ### Contact behavior
@@ -101,8 +104,8 @@ Each portfolio modal includes:
 ### Mobile page rhythm
 
 1. `Navbar`
-2. single opening `Hero`
-3. service branching blocks for `Game / Website / App`
+2. simplified swipe `Hero Carousel` for `Game / Website / App`
+3. service context blocks for `Game / Website / App`
 4. `About`
 5. `Services`
 6. `Process`
@@ -159,6 +162,16 @@ Slide rules:
 CTA behavior:
 
 - All hero CTAs go to LINE
+
+Mobile behavior:
+
+- Mobile uses a simplified carousel, not the full desktop carousel stage
+- It reuses the same `heroSlides` data as desktop so Game, Website, and App stay aligned
+- Each mobile slide shows the active service label, hero image, title, description, and one LINE CTA
+- Users can swipe horizontally to change slides
+- Dots below the slide show progress and can be tapped to jump to a slide
+- Do not render desktop side previews, desktop arrows, stats rows, or secondary portfolio CTAs on mobile
+- Mobile slide order is `Game`, `Website`, `App`
 
 ### About
 
@@ -284,7 +297,8 @@ Behavior:
 ## Interaction Notes
 
 - Desktop hero uses carousel interaction
-- Mobile removes carousel complexity in favor of a simpler top-down reading flow
+- Mobile hero uses simplified carousel interaction: swipe plus clickable dots
+- Mobile hero does not include desktop side-preview cards or arrow controls
 - Portfolio modals are the main interactive detail layer in v1
 - All conversion interaction paths collapse to one target: LINE
 
@@ -325,6 +339,18 @@ Behavior:
 - Mobile Hero CTA and hero image must have explicit vertical spacing.
 - Confirmed implementation spacing: use `mt-5`, equal to `20px`, between hero image and CTA container.
 
+### 2026-04-30 Mobile Hero Carousel Update
+
+- This update supersedes the earlier single mobile Hero CTA rule.
+- Mobile Hero is no longer a single Game-only opening.
+- Mobile Hero renders a simplified swipe carousel with `Game`, `Website`, and `App` slides.
+- Mobile Hero renders exactly one CTA per active slide.
+- Mobile Hero CTA labels reuse the existing desktop hero CTA labels for the matching active slide.
+- Mobile Hero CTA uses `useLineLink()` and opens the LINE official account as an external link.
+- Mobile Hero must not render secondary portfolio CTAs or `#portfolio` hero links.
+- Mobile Hero must provide swipe interaction and clickable dots for `Game / Website / App`.
+- Mobile Hero must show Website and App slides in the hero itself, not only later service sections.
+
 ## V1 Scope
 
 Included in v1:
@@ -333,7 +359,7 @@ Included in v1:
 - Responsive desktop + mobile implementation
 - SVG logo implementation from concept direction
 - Desktop hero carousel
-- Mobile single-hero opening
+- Mobile simplified swipe hero carousel
 - Portfolio modal interaction
 - Fixed testimonials section
 - LINE-first CTA flow
@@ -382,7 +408,7 @@ Suggested stores:
 
 Checked:
 
-- No unresolved contradiction between desktop and mobile behavior
+- No unresolved contradiction between desktop and mobile behavior; both use hero slides, while mobile uses a simplified swipe carousel instead of the full desktop stage. The 2026-04-30 Mobile Hero Carousel Update supersedes the earlier single mobile Hero CTA rule.
 - CTA flow is consistent: LINE only
 - Chat widget behavior is simplified and no longer conflicts with WebSocket v1 scope
 - Portfolio interaction is clearly defined as modal, not anchor jump
