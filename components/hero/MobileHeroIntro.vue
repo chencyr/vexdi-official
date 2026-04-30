@@ -20,6 +20,7 @@ const lineLink = useLineLink()
 
       <div class="relative mt-4 overflow-hidden rounded-[1.6rem] bg-white shadow-2xl">
         <img
+          data-mobile-hero-image
           src="/images/carousel/game-hero.png"
           alt="game carousel artwork"
           class="h-[27rem] w-full object-cover object-[58%_center]"
@@ -28,22 +29,15 @@ const lineLink = useLineLink()
         <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/80" />
       </div>
 
-      <div class="relative z-10 -mt-5 flex flex-col gap-3">
+      <div data-mobile-hero-cta-container class="relative z-10 mt-5 flex flex-col">
         <a
           :href="lineLink"
           target="_blank"
           rel="noreferrer"
           class="flex items-center justify-between rounded-2xl bg-brand-coral px-7 py-4 text-xl font-black text-white shadow-[0_18px_38px_rgba(255,111,69,0.32)]"
         >
-          <span>▣ 預約諮詢</span>
-          <span>→</span>
-        </a>
-        <a
-          href="#portfolio"
-          class="flex items-center justify-between rounded-2xl bg-white px-7 py-4 text-lg font-bold text-brand-ink shadow-lg"
-        >
-          <span>查看作品</span>
-          <span>→</span>
+          <span>淺談遊戲企劃</span>
+          <span aria-hidden="true">→</span>
         </a>
       </div>
     </div>
