@@ -13,7 +13,7 @@ const categoryLabels = {
 </script>
 
 <template>
-  <section id="portfolio" class="space-y-5 lg:px-16">
+  <section id="portfolio" class="mx-4 space-y-5 lg:mx-0 lg:px-16">
     <div class="flex items-end justify-between">
       <div>
         <p class="text-sm font-black uppercase tracking-[0.28em] text-brand-teal lg:hidden">Portfolio</p>

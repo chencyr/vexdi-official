@@ -7,7 +7,7 @@ const lineLink = useLineLink()
 <template>
   <section
     id="contact"
-    class="rounded-[1.6rem] bg-[linear-gradient(135deg,#13b7c1_0%,#006d82_100%)] p-6 text-white shadow-[0_24px_70px_rgba(0,109,130,0.24)] lg:mx-16 lg:p-10"
+    class="mx-4 rounded-[1.6rem] bg-[linear-gradient(135deg,#13b7c1_0%,#006d82_100%)] p-6 text-white shadow-[0_24px_70px_rgba(0,109,130,0.24)] lg:mx-16 lg:p-10"
   >
     <h2 class="text-center text-3xl font-black lg:text-left lg:text-5xl">有專案想一起合作嗎？</h2>
     <p class="mt-3 text-center text-lg font-medium text-white/85 lg:text-left">

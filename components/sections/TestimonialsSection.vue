@@ -3,7 +3,7 @@ import { testimonials } from '../../app/data/homepage'
 </script>
 
 <template>
-  <section id="testimonials" class="space-y-5 lg:px-16">
+  <section id="testimonials" class="mx-4 space-y-5 lg:mx-0 lg:px-16">
     <div class="flex items-center justify-between">
       <h2 class="text-3xl font-black text-brand-ink lg:text-4xl">客戶怎麼說</h2>
       <a href="#contact" class="text-sm font-bold text-brand-teal">查看全部 →</a>
