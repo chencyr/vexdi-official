@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<!-- saved from url=(0118)file:///Users/rexchen/Documents/Codex/2026-05-03/repo-codebase-1-2-3-llm/codebase-knowledge-tools-research-report.html -->
+<html lang="zh-Hant"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codebase 與全能知識庫工具研究報告</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #5d6b7a;
+      --line: #d8dee6;
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --blue: #2764d8;
+      --green: #138a5b;
+      --red: #c23b3b;
+      --amber: #9a6200;
+      --cyan: #087e8b;
+      --shadow: 0 10px 24px rgba(23, 32, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    header {
+      background: #101820;
+      color: #fff;
+      padding: 56px 24px 42px;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      color: #91c7ff;
+      font-size: 14px;
+      letter-spacing: 0;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 40px;
+      line-height: 1.15;
+      margin: 0 0 18px;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 850px;
+      color: #d8e2ef;
+      font-size: 18px;
+      margin: 0;
+    }
+
+    main {
+      padding: 28px 24px 72px;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      margin: 22px auto;
+      padding: 28px;
+      max-width: 1180px;
+    }
+
+    h2 {
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 0 0 16px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin: 22px 0 10px;
+    }
+
+    p { margin: 0 0 12px; }
+    a { color: var(--blue); }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .meta-item {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .meta-item strong {
+      display: block;
+      color: #fff;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .meta-item span {
+      color: #d8e2ef;
+      font-size: 13px;
+      word-break: break-all;
+    }
+
+    .callout {
+      border-left: 5px solid var(--blue);
+      background: #eef5ff;
+      padding: 16px 18px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    .callout strong { color: #123d82; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #edf1f5;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+      background: #fafbfc;
+    }
+
+    .score {
+      display: inline-block;
+      min-width: 52px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      color: white;
+      font-size: 12px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .high { background: var(--green); }
+    .mid { background: var(--amber); }
+    .low { background: var(--red); }
+    .neutral { background: var(--cyan); }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .tool-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+    }
+
+    .tool-card h3 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 8px;
+      margin: 3px 4px 3px 0;
+      font-size: 12px;
+      color: var(--muted);
+      background: #f7f9fb;
+    }
+
+    .diagram {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfe;
+      padding: 20px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .cols {
+      columns: 2;
+      column-gap: 34px;
+    }
+
+    ul {
+      margin-top: 8px;
+      padding-left: 20px;
+    }
+
+    li { margin-bottom: 7px; }
+
+    .footer {
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      max-width: 1180px;
+      margin: 24px auto 0;
+    }
+
+    @media (max-width: 860px) {
+      h1 { font-size: 30px; }
+      .meta, .grid-3 { grid-template-columns: 1fr; }
+      section { padding: 20px; }
+      .cols { columns: 1; }
+      table { font-size: 13px; }
+      th, td { padding: 8px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      header { padding: 36px 24px; }
+      section {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+      a { color: var(--ink); text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">研究報告｜Codebase Knowledge Base / General Knowledge Base</div>
+      <h1>hyper-extract、graphify、GitNexus 工具比較與搭配策略</h1>
+      <p class="subtitle">本報告比較三個開源工具在圖譜架構、查詢效果、LLM 參與形式、模型需求、整合難度、codebase 通用性與多媒體通用性上的差異，並提出作為 codebase 知識庫與全能知識庫的使用建議。</p>
+      <div class="meta">
+        <div class="meta-item">
+          <strong>hyper-extract</strong>
+          <span>yifanfeng97/hyper-extract｜研讀版本 32b7acd</span>
+        </div>
+        <div class="meta-item">
+          <strong>graphify</strong>
+          <span>safishamsi/graphify｜研讀版本 96267ad</span>
+        </div>
+        <div class="meta-item">
+          <strong>GitNexus</strong>
+          <span>abhigyanpatwari/GitNexus｜研讀版本 3680495</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>執行摘要</h2>
+      <div class="callout">
+        <strong>核心結論：</strong>
+        GitNexus 最適合作為 codebase 知識庫核心；graphify 最適合作為全能、多媒體、agent-friendly 的知識地圖；hyper-extract 最適合作為高品質、強 schema、可演化的結構化抽取引擎，但不適合單獨承擔大型 codebase intelligence。
+      </div>
+      <div class="grid-3">
+        <div class="tool-card">
+          <h3>GitNexus</h3>
+          <p>以靜態分析、typed graph、MCP tools 為核心，專注於程式碼依賴、call chain、impact analysis 與 multi-repo 使用情境。</p>
+          <span class="tag">Codebase 核心</span>
+          <span class="tag">MCP</span>
+          <span class="tag">低 LLM 依賴</span>
+        </div>
+        <div class="tool-card">
+          <h3>graphify</h3>
+          <p>把 code、文件、PDF、圖片、音訊、影片整合成 NetworkX 知識圖譜，輸出 report、HTML、wiki 與 MCP query tools。</p>
+          <span class="tag">全能資料夾地圖</span>
+          <span class="tag">多媒體</span>
+          <span class="tag">Agent Skill</span>
+        </div>
+        <div class="tool-card">
+          <h3>hyper-extract</h3>
+          <p>LLM-first 的知識抽取框架，以 Pydantic schema、YAML template、graph/hypergraph/temporal/spatial 型別化輸出為主要價值。</p>
+          <span class="tag">強 Schema</span>
+          <span class="tag">Domain Extraction</span>
+          <span class="tag">FAISS Search</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>工具定位總覽</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>面向</th>
+            <th>hyper-extract</th>
+            <th>graphify</th>
+            <th>GitNexus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>核心定位</td>
+            <td>LLM 型別化知識抽取框架</td>
+            <td>任意資料夾到知識圖譜的 agent skill</td>
+            <td>codebase 專用靜態分析 + MCP</td>
+          </tr>
+          <tr>
+            <td>最強場景</td>
+            <td>法務、醫療、財經、SOP、合約、事件線抽取</td>
+            <td>code + docs + PDF + 圖片 + 音影片混合語料</td>
+            <td>程式依賴、call chain、impact、rename、multi-repo</td>
+          </tr>
+          <tr>
+            <td>圖譜底層</td>
+            <td>Pydantic AutoGraph / Hypergraph / Temporal / Spatial</td>
+            <td>NetworkX graph + Leiden community</td>
+            <td>LadybugDB typed property graph</td>
+          </tr>
+          <tr>
+            <td>查詢型態</td>
+            <td>FAISS / embedding 搜 node 或 edge，再交 LLM 回答</td>
+            <td>label/source matching + BFS/DFS/shortest path</td>
+            <td>BM25 + semantic + RRF + Cypher + context/impact tools</td>
+          </tr>
+          <tr>
+            <td>LLM 依賴</td>
+            <td><span class="score low">高</span></td>
+            <td><span class="score mid">中</span></td>
+            <td><span class="score high">低到中</span></td>
+          </tr>
+          <tr>
+            <td>Codebase 能力</td>
+            <td><span class="score low">弱</span></td>
+            <td><span class="score mid">中</span></td>
+            <td><span class="score high">強</span></td>
+          </tr>
+          <tr>
+            <td>多媒體能力</td>
+            <td><span class="score mid">中，需前處理</span></td>
+            <td><span class="score high">強</span></td>
+            <td><span class="score low">弱</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>圖譜架構比較</h2>
+      <div class="diagram" aria-label="三個工具的圖譜架構比較圖">
+        <svg width="1040" height="390" viewBox="0 0 1040 390" role="img">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L9,3 z" fill="#536273"></path>
+            </marker>
+          </defs>
+          <rect x="20" y="30" width="300" height="310" rx="8" fill="#eef5ff" stroke="#9abbea"></rect>
+          <text x="42" y="64" font-size="22" font-weight="700" fill="#123d82">hyper-extract</text>
+          <rect x="52" y="94" width="236" height="44" rx="6" fill="#fff" stroke="#bdd0e8"></rect>
+          <text x="78" y="122" font-size="15" fill="#17202a">YAML Template / Pydantic Schema</text>
+          <line x1="170" y1="138" x2="170" y2="168" stroke="#536273" marker-end="url(#arrow)"></line>
+          <rect x="52" y="170" width="236" height="52" rx="6" fill="#fff" stroke="#bdd0e8"></rect>
+          <text x="82" y="192" font-size="15" fill="#17202a">LLM Structured Output</text>
+          <text x="88" y="212" font-size="13" fill="#5d6b7a">node / edge / hyperedge</text>
+          <line x1="170" y1="222" x2="170" y2="252" stroke="#536273" marker-end="url(#arrow)"></line>
+          <rect x="52" y="254" width="236" height="52" rx="6" fill="#fff" stroke="#bdd0e8"></rect>
+          <text x="82" y="276" font-size="15" fill="#17202a">FAISS / OMem / OntoSight</text>
+          <text x="92" y="296" font-size="13" fill="#5d6b7a">search、merge、visualize</text>
+
+          <rect x="370" y="30" width="300" height="310" rx="8" fill="#eefaf5" stroke="#9bd6bb"></rect>
+          <text x="392" y="64" font-size="22" font-weight="700" fill="#0b6340">graphify</text>
+          <rect x="402" y="94" width="236" height="44" rx="6" fill="#fff" stroke="#bfe1cf"></rect>
+          <text x="446" y="122" font-size="15" fill="#17202a">AST + LLM Semantic Extraction</text>
+          <line x1="520" y1="138" x2="520" y2="168" stroke="#536273" marker-end="url(#arrow)"></line>
+          <rect x="402" y="170" width="236" height="52" rx="6" fill="#fff" stroke="#bfe1cf"></rect>
+          <text x="468" y="192" font-size="15" fill="#17202a">NetworkX Graph</text>
+          <text x="438" y="212" font-size="13" fill="#5d6b7a">EXTRACTED / INFERRED / AMBIGUOUS</text>
+          <line x1="520" y1="222" x2="520" y2="252" stroke="#536273" marker-end="url(#arrow)"></line>
+          <rect x="402" y="254" width="236" height="52" rx="6" fill="#fff" stroke="#bfe1cf"></rect>
+          <text x="448" y="276" font-size="15" fill="#17202a">HTML / JSON / Wiki / MCP</text>
+          <text x="468" y="296" font-size="13" fill="#5d6b7a">agent navigation layer</text>
+
+          <rect x="720" y="30" width="300" height="310" rx="8" fill="#fff7e8" stroke="#e3c27c"></rect>
+          <text x="742" y="64" font-size="22" font-weight="700" fill="#7a4b00">GitNexus</text>
+          <rect x="752" y="94" width="236" height="44" rx="6" fill="#fff" stroke="#e5cfa0"></rect>
+          <text x="790" y="122" font-size="15" fill="#17202a">Tree-sitter + Scope Resolution</text>
+          <line x1="870" y1="138" x2="870" y2="168" stroke="#536273" marker-end="url(#arrow)"></line>
+          <rect x="752" y="170" width="236" height="52" rx="6" fill="#fff" stroke="#e5cfa0"></rect>
+          <text x="790" y="192" font-size="15" fill="#17202a">LadybugDB Typed Graph</text>
+          <text x="780" y="212" font-size="13" fill="#5d6b7a">File / Function / Class / Process</text>
+          <line x1="870" y1="222" x2="870" y2="252" stroke="#536273" marker-end="url(#arrow)"></line>
+          <rect x="752" y="254" width="236" height="52" rx="6" fill="#fff" stroke="#e5cfa0"></rect>
+          <text x="788" y="276" font-size="15" fill="#17202a">MCP / Cypher / Impact Tools</text>
+          <text x="820" y="296" font-size="13" fill="#5d6b7a">developer workflow</text>
+        </svg>
+      </div>
+      <p>GitNexus 的圖譜模型最適合工程語意，因為它把 code elements 與 relations 做成 typed property graph；graphify 的架構較輕量、可攜、適合跨資料型態；hyper-extract 的圖譜最可定制，強在把非結構化文字轉為嚴格 schema。</p>
+    </section>
+
+    <section>
+      <h2>必要分析面向</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>分析面向</th>
+            <th>最佳工具</th>
+            <th>判斷</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. 圖譜架構分析</td>
+            <td>Codebase：GitNexus；通用：graphify / hyper-extract</td>
+            <td>GitNexus 有 typed schema、scope/call/import/process；graphify 輕量可攜；hyper-extract schema 最彈性。</td>
+          </tr>
+          <tr>
+            <td>2. 查詢效果分析</td>
+            <td>GitNexus</td>
+            <td>BM25 + semantic + RRF，並有 context、impact、detect_changes、Cypher 等高階工具。</td>
+          </tr>
+          <tr>
+            <td>3. LLM 參與形式分析</td>
+            <td>依任務不同</td>
+            <td>GitNexus indexing 主要 deterministic；graphify 對 docs/images/transcripts 用 LLM；hyper-extract 全流程高度 LLM-first。</td>
+          </tr>
+          <tr>
+            <td>4. LLM 智商需求分析</td>
+            <td>最低：GitNexus；最高：hyper-extract</td>
+            <td>GitNexus 已把工具輸出整理成 code context；hyper-extract 需要模型嚴格遵守 schema 並做一致性抽取。</td>
+          </tr>
+          <tr>
+            <td>5. 工具整合難度分析</td>
+            <td>GitNexus / graphify</td>
+            <td>兩者都有 agent/MCP/workflow integration；hyper-extract 比較像 library/CLI，需要額外包裝。</td>
+          </tr>
+          <tr>
+            <td>6. 通用性分析：codebase</td>
+            <td>GitNexus</td>
+            <td>專門支援 symbol graph、call chain、route/tool/ORM、multi-repo group 與 blast radius。</td>
+          </tr>
+          <tr>
+            <td>7. 通用性分析：多媒體</td>
+            <td>graphify</td>
+            <td>支援 PDF、Markdown、圖片、截圖、影片、音訊，音影片可本地轉錄後進入圖譜。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>查詢與 LLM 參與流程</h2>
+      <div class="diagram" aria-label="查詢流程圖">
+        <svg width="1020" height="360" viewBox="0 0 1020 360" role="img">
+          <defs>
+            <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L9,3 z" fill="#536273"></path>
+            </marker>
+          </defs>
+          <text x="30" y="38" font-size="18" font-weight="700" fill="#17202a">GitNexus：低 LLM 依賴的 code intelligence</text>
+          <rect x="30" y="58" width="180" height="48" rx="6" fill="#fff7e8" stroke="#e3c27c"></rect>
+          <text x="70" y="88" font-size="14">Tree-sitter Index</text>
+          <line x1="210" y1="82" x2="260" y2="82" stroke="#536273" marker-end="url(#arrow2)"></line>
+          <rect x="260" y="58" width="190" height="48" rx="6" fill="#fff7e8" stroke="#e3c27c"></rect>
+          <text x="304" y="88" font-size="14">LadybugDB Graph</text>
+          <line x1="450" y1="82" x2="500" y2="82" stroke="#536273" marker-end="url(#arrow2)"></line>
+          <rect x="500" y="58" width="210" height="48" rx="6" fill="#fff7e8" stroke="#e3c27c"></rect>
+          <text x="532" y="88" font-size="14">MCP query/context/impact</text>
+          <line x1="710" y1="82" x2="760" y2="82" stroke="#536273" marker-end="url(#arrow2)"></line>
+          <rect x="760" y="58" width="220" height="48" rx="6" fill="#fff7e8" stroke="#e3c27c"></rect>
+          <text x="820" y="88" font-size="14">LLM 讀工具輸出</text>
+
+          <text x="30" y="158" font-size="18" font-weight="700" fill="#17202a">graphify：agent 導航型圖譜</text>
+          <rect x="30" y="178" width="180" height="48" rx="6" fill="#eefaf5" stroke="#9bd6bb"></rect>
+          <text x="64" y="208" font-size="14">AST + Semantic LLM</text>
+          <line x1="210" y1="202" x2="260" y2="202" stroke="#536273" marker-end="url(#arrow2)"></line>
+          <rect x="260" y="178" width="190" height="48" rx="6" fill="#eefaf5" stroke="#9bd6bb"></rect>
+          <text x="314" y="208" font-size="14">graph.json</text>
+          <line x1="450" y1="202" x2="500" y2="202" stroke="#536273" marker-end="url(#arrow2)"></line>
+          <rect x="500" y="178" width="210" height="48" rx="6" fill="#eefaf5" stroke="#9bd6bb"></rect>
+          <text x="532" y="208" font-size="14">BFS/DFS/path/report/wiki</text>
+          <line x1="710" y1="202" x2="760" y2="202" stroke="#536273" marker-end="url(#arrow2)"></line>
+          <rect x="760" y="178" width="220" height="48" rx="6" fill="#eefaf5" stroke="#9bd6bb"></rect>
+          <text x="806" y="208" font-size="14">LLM 做脈絡解釋</text>
+
+          <text x="30" y="278" font-size="18" font-weight="700" fill="#17202a">hyper-extract：LLM-first 強 schema 抽取</text>
+          <rect x="30" y="298" width="180" height="48" rx="6" fill="#eef5ff" stroke="#9abbea"></rect>
+          <text x="70" y="328" font-size="14">Template Schema</text>
+          <line x1="210" y1="322" x2="260" y2="322" stroke="#536273" marker-end="url(#arrow2)"></line>
+          <rect x="260" y="298" width="190" height="48" rx="6" fill="#eef5ff" stroke="#9abbea"></rect>
+          <text x="302" y="328" font-size="14">LLM Structured Extract</text>
+          <line x1="450" y1="322" x2="500" y2="322" stroke="#536273" marker-end="url(#arrow2)"></line>
+          <rect x="500" y="298" width="210" height="48" rx="6" fill="#eef5ff" stroke="#9abbea"></rect>
+          <text x="550" y="328" font-size="14">FAISS Search</text>
+          <line x1="710" y1="322" x2="760" y2="322" stroke="#536273" marker-end="url(#arrow2)"></line>
+          <rect x="760" y="298" width="220" height="48" rx="6" fill="#eef5ff" stroke="#9abbea"></rect>
+          <text x="808" y="328" font-size="14">LLM QA / Merge</text>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <h2>選型建議</h2>
+      <div class="diagram" aria-label="選型流程圖">
+        <svg width="900" height="520" viewBox="0 0 900 520" role="img">
+          <defs>
+            <marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L9,3 z" fill="#536273"></path>
+            </marker>
+          </defs>
+          <rect x="320" y="20" width="260" height="58" rx="8" fill="#101820"></rect>
+          <text x="375" y="55" font-size="17" fill="#fff" font-weight="700">你要建立什麼知識庫？</text>
+
+          <line x1="450" y1="78" x2="450" y2="118" stroke="#536273" marker-end="url(#arrow3)"></line>
+          <rect x="300" y="120" width="300" height="64" rx="8" fill="#fff" stroke="#d8dee6"></rect>
+          <text x="332" y="148" font-size="15" fill="#17202a">主要問題是否是 code flow、依賴、影響範圍？</text>
+          <text x="398" y="170" font-size="13" fill="#5d6b7a">call chain / impact / rename / route</text>
+
+          <line x1="300" y1="152" x2="130" y2="152" stroke="#536273" marker-end="url(#arrow3)"></line>
+          <text x="205" y="138" font-size="13" fill="#5d6b7a">是</text>
+          <rect x="28" y="118" width="102" height="68" rx="8" fill="#fff7e8" stroke="#e3c27c"></rect>
+          <text x="50" y="148" font-size="15" font-weight="700" fill="#7a4b00">GitNexus</text>
+          <text x="45" y="170" font-size="12" fill="#5d6b7a">主索引</text>
+
+          <line x1="450" y1="184" x2="450" y2="230" stroke="#536273" marker-end="url(#arrow3)"></line>
+          <rect x="300" y="232" width="300" height="64" rx="8" fill="#fff" stroke="#d8dee6"></rect>
+          <text x="326" y="260" font-size="15" fill="#17202a">資料是否包含圖片、PDF、錄音、影片、白板？</text>
+          <text x="382" y="282" font-size="13" fill="#5d6b7a">多媒體與混合資料夾</text>
+
+          <line x1="600" y1="264" x2="770" y2="264" stroke="#536273" marker-end="url(#arrow3)"></line>
+          <text x="680" y="250" font-size="13" fill="#5d6b7a">是</text>
+          <rect x="770" y="230" width="102" height="68" rx="8" fill="#eefaf5" stroke="#9bd6bb"></rect>
+          <text x="793" y="260" font-size="15" font-weight="700" fill="#0b6340">graphify</text>
+          <text x="790" y="282" font-size="12" fill="#5d6b7a">知識地圖</text>
+
+          <line x1="450" y1="296" x2="450" y2="342" stroke="#536273" marker-end="url(#arrow3)"></line>
+          <rect x="300" y="344" width="300" height="64" rx="8" fill="#fff" stroke="#d8dee6"></rect>
+          <text x="326" y="372" font-size="15" fill="#17202a">是否需要固定欄位、強 schema、可驗證輸出？</text>
+          <text x="368" y="394" font-size="13" fill="#5d6b7a">合約義務 / 病歷 / SOP / timeline</text>
+
+          <line x1="300" y1="376" x2="130" y2="376" stroke="#536273" marker-end="url(#arrow3)"></line>
+          <text x="205" y="362" font-size="13" fill="#5d6b7a">是</text>
+          <rect x="28" y="342" width="132" height="68" rx="8" fill="#eef5ff" stroke="#9abbea"></rect>
+          <text x="47" y="372" font-size="15" font-weight="700" fill="#123d82">hyper-extract</text>
+          <text x="54" y="394" font-size="12" fill="#5d6b7a">結構化抽取</text>
+
+          <line x1="450" y1="408" x2="450" y2="454" stroke="#536273" marker-end="url(#arrow3)"></line>
+          <rect x="300" y="456" width="300" height="44" rx="8" fill="#f7f9fb" stroke="#d8dee6"></rect>
+          <text x="337" y="484" font-size="15" fill="#17202a">一般探索：優先 graphify，再按需補工具</text>
+        </svg>
+      </div>
+      <h3>推薦組合</h3>
+      <ul>
+        <li><strong>Codebase 知識庫：</strong>GitNexus 作主索引，graphify 補 README、ADR、設計文件、圖與會議資料，hyper-extract 用於把 PRD、規格、合約、事故報告抽成強 schema。</li>
+        <li><strong>全能知識庫：</strong>graphify 作入口與地圖層，hyper-extract 作精煉層；若資料裡包含 repo，另外讓 GitNexus 管 code，不要硬把 code intelligence 塞進通用圖譜。</li>
+        <li><strong>最小可行導入：</strong>工程團隊先裝 GitNexus；研究/知識管理先跑 graphify；需要固定欄位、報表或垂直領域抽取時再加入 hyper-extract。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>詳細優缺點</h2>
+      <div class="cols">
+        <h3>GitNexus</h3>
+        <p><strong>優點：</strong>code semantics 深、MCP 工具完整、支援 Cypher、能做 impact 與 rename、低 LLM 成本、適合大型 codebase。</p>
+        <p><strong>缺點：</strong>多媒體與泛文件能力弱；非 code domain extraction 不是主場；授權為 PolyForm Noncommercial，商業使用需特別留意。</p>
+
+        <h3>graphify</h3>
+        <p><strong>優點：</strong>支援資料型態最廣；輸出 HTML、JSON、report、wiki；適合 agent 先看全局地圖；code-only 更新可 AST-only 降成本。</p>
+        <p><strong>缺點：</strong>code 語意深度不如 GitNexus；查詢偏 traversal，不是完整 semantic QA；semantic extraction 品質依賴模型。</p>
+
+        <h3>hyper-extract</h3>
+        <p><strong>優點：</strong>schema 可控、domain templates 豐富、支援 hypergraph/temporal/spatial、適合產品化抽取與可驗證輸出。</p>
+        <p><strong>缺點：</strong>LLM 依賴高；大型 codebase 不適合；多媒體需前處理；agent integration 需要額外包裝。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>最終建議</h2>
+      <p>不要一開始就把三者合併成單一大 graph。比較穩健的做法是讓它們各自維持最擅長的索引，再由 agent 或 MCP orchestration 做路由。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>問題類型</th>
+            <th>優先工具</th>
+            <th>原因</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>這個 function 被誰呼叫？改了會影響誰？</td>
+            <td>GitNexus</td>
+            <td>有 symbol graph、context、impact、detect_changes。</td>
+          </tr>
+          <tr>
+            <td>這堆資料夾裡有哪些核心概念與跨文件關係？</td>
+            <td>graphify</td>
+            <td>能快速產生 GRAPH_REPORT、community、surprising connections。</td>
+          </tr>
+          <tr>
+            <td>把合約、病歷、SOP、PRD 抽成固定欄位或關係圖</td>
+            <td>hyper-extract</td>
+            <td>Pydantic schema 與 YAML template 讓輸出可控。</td>
+          </tr>
+          <tr>
+            <td>跨 code、文件、會議錄音、架構圖的整體知識庫</td>
+            <td>graphify + GitNexus + hyper-extract</td>
+            <td>graphify 做入口，GitNexus 管 code，hyper-extract 做高價值結構化抽取。</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <strong>建議落地策略：</strong>
+        問 code flow 走 GitNexus，問跨文件與多媒體脈絡走 graphify，問結構化欄位與 domain relation 走 hyper-extract。這樣準確度、維護成本與 LLM token 成本都比較好控。
+      </div>
+    </section>
+
+    <p class="footer">本報告根據本地 clone 後之 README、ARCHITECTURE、主要 CLI、graph/query、LLM 與 indexing 模組研讀整理。</p>
+  </main>
+
+
+</body></html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>資安宣告 — Vexdi 維思迪</title>
+<meta name="description" content="Vexdi 維思迪在資料保護、帳號驗證、程式碼安全、部署、事件回應與漏洞通報上的承諾與實作。" />
+<link rel="icon" type="image/png" href="../monbyw53-header-logo-pic-font-white.png" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-base="../">
+
+<div data-vexdi-nav data-active=""></div>
+
+<header class="page-head">
+  <div class="read">
+    <a href="../index.html" class="back">← 回首頁</a>
+    <span class="eyebrow">LEGAL · 法務文件</span>
+    <h1>資安宣告</h1>
+    <p class="lead">本宣告說明 Vexdi 維思迪在資料保護、帳號驗證、程式碼安全、部署、事件回應與漏洞通報上的承諾與實作。資安是持續過程，不是一次性檢查清單。</p>
+    <div class="meta">
+      <span>最後更新 <b>2026 · 04 · 22</b></span>
+      <span>適用於 <b>本網站及所有客戶專案</b></span>
+    </div>
+  </div>
+</header>
+
+<section class="article">
+  <div class="read">
+
+    <div class="callout">
+      <p style="margin:0"><strong>我們的態度：</strong>客戶資料是負債、不是資產。能不存就不存、能少權限就少權限、能加密就加密。所有專案上線前必跑一次第三方靜態掃描與 OWASP Top 10 檢核。</p>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">01</span>資料保護原則</h2>
+      <ul>
+        <li><strong>最小蒐集：</strong>只蒐集完成服務所必要的資料；可匿名處理的就匿名處理。</li>
+        <li><strong>最小權限：</strong>專案參與者僅取得執行該任務所需的權限；不發放共享帳號、不長期保留 root key。</li>
+        <li><strong>最短保留：</strong>專案結束後 30 日內刪除我方持有之客戶資料副本，除非客戶要求保留。</li>
+        <li><strong>透明可追溯：</strong>所有對客戶系統的變更記錄於 git history 與部署日誌，可隨時稽核。</li>
+      </ul>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">02</span>帳號與身份驗證</h2>
+      <ul>
+        <li>所有內部與雲端服務帳號強制啟用 <strong>多因素驗證（MFA）</strong>，且使用硬體 Key（YubiKey）或 TOTP，不使用 SMS。</li>
+        <li>密碼使用 1Password 等具零知識架構之密碼管理員產生與儲存，<strong>不以明文形式</strong>於 Slack / Email / 文件中傳遞。</li>
+        <li>客戶帳號（GitHub、AWS、Vercel 等）權限交付時即<strong>移轉所有權</strong>給客戶指定主帳號，我方僅保留必要協作者權限，並於專案結束時主動移除。</li>
+      </ul>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">03</span>程式碼安全</h2>
+      <ul>
+        <li><strong>原始碼管理：</strong>使用 GitHub 私有 repository，所有 commit 簽署 GPG。</li>
+        <li><strong>依賴掃描：</strong>使用 Dependabot / Snyk 持續監測第三方套件漏洞，CRITICAL 級別 24 小時內處理。</li>
+        <li><strong>機敏資訊：</strong>不將 API Key、密碼、token 寫入原始碼；統一以環境變數或專用 secret manager（Vercel Env、AWS Secrets Manager）管理。</li>
+        <li><strong>Code Review：</strong>所有 production-bound merge 至少經過一次 code review。</li>
+        <li><strong>上線前掃描：</strong>跑一次靜態分析（CodeQL / ESLint security rules）與 OWASP Top 10 檢核清單。</li>
+      </ul>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">04</span>資料傳輸與儲存</h2>
+      <ul>
+        <li><strong>傳輸層：</strong>所有對外服務強制 HTTPS（TLS 1.2+），HSTS 設置至少 6 個月。</li>
+        <li><strong>儲存層：</strong>資料庫、物件儲存預設啟用 at-rest encryption（AES-256）；客戶可指定金鑰管理方案。</li>
+        <li><strong>備份：</strong>關鍵資料於異地備援，備份檔同樣加密；備份保留 30 日。</li>
+        <li><strong>個資欄位：</strong>密碼以 bcrypt / argon2 雜湊；身份證、信用卡等高敏欄位使用獨立 KMS 加密或委由合規金流商處理（如 TapPay、ECPay），<strong>不自存信用卡卡號</strong>。</li>
+      </ul>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">05</span>部署與基礎建設</h2>
+      <ul>
+        <li>預設部署於 Vercel / Cloudflare / AWS（依專案性質選擇）— 均通過 SOC 2 Type II 認證。</li>
+        <li>對外服務前置 Cloudflare WAF 與 rate limiting，阻擋常見攻擊向量。</li>
+        <li>後台管理介面僅允許從特定 IP 範圍或 VPN 存取（依專案需求）。</li>
+        <li>定期更新作業系統與 runtime 版本，不留長期未維護之服務。</li>
+      </ul>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">06</span>員工與承包商</h2>
+      <ul>
+        <li>目前團隊極小（創辦人 + 必要時邀請之合作工程師），所有人簽署 NDA 後始接觸客戶資料。</li>
+        <li>離職或合作結束時 24 小時內撤銷所有存取權限。</li>
+        <li>個人裝置（筆電）強制全碟加密（FileVault / BitLocker）並啟用螢幕鎖。</li>
+      </ul>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">07</span>事件回應</h2>
+      <p>若發生資安事件（資料外洩、未授權存取、嚴重漏洞），我們將：</p>
+      <ol>
+        <li><strong>1 小時內</strong>啟動內部處理並隔離受影響系統</li>
+        <li><strong>24 小時內</strong>通知受影響客戶並提供初步影響評估</li>
+        <li><strong>72 小時內</strong>提供詳細事件報告（時間軸、影響範圍、修復措施、後續預防）</li>
+        <li>依個資法規定協助客戶向主管機關通報</li>
+      </ol>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">08</span>漏洞通報（Responsible Disclosure）</h2>
+      <p>如您發現本網站、本公司營運系統、或我們交付給客戶之專案存在資安漏洞，歡迎透過下列方式通報，我們承諾不對善意通報者採取法律行動：</p>
+      <ul>
+        <li><strong>聯絡：</strong><a href="mailto:security@vexdi.com">security@vexdi.com</a>（暫時與 hi@vexdi.com 共用，主旨請註明 [SECURITY]）</li>
+        <li><strong>請提供：</strong>漏洞描述、重現步驟、潛在影響、您的聯絡方式</li>
+        <li><strong>請避免：</strong>大規模掃描、社交工程攻擊、影響服務穩定之測試</li>
+        <li><strong>我們承諾：</strong>72 小時內回覆、合理時程內修復、修復後致謝（除非您希望匿名）</li>
+      </ul>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">09</span>第三方稽核</h2>
+      <p>目前公司規模尚未達到取得 ISO 27001 / SOC 2 等正式認證之階段，但我們的內部資安操作參照上述標準執行。對於有合規需求之企業客戶，我們可協助：</p>
+      <ul>
+        <li>填寫您的供應商資安問卷</li>
+        <li>簽署資料處理協議（DPA）</li>
+        <li>協調滲透測試（由您指定第三方執行，費用另計）</li>
+      </ul>
+    </div>
+
+    <div class="legal-section"><h2><span class="num">10</span>持續改進</h2>
+      <p>資安是一個持續過程，不是一次性檢查清單。我們會定期回顧本宣告與內部操作，並隨產業最佳實踐調整。重大更新將於本頁公告。</p>
+    </div>
+
+    <div class="cta-strip">
+      <h3>有特定的合規需求？</h3>
+      <p>NDA、DPA、供應商資安問卷、私有雲部署 — 都可以談。我們會誠實告訴你能與不能。</p>
+      <a href="mailto:hi@vexdi.com?subject=資安合規諮詢" class="btn btn-primary">寫信給我們 <span class="arr">→</span></a>
+    </div>
+
+  </div>
+</section>
+
+<div data-vexdi-footer></div>
+
+<script src="../assets/partial.js" defer></script>
+</body>
+</html>

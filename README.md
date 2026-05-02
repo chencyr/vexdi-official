@@ -1,22 +1,43 @@
-# Creative Tech Studio
+# Vexdi 維思迪 — 官方網站
 
-Nuxt 4 one-page portfolio homepage for a creative freelance studio. The site follows the approved
-brand-story layout: desktop hero carousel, mobile single-hero flow, portfolio modal, fixed
-testimonials, and LINE-first conversion.
+純靜態多頁網站。設計與內容同步自 [chencyr/ui-design-vexdi-official](https://github.com/chencyr/ui-design-vexdi-official)。
 
-## Scripts
+## 結構
 
-- `npm run dev`: start the Nuxt development server
-- `npm run test`: run the Vitest suite
-- `npm run build`: create a production build
-- `npm run preview`: preview the production build locally
+```
+.
+├── index.html              # 首頁
+├── about/index.html        # 關於
+├── services/index.html     # 服務
+├── cases/index.html        # 概念作品
+├── process/index.html      # 合作流程
+├── founding/index.html     # 創始客戶
+├── blog/                   # 觀點（index + 文章）
+├── legal/                  # privacy / terms / security
+├── assets/
+│   ├── style.css           # 共用樣式
+│   └── partial.js          # nav/footer 注入、互動（reveal、FAQ、drawer、hero canvas）
+└── monbyw53-header-logo-pic-font-white.png
+```
 
-## Runtime Config
+頁面透過 `<body data-base="">`（首頁）或 `<body data-base="../">`（子頁）告訴 `partial.js` 如何展開連結與資源路徑。
 
-Set `NUXT_PUBLIC_LINE_OFFICIAL_ACCOUNT_URL` to the real official LINE account URL before deploying.
+## 本地預覽
 
-## Notes
+無需 build，任一 static server 即可：
 
-- Homepage content lives in `app/data/homepage.ts`.
-- Shared types live in `app/types/homepage.ts`.
-- The temporary social share image is `public/og-homepage.svg`.
+```bash
+python3 -m http.server 8000
+```
+
+開 `http://localhost:8000`。
+
+## 部署
+
+Cloudflare Pages 直接從 repo root 服務檔案。
+
+- Build command：**留空**
+- Build output directory：**`/`**（或留空）
+- Root directory：`/`
+
+無 Node 依賴、無 build pipeline。
