@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>帶了 10 年 SaaS，我為什麼開了一家「不做 SaaS」的公司 — Vexdi</title>
+<meta name="description" content="大多數中小企業不需要再多一套月費軟體。他們需要的，是一個剛好替他們解決一件事的小工具。" />
+<link rel="icon" type="image/png" href="../monbyw53-header-logo-pic-font-white.png" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-base="../">
+
+<div data-vexdi-nav data-active="blog"></div>
+
+<header class="page-head">
+  <div class="read">
+    <a href="./" class="back">← 觀點列表</a>
+    <span class="eyebrow">創辦人觀點 · FOUNDER POV</span>
+    <h1>帶了 10 年 SaaS，<br/>我為什麼開了一家「不做 SaaS」的公司</h1>
+    <p class="lead">大多數中小企業不需要再多一套月費軟體。他們需要的，是一個剛好替他們解決一件事的小工具。這篇講為什麼。</p>
+    <div class="meta">
+      <span>Rex Chen · <b>創辦人</b></span>
+      <span>2026 · 04 · 22</span>
+      <span>閱讀時間 <b>約 12 分鐘</b></span>
+    </div>
+  </div>
+</header>
+
+<section class="article">
+  <div class="read">
+
+    <div class="toc">
+      <h4>目錄</h4>
+      <ol>
+        <li><a href="#h1">先講結論：SaaS 是給「群體」的，中小企業要的是「自己的」</a></li>
+        <li><a href="#h2">十年下來，我看見的三種被軟體拖累的客戶</a></li>
+        <li><a href="#h3">為什麼通用 SaaS 在中小企業總是「八成適用、兩成卡住」</a></li>
+        <li><a href="#h4">微型 SaaS：剛好夠用，剛好能改</a></li>
+        <li><a href="#h5">那 SaaS 公司不就完了？沒有，他們做他們該做的事</a></li>
+        <li><a href="#h6">我為什麼選擇做這個</a></li>
+      </ol>
+    </div>
+
+    <h2 id="h1">先講結論：SaaS 是給「群體」的，中小企業要的是「自己的」</h2>
+
+    <p>SaaS 商業模式的核心是 <strong>規模經濟</strong> —— 一份程式碼，賣給一萬個客戶，攤平開發成本。這意味著 SaaS 必須假設客戶長得「夠像」，產品才划算。</p>
+
+    <p>問題是，現實中的中小企業沒有「夠像」這回事。一家有 30 個員工的健身工作室、跟一家 30 人的會計師事務所、跟一家 30 人的精品咖啡進口商，他們的營運邏輯天差地遠。但只要你打開市面上的 ERP / CRM / HR SaaS，他們會告訴你：「不用擔心，我們什麼產業都能做。」</p>
+
+    <p>翻譯一下：<em>什麼產業都能做，意思是什麼產業都做得不夠好。</em></p>
+
+    <h2 id="h2">十年下來，我看見的三種被軟體拖累的客戶</h2>
+
+    <p>我做 SaaS 產品開發超過 10 年，從零把產品建到服務上千家企業客戶、帶過數十人工程團隊。這 10 年讓我看見一件事：<strong>中小企業導入軟體的痛苦，幾乎不是技術問題，是「fit」問題。</strong></p>
+
+    <h3>類型一：用了 5% 功能、付了 100% 月費</h3>
+    <p>典型場景：一家 20 人公司導入了某個明星 CRM。系統有 80 個欄位、20 種報表、自動化工作流、AI 推薦下一步——他們實際只用「客戶名稱、聯絡方式、最近一次對話」這三件事。其他 95% 的欄位放在那裡，每個月看著工程師花 8 小時搞清楚怎麼把不需要的東西藏起來。</p>
+    <p>付的錢呢？按 user × month 算，一年 30 萬。功能用 5%，價格 100%。</p>
+
+    <h3>類型二：流程要遷就軟體、不是軟體遷就流程</h3>
+    <p>更糟的情況：軟體有「最佳實踐」，但你的生意不是這樣跑的。健身工作室排課要照「教練擅長的時段 + 會員偏好的人」來排，不是照「課程類型」排；會計師事務所申報季要看「客戶到期日 + 承辦人手」，不是看「案件類型」。</p>
+    <p>但軟體寫死了「課程→時段→報名」、「案件類型→流程→送出」，於是員工每天用 Excel 加 LINE 加電話，繞過軟體做事。軟體變成一個「為了長官 KPI 存在但實際沒在用」的擺設。</p>
+    <blockquote>「我們公司有 ERP。」「都用嗎？」「沒有人用。」<br/>—— 這個對話我聽過至少 30 次</blockquote>
+
+    <h3>類型三：資料拿不出來、想換也換不掉</h3>
+    <p>當客戶終於受夠想換系統，發現：（一）廠商不給原始資料庫匯出，只給 PDF 報表；（二）客製欄位是廠商「優惠」開的，沒簽合約沒文件；（三）跟其他系統的串接是用 webhook 接的，換了會全炸。</p>
+    <p>於是他們繼續用著不適合的軟體，每年付月費，把「換系統」這件事一直往後推。Vendor lock-in 是 SaaS 商業模式的內建特性，不是 bug。</p>
+
+    <h2 id="h3">為什麼通用 SaaS 在中小企業總是「八成適用、兩成卡住」</h2>
+
+    <p>這不是 SaaS 廠商不努力。我自己就是其中之一，我知道他們有多努力。問題是 <strong>商業模式的數學</strong>：</p>
+
+    <ul>
+      <li>你要服務 10,000 個客戶才能 break even</li>
+      <li>所以產品必須抽象到 10,000 個客戶都能用</li>
+      <li>抽象到 10,000 個客戶都能用 = 沒有任何一個客戶覺得很合腳</li>
+      <li>於是你做 settings、做客製欄位、做 workflow builder</li>
+      <li>但 settings 越多，學習曲線越陡，中小企業越用不起來</li>
+    </ul>
+
+    <p>這是 SaaS 的<strong>結構性矛盾</strong>，不是哪一家做得不夠好可以解決的。Salesforce 做了 25 年，最後的解法是養出整個「Salesforce 顧問」產業 —— 你還是要花錢請人客製，只是你付的錢從「客製開發費」變成「顧問費 + 月費」。</p>
+
+    <div class="callout">
+      <p style="margin:0"><strong>一個小觀察：</strong>大型企業把 SaaS 用得好，因為他們有內部 IT 團隊把 SaaS 當「中間件」用，自己再寫一層客製接上去。中小企業沒有這個團隊，於是 SaaS 直接當主系統，然後就卡在前述三種痛苦中。</p>
+    </div>
+
+    <h2 id="h4">微型 SaaS：剛好夠用，剛好能改</h2>
+
+    <p>過去要替一家中小企業客製一套軟體，動輒 300 萬起跳、做半年。這個價格只有大企業吃得起。但 2024 年之後，三件事讓「客製軟體」這個曾經的奢侈品，變成 50–100 人事業吃得起的選項：</p>
+
+    <ol>
+      <li><strong>AI 寫程式效率：</strong>同樣的功能規模，2026 年的開發成本是 2020 年的 1/3 到 1/5。</li>
+      <li><strong>無伺服器基礎建設：</strong>Vercel、Cloudflare Workers、Supabase —— 過去要養一台機器一個月幾千塊，現在閒置時是零元，用多少付多少。</li>
+      <li><strong>低程式碼自動化：</strong>n8n、Make、Zapier —— 把瑣碎整合工作從「寫 API」降到「拉條線」。</li>
+    </ol>
+
+    <p>於是<strong>微型 SaaS</strong>變成可能：</p>
+
+    <ul>
+      <li>替你的生意客製、不是通用</li>
+      <li>只做你真正需要的 5–10 個功能、不是 80 個</li>
+      <li>原始碼歸你、雲端帳號歸你、想換團隊就換</li>
+      <li>做完一次性付清、不綁月費（雲端服務的小錢自己付）</li>
+      <li>用主流技術寫，未來任何工程師都能接手</li>
+    </ul>
+
+    <p>典型規模：60–150 萬、10–16 週、上線後 30 天保固。比起一年 30 萬的 SaaS 月費，2 年內就回本，第三年起每年省 30 萬。</p>
+
+    <h2 id="h5">那 SaaS 公司不就完了？沒有，他們做他們該做的事</h2>
+
+    <p>不是說 SaaS 不好用。SaaS 在以下情境是最佳解，<em>沒有之一</em>：</p>
+
+    <ul>
+      <li><strong>橫向工具：</strong>email（Google Workspace）、文件（Notion）、視訊（Zoom）—— 這些是「人類普世需求」，不分產業，SaaS 的規模經濟剛好發揮。</li>
+      <li><strong>合規重的領域：</strong>支付（Stripe）、開發票（綠界）、薪資（Payroll）—— 自己刻會違法或被罰，付錢買合規最便宜。</li>
+      <li><strong>需要網路效應：</strong>Slack、HubSpot、Salesforce —— 客戶與供應商都在用同一套，你不能不用。</li>
+    </ul>
+
+    <p>但<strong>核心營運流程</strong>—— 也就是「你跟競爭對手不一樣」的那部分 —— 不該外包給通用 SaaS。那是你公司獨特性的所在，應該由你掌控、量身打造、可以隨營運迭代。</p>
+
+    <blockquote>能買的，買；獨特的，做。<br/>不要把獨特的部分交給別人通用化，<br/>也不要花錢自製不獨特的東西。</blockquote>
+
+    <h2 id="h6">我為什麼選擇做這個</h2>
+
+    <p>過去 10 年我在做 SaaS 產品，目標是「服務一萬家公司」。每家公司我們可以分到的注意力大概是 0.01%，所以產品必須抽象、平均、不偏袒任何一家。</p>
+
+    <p>到了某個時間點我發現：我比較想要的，是反過來的數學 —— <strong>一年只服務 6–10 家公司，每家深入到我能畫出他們的營運流程，然後替他們客製剛好的工具</strong>。</p>
+
+    <p>這個工作做不大、也不會被資本市場喜歡 —— 沒有 ARR、沒有 retention 曲線、沒有 expansion revenue。但對客戶來說，這是真正在減少他們的痛苦，不是把痛苦從「沒有軟體」換成「不合用的軟體」。</p>
+
+    <p>所以我創辦了 Vexdi（中文名「維思迪」—— 維運、思考、引導），目標只有一個：<strong>替 50 人以下的事業，做他們真正需要的軟體</strong>。官方網站、微型 SaaS、AI 自動化整合，三條服務線，全部都是「替你客製，不是賣你訂閱」。</p>
+
+    <p>現在是 2026 年 4 月，公司剛成立兩個月，外部客戶數：0。前三位創始客戶我們提供 7 折專案費、首年免費維運、案例權交換 —— 因為對我們來說，前三個案例比錢重要。</p>
+
+    <p>如果你的公司正在被某個「不合腳」的 SaaS 拖累、或正在猶豫要不要再多買一套月費軟體 —— 也許先聊 30 分鐘。聊完不簽約沒有任何成本，但你可能會發現：你需要的不是「再買一個軟體」，而是「有人替你做一個剛剛好的」。</p>
+
+    <hr/>
+
+    <p style="font-size:14px;color:var(--mist)"><strong>關於作者：</strong>Rex Chen，Vexdi 維思迪 創辦人，10+ 年 SaaS 產品開發實戰經驗，從 0 把產品建到服務上千家企業、帶過數十人工程團隊。對中小企業營運與軟體配合有實戰觀察。寫信至 <a href="mailto:hi@vexdi.com">hi@vexdi.com</a> 可直接找到他。</p>
+
+    <div class="cta-strip">
+      <h3>聊聊你的營運痛點</h3>
+      <p>30 分鐘諮詢免費。聊完才報價，不適合做我們會直接告訴你。</p>
+      <a href="mailto:hi@vexdi.com?subject=想聊聊專案" class="btn btn-primary">寫信給 Rex <span class="arr">→</span></a>
+    </div>
+
+    <div class="next-up">
+      <span class="eyebrow">下一篇</span>
+      <a href="ai-adoption-failure.html">
+        <h3>為什麼中小企業導入 AI 多半失敗，問題不在 AI →</h3>
+        <p>真正卡住的不是模型選擇、不是 prompt 寫法，是流程沒拆乾淨、資料沒整理過。</p>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div data-vexdi-footer></div>
+
+<script src="../assets/partial.js" defer></script>
+</body>
+</html>
